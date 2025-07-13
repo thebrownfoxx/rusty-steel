@@ -1,1 +1,3 @@
 mod shared_enchantment_type;
+mod shared_enchantment_types;
+mod list_shared_enchantment_types;
