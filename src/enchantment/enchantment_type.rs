@@ -1,3 +1,5 @@
+use std::sync::Arc;
+
 pub struct EnchantmentTypeId(pub String);
 
 #[derive(Copy, Clone)]
@@ -6,9 +8,9 @@ pub struct CostMultiplier {
     pub book: i8,
 }
 
-pub struct EnchantmentType {
-    pub id: EnchantmentTypeId,
-    pub name: String,
+pub struct EnchantmentType<'a> {
+    pub id: &'a EnchantmentTypeId,
+    pub name: Arc<str>,
     pub cost_multiplier: CostMultiplier,
 }
 

@@ -1,10 +1,29 @@
-use crate::enchantment::enchantment_type::{CostMultiplier, EnchantmentTypeId};
+use crate::enchantment::enchantment_type::{CostMultiplier, EnchantmentType, EnchantmentTypeId};
+use std::sync::Arc;
 use SharedCostMultiplier as SharedMultiplier;
 
-pub struct SharedEnchantmentType {
-    pub id: EnchantmentTypeId,
-    pub name: String,
+pub struct SharedEnchantmentType<'a> {
+    pub id: &'a EnchantmentTypeId,
+    pub name: Arc<str>,
     pub cost_multiplier: SharedCostMultiplier,
+}
+
+impl SharedEnchantmentType<'_> {
+    fn java(&self) -> Option<EnchantmentType> {
+        Some(EnchantmentType {
+            id: self.id,
+            name: self.name.clone(),
+            cost_multiplier: self.cost_multiplier.java()?,
+        })
+    }
+
+    fn bedrock(&self) -> Option<EnchantmentType> {
+        Some(EnchantmentType {
+            id: self.id,
+            name: self.name.clone(),
+            cost_multiplier: self.cost_multiplier.bedrock()?,
+        })
+    }
 }
 
 pub enum SharedCostMultiplier {
@@ -24,19 +43,19 @@ impl SharedCostMultiplier {
         }
     }
 
-    fn java(&self) -> Option<&CostMultiplier> {
-        match self {
+    fn java(&self) -> Option<CostMultiplier> {
+        match *self {
             SharedMultiplier::JavaOnly(multiplier) => Some(multiplier),
             SharedMultiplier::BedrockOnly(_) => None,
             SharedMultiplier::CrossPlatform { java, .. } => Some(java),
         }
     }
 
-    fn bedrock(&self) -> Option<&CostMultiplier> {
+    fn bedrock(&self) -> Option<CostMultiplier> {
         match self {
             SharedMultiplier::JavaOnly(_) => None,
-            SharedMultiplier::BedrockOnly(multiplier) => Some(multiplier),
-            SharedMultiplier::CrossPlatform { bedrock, .. } => Some(bedrock),
+            SharedMultiplier::BedrockOnly(multiplier) => Some(*multiplier),
+            SharedMultiplier::CrossPlatform { bedrock, .. } => Some(*bedrock),
         }
     }
 }
