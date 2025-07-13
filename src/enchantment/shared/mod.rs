@@ -1,0 +1,1 @@
+mod shared_enchantment_type;
