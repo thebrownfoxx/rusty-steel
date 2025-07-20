@@ -1,25 +1,19 @@
 use crate::edition::Edition;
 use crate::enchantment::enchantment_type::{CostMultiplier, EnchantmentType, EnchantmentTypeId};
-use std::borrow::Cow;
 
-pub struct SharedEnchantmentType<'a, T>
-where
-    T: Fn(Edition) -> Option<CostMultiplier>,
-{
-    pub id: &'a EnchantmentTypeId,
+pub struct SharedEnchantmentType<F: Fn(Edition) -> Option<CostMultiplier>> {
+    pub id: EnchantmentTypeId,
     pub name: String,
-    pub cost_multiplier: T,
+    pub cost_multiplier: F,
 }
 
-impl<'a, T> SharedEnchantmentType<'a, T>
-where
-    T: Fn(Edition) -> Option<CostMultiplier>,
-{
+impl<F: Fn(Edition) -> Option<CostMultiplier>> SharedEnchantmentType<F> {
     pub fn for_edition(&self, edition: Edition) -> Option<EnchantmentType> {
-        Some(EnchantmentType::new(
-            self.id,
-            Cow::Borrowed(&self.name),
-            (self.cost_multiplier)(edition)?,
-        ))
+        let cost_multiplier = (self.cost_multiplier)(edition)?;
+        Some(EnchantmentType {
+            id: self.id.clone(),
+            name: self.name.clone(),
+            cost_multiplier,
+        })
     }
 }
