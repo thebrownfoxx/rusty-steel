@@ -15,6 +15,6 @@ pub struct EnchantmentType {
 }
 
 pub trait EnchantmentTypes {
-    fn all(&self) -> Vec<EnchantmentTypeId>;
-    fn get(&self, id: &EnchantmentTypeId) -> Option<EnchantmentType>;
+    fn all(&self) -> Vec<&EnchantmentTypeId>;
+    fn get(&self, id: &EnchantmentTypeId) -> Option<&EnchantmentType>;
 }
