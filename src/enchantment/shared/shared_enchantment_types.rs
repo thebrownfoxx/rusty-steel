@@ -1,7 +1,6 @@
 use crate::edition::Edition;
-use crate::enchantment::enchantment_type::{
-    CostMultiplier, EnchantmentType,
-};
+use crate::enchantment::cost_multiplier::CostMultiplier;
+use crate::enchantment::enchantment_type::EnchantmentType;
 use crate::enchantment::shared::shared_enchantment_type::SharedEnchantmentType;
 
 pub trait SharedEnchantmentTypes {

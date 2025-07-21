@@ -1,4 +1,5 @@
-use crate::enchantment::enchantment_type::{CostMultiplier, EnchantmentTypeId};
+use crate::enchantment::cost_multiplier::CostMultiplier;
+use crate::enchantment::enchantment_type::EnchantmentTypeId;
 use crate::enchantment::shared::shared_enchantment_type::SharedEnchantmentType;
 use crate::enchantment::shared::shared_enchantment_types::SharedEnchantmentTypes;
 

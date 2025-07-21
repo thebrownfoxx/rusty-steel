@@ -5,6 +5,7 @@ use crate::enchantment::hardcoded::hardcoded_enchantment_types::hardcoded_enchan
 
 mod enchantment;
 mod edition;
+mod item;
 
 fn main() {
     let enchantment_types = 

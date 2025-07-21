@@ -1,5 +1,6 @@
 use crate::edition::Edition;
-use crate::enchantment::enchantment_type::{CostMultiplier, EnchantmentType, EnchantmentTypeId};
+use crate::enchantment::cost_multiplier::CostMultiplier;
+use crate::enchantment::enchantment_type::{EnchantmentType, EnchantmentTypeId};
 
 pub struct SharedEnchantmentType<F>
 where
