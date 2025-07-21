@@ -4,6 +4,7 @@ use std::collections::HashSet;
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct ItemTypeId(pub String);
 
+#[derive(Eq, PartialEq, Clone, Debug)]
 pub struct ItemType {
     pub id: ItemTypeId,
     pub compatible_enchantment_types: HashSet<EnchantmentTypeId>,
