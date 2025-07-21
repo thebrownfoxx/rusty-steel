@@ -1,6 +1,6 @@
-use crate::enchantment::enchantment_type::EnchantmentTypeId;
+use crate::enchantment::enchantment_type::EnchantmentType;
 
 pub struct Enchantment {
-    pub type_id: EnchantmentTypeId,
+    pub enchantment_type: EnchantmentType,
     pub level: i8,
 }
