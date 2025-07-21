@@ -1,3 +1,3 @@
-mod enchantment_type;
-mod hardcoded;
-mod shared;
+pub(crate) mod enchantment_type;
+pub(crate) mod hardcoded;
+pub(crate) mod shared;

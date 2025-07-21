@@ -1,1 +1,1 @@
-mod hardcoded_enchantment_types;
+pub mod hardcoded_enchantment_types;

@@ -7,6 +7,7 @@ where
 {
     pub id: EnchantmentTypeId,
     pub name: String,
+    pub max_level: i8,
     pub cost_multiplier: F,
 }
 
@@ -19,6 +20,7 @@ where
         Some(EnchantmentType {
             id: self.id.clone(),
             name: self.name.clone(),
+            max_level: self.max_level,
             cost_multiplier,
         })
     }
