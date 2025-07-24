@@ -3,26 +3,20 @@ use crate::enchantment::cost_multiplier::CostMultiplier;
 use crate::enchantment::enchantment_type::EnchantmentType;
 use crate::enchantment::enchantment_type_id::EnchantmentTypeId;
 
-pub struct SharedEnchantmentType<F>
-where
-    F: Fn(Edition) -> Option<CostMultiplier>,
-{
+pub struct SharedEnchantmentType {
     pub id: EnchantmentTypeId,
     pub name: String,
     pub max_level: i8,
-    pub cost_multiplier: F,
+    pub cost_multiplier: Box<dyn Fn(Edition) -> Option<CostMultiplier>>,
 }
 
-impl<F> SharedEnchantmentType<F>
-where
-    F: Fn(Edition) -> Option<CostMultiplier>,
-{
+impl SharedEnchantmentType {
     pub fn new(
         id: impl Into<EnchantmentTypeId>,
         name: impl Into<String>,
         max_level: i8,
-        cost_multiplier: F,
-    ) -> SharedEnchantmentType<F> {
+        cost_multiplier: Box<dyn Fn(Edition) -> Option<CostMultiplier>>,
+    ) -> SharedEnchantmentType {
         SharedEnchantmentType {
             id: id.into(),
             name: name.into(),

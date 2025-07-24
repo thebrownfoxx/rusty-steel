@@ -1,4 +1,4 @@
-use crate::enchantment::enchantment_type::EnchantmentTypeId;
+use crate::enchantment::enchantment_type_id::EnchantmentTypeId;
 use std::collections::HashSet;
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
@@ -11,9 +11,7 @@ pub struct ItemType {
     pub compatible_enchantment_types: HashSet<EnchantmentTypeId>,
 }
 
-impl ItemType {
-
-}
+impl ItemType {}
 
 pub trait ItemTypes {
     fn all(&self) -> Vec<&ItemTypeId>;
