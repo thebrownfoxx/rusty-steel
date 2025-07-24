@@ -7,7 +7,12 @@ pub struct ItemTypeId(pub String);
 #[derive(Eq, PartialEq, Clone, Debug)]
 pub struct ItemType {
     pub id: ItemTypeId,
+    pub name: String,
     pub compatible_enchantment_types: HashSet<EnchantmentTypeId>,
+}
+
+impl ItemType {
+
 }
 
 pub trait ItemTypes {
