@@ -3,31 +3,31 @@ use std::fmt::Debug;
 use std::hash::Hash;
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug)]
-pub struct EnchantmentTypeId(pub String);
+pub struct EnchantmentKindId(pub String);
 
-pub trait EnchantmentType: Eq + Clone + Hash + Debug {
-    fn id(&self) -> &EnchantmentTypeId;
+pub trait EnchantmentKind: Eq + Clone + Hash + Debug {
+    fn id(&self) -> &EnchantmentKindId;
     fn name(&self) -> &str;
     fn max_level(&self) -> u8;
     fn cost_multiplier(&self) -> impl CostMultiplier;
 }
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
-pub struct OwnedEnchantmentType<C: CostMultiplier> {
-    pub id: EnchantmentTypeId,
+pub struct OwnedEnchantmentKind<C: CostMultiplier> {
+    pub id: EnchantmentKindId,
     pub name: String,
     pub max_level: u8,
     pub cost_multiplier: C,
 }
 
-impl<C: CostMultiplier> OwnedEnchantmentType<C> {
+impl<C: CostMultiplier> OwnedEnchantmentKind<C> {
     pub fn new(
-        id: impl Into<EnchantmentTypeId>,
+        id: impl Into<EnchantmentKindId>,
         name: impl Into<String>,
         max_level: u8,
         cost_multiplier: C,
     ) -> Self {
-        OwnedEnchantmentType {
+        OwnedEnchantmentKind {
             id: id.into(),
             name: name.into(),
             max_level,
@@ -36,8 +36,8 @@ impl<C: CostMultiplier> OwnedEnchantmentType<C> {
     }
 }
 
-impl<C: CostMultiplier> EnchantmentType for OwnedEnchantmentType<C> {
-    fn id(&self) -> &EnchantmentTypeId {
+impl<C: CostMultiplier> EnchantmentKind for OwnedEnchantmentKind<C> {
+    fn id(&self) -> &EnchantmentKindId {
         &self.id
     }
 

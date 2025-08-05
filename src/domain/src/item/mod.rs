@@ -1,11 +1,11 @@
 use crate::enchantment::Enchantment;
-use crate::item::item_type::ItemType;
+use crate::item::item_kind::ItemKind;
 
-pub mod item_type;
-pub mod item_type_provider;
+pub mod item_kind;
+pub mod item_kind_provider;
 
 pub trait Item {
-    fn get_type(&self) -> &impl ItemType;
+    fn kind(&self) -> &impl ItemKind;
     fn enchantments(&self) -> impl Iterator<Item = &impl Enchantment>;
     fn anvil_use_count(&self) -> u8;
 }

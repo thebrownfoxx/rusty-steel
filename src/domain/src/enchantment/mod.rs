@@ -1,34 +1,31 @@
-use crate::enchantment::enchantment_type::EnchantmentType;
+use crate::enchantment::enchantment_kind::EnchantmentKind;
 
 pub mod cost_multiplier;
-pub mod enchantment_type;
-pub mod enchantment_type_provider;
+pub mod enchantment_kind;
+pub mod enchantment_kind_provider;
 
 pub trait Enchantment {
-    fn get_type(&self) -> &impl EnchantmentType;
+    fn kind(&self) -> &impl EnchantmentKind;
     fn level(&self) -> u8;
 }
 
-pub struct OwnedEnchantment<T: EnchantmentType> {
-    pub enchantment_type: T,
+pub struct OwnedEnchantment<T: EnchantmentKind> {
+    pub kind: T,
     level: u8,
 }
 
-impl<T: EnchantmentType> OwnedEnchantment<T> {
-    fn new(enchantment_type: T, level: u8) -> Option<Self> {
-        if level > enchantment_type.max_level() {
+impl<T: EnchantmentKind> OwnedEnchantment<T> {
+    fn new(kind: T, level: u8) -> Option<Self> {
+        if level > kind.max_level() {
             return None;
         }
-        Some(OwnedEnchantment {
-            enchantment_type,
-            level,
-        })
+        Some(OwnedEnchantment { kind, level })
     }
 }
 
-impl<T: EnchantmentType> Enchantment for OwnedEnchantment<T> {
-    fn get_type(&self) -> &impl EnchantmentType {
-        &self.enchantment_type
+impl<T: EnchantmentKind> Enchantment for OwnedEnchantment<T> {
+    fn kind(&self) -> &impl EnchantmentKind {
+        &self.kind
     }
 
     fn level(&self) -> u8 {
