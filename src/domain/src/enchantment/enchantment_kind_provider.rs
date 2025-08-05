@@ -5,20 +5,14 @@ pub trait EnchantmentKindProvider {
     fn get(&self, id: &EnchantmentKindId) -> Option<&impl EnchantmentKind>;
 }
 
-pub struct OwnedEnchantmentKindProvider<T: EnchantmentKind> {
-    pub enchantment_kinds: Vec<T>,
-}
+pub struct OwnedEnchantmentKindProvider<T: EnchantmentKind>(pub Vec<T>);
 
 impl<T: EnchantmentKind> EnchantmentKindProvider for OwnedEnchantmentKindProvider<T> {
-    fn all_ids(&self) -> impl Iterator<Item=&EnchantmentKindId> {
-        self.enchantment_kinds
-            .iter()
-            .map(|kind| kind.id())
+    fn all_ids(&self) -> impl Iterator<Item = &EnchantmentKindId> {
+        self.0.iter().map(|kind| kind.id())
     }
 
     fn get(&self, id: &EnchantmentKindId) -> Option<&impl EnchantmentKind> {
-        self.enchantment_kinds
-            .iter()
-            .find(|kind| kind.id() == id)
+        self.0.iter().find(|kind| kind.id() == id)
     }
 }
