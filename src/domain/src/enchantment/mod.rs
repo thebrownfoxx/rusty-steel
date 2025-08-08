@@ -1,14 +1,18 @@
 use crate::enchantment::enchantment_kind::EnchantmentKind;
+use std::fmt::Debug;
+use std::hash::Hash;
 
 pub mod cost_multiplier;
 pub mod enchantment_kind;
 pub mod enchantment_kind_provider;
 
-pub trait Enchantment {
+pub trait Enchantment: Eq + Clone + Hash + Debug {
     fn kind(&self) -> &impl EnchantmentKind;
     fn level(&self) -> u8;
+    fn convert(enchantment: &impl Enchantment) -> Option<Self> where Self: Sized;
 }
 
+#[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct OwnedEnchantment<T: EnchantmentKind> {
     pub kind: T,
     level: u8,
@@ -30,5 +34,9 @@ impl<T: EnchantmentKind> Enchantment for OwnedEnchantment<T> {
 
     fn level(&self) -> u8 {
         self.level
+    }
+
+    fn convert(enchantment: &impl Enchantment) -> Option<Self> {
+        Self::new(T::convert(enchantment.kind()), enchantment.level())
     }
 }

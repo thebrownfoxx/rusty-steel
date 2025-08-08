@@ -51,8 +51,13 @@ impl<T: ItemKind, E: Enchantment> Item for OwnedItem<T, E> {
         if self.kind().supports(enchantment.kind().id()) {
             return false;
         }
-        
-        self.enchantments.push(enchantment as E);
-        true
+
+        match E::convert(&enchantment) {
+            None => false,
+            Some(converted) => {
+                self.enchantments.push(converted);
+                true
+            }
+        }
     }
 }
