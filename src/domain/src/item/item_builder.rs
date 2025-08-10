@@ -3,6 +3,7 @@ use crate::item::item_kind::ItemKind;
 use crate::item::supports_all::SupportsAll;
 use crate::item::Item;
 
+#[derive(Eq, PartialEq, Clone, Debug)]
 pub struct ItemBuilder<'a> {
     kind: &'a ItemKind,
     enchantments: Vec<Enchantment>,

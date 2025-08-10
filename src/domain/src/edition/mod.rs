@@ -1,7 +1,7 @@
 pub mod cached_edition_variants;
 pub mod edition_shared;
 
-#[derive(Eq, PartialEq, Copy, Clone, Hash, Debug)]
+#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug)]
 pub enum Edition {
     Bedrock,
     Java,

@@ -3,6 +3,7 @@ use crate::item::item_kind::ItemKind;
 use crate::item::item_kind_provider::OwnedItemKindProvider;
 use crate::item::shared_item_kind::SharedItemKind;
 
+#[derive(Eq, PartialEq, Clone, Debug)]
 pub struct SharedItemKindProvider(pub Vec<SharedItemKind>);
 
 impl CloneByEdition<OwnedItemKindProvider> for SharedItemKindProvider {

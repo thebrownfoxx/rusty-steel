@@ -3,6 +3,7 @@ use crate::edition::{CloneByEdition, Edition};
 use crate::enchantment::cost_multiplier::CostMultiplier;
 use crate::enchantment::enchantment_kind::{EnchantmentKind, EnchantmentKindId};
 
+#[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct SharedEnchantmentKind {
     pub id: EnchantmentKindId,
     pub name: EditionShared<String>,

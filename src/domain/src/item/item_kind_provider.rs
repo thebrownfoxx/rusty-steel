@@ -5,6 +5,7 @@ pub trait ItemKindProvider {
     fn get(&self, id: &ItemKindId) -> Option<&ItemKind>;
 }
 
+#[derive(Eq, PartialEq, Clone, Debug)]
 pub struct OwnedItemKindProvider(pub Vec<ItemKind>);
 
 impl ItemKindProvider for OwnedItemKindProvider {

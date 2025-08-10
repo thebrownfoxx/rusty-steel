@@ -1,5 +1,6 @@
 use crate::edition::{BorrowByEdition, CloneByEdition, Edition};
 
+#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug)]
 pub struct CachedEditionVariants<T> {
     pub for_bedrock: T,
     pub for_java: T,

@@ -10,12 +10,14 @@ pub mod shared_item_kind;
 pub mod shared_item_kind_provider;
 mod supports_all;
 
+#[derive(Eq, PartialEq, Clone, Debug)]
 pub struct Item {
     kind: ItemKindId,
     enchantments: Vec<Enchantment>,
     pub anvil_use_count: u8,
 }
 
+#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug)]
 pub enum IntoItemBuilderError {
     KindNotFound,
     IncompatibleEnchantments,

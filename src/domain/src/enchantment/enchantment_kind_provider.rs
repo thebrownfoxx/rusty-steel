@@ -5,6 +5,7 @@ pub trait EnchantmentKindProvider {
     fn get(&self, id: &EnchantmentKindId) -> Option<&EnchantmentKind>;
 }
 
+#[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct OwnedEnchantmentKindProvider(pub Vec<EnchantmentKind>);
 
 impl EnchantmentKindProvider for OwnedEnchantmentKindProvider {

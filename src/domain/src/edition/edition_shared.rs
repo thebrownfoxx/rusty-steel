@@ -1,6 +1,6 @@
 use crate::edition::{BorrowByEdition, CloneByEdition, Edition};
 
-#[derive(Eq, PartialEq, Clone, Hash, Debug)]
+#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug)]
 pub enum EditionShared<T> {
     Same(T),
     Different { for_bedrock: T, for_java: T },
