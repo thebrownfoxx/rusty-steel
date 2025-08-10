@@ -2,17 +2,17 @@ use crate::item::item_kind::{ItemKind, ItemKindId};
 
 pub trait ItemKindProvider {
     fn all_ids(&self) -> impl Iterator<Item = &ItemKindId>;
-    fn get(&self, id: &ItemKindId) -> Option<&impl ItemKind>;
+    fn get(&self, id: &ItemKindId) -> Option<&ItemKind>;
 }
 
-pub struct OwnedItemKindProvider<T: ItemKind>(pub Vec<T>);
+pub struct OwnedItemKindProvider(pub Vec<ItemKind>);
 
-impl<T: ItemKind> ItemKindProvider for OwnedItemKindProvider<T> {
+impl ItemKindProvider for OwnedItemKindProvider {
     fn all_ids(&self) -> impl Iterator<Item = &ItemKindId> {
-        self.0.iter().map(|kind| kind.id())
+        self.0.iter().map(|kind| &kind.id)
     }
 
-    fn get(&self, id: &ItemKindId) -> Option<&impl ItemKind> {
-        self.0.iter().find(|kind| kind.id() == id)
+    fn get(&self, id: &ItemKindId) -> Option<&ItemKind> {
+        self.0.iter().find(|kind| &kind.id == id)
     }
 }

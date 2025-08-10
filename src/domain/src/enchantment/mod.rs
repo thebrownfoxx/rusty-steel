@@ -1,37 +1,35 @@
-use crate::enchantment::enchantment_kind::EnchantmentKind;
+use crate::enchantment::enchantment_kind::{EnchantmentKind, EnchantmentKindId};
 use std::fmt::Debug;
 use std::hash::Hash;
 
 pub mod cost_multiplier;
 pub mod enchantment_kind;
 pub mod enchantment_kind_provider;
-
-pub trait Enchantment: Eq + Clone + Hash + Debug {
-    fn kind(&self) -> &impl EnchantmentKind;
-    fn level(&self) -> u8;
-}
+pub mod shared_enchantment_kind;
+pub mod shared_enchantment_kind_provider;
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
-pub struct OwnedEnchantment<T: EnchantmentKind> {
-    pub kind: T,
+pub struct Enchantment {
+    kind: EnchantmentKindId,
     level: u8,
 }
 
-impl<T: EnchantmentKind> OwnedEnchantment<T> {
-    fn new(kind: T, level: u8) -> Option<Self> {
-        if level > kind.max_level() {
+impl Enchantment {
+    pub fn new(kind: &EnchantmentKind, level: u8) -> Option<Self> {
+        if level > kind.max_level {
             return None;
         }
-        Some(OwnedEnchantment { kind, level })
+        Some(Enchantment {
+            kind: kind.id.clone(),
+            level,
+        })
     }
-}
 
-impl<T: EnchantmentKind> Enchantment for OwnedEnchantment<T> {
-    fn kind(&self) -> &impl EnchantmentKind {
+    pub fn kind(&self) -> &EnchantmentKindId {
         &self.kind
     }
 
-    fn level(&self) -> u8 {
+    pub fn level(&self) -> u8 {
         self.level
     }
 }

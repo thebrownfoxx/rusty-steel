@@ -1,65 +1,45 @@
 use crate::enchantment::Enchantment;
-use crate::enchantment::enchantment_kind::EnchantmentKind;
-use crate::item::item_kind::ItemKind;
-use crate::item::supports_all::SupportsAll;
+use crate::item::item_builder::ItemBuilder;
+use crate::item::item_kind::{ItemKind, ItemKindId};
+use crate::item::item_kind_provider::ItemKindProvider;
 
+pub mod item_builder;
 pub mod item_kind;
 pub mod item_kind_provider;
+pub mod shared_item_kind;
+pub mod shared_item_kind_provider;
 mod supports_all;
 
-pub trait Item<E: Enchantment> {
-    fn kind(&self) -> &impl ItemKind;
-
-    fn enchantments<'a>(&'a self) -> impl Iterator<Item = &'a E>
-    where
-        E: 'a;
-
-    fn anvil_use_count(&self) -> u8;
-
-    fn add_enchantment(&mut self, enchantment: E) -> bool;
-}
-
-pub struct OwnedItem<T: ItemKind, E: Enchantment> {
-    pub kind: T,
-    enchantments: Vec<E>,
+pub struct Item {
+    kind: ItemKindId,
+    enchantments: Vec<Enchantment>,
     pub anvil_use_count: u8,
 }
 
-impl<T: ItemKind, E: Enchantment> OwnedItem<T, E> {
-    pub fn new(kind: T, enchantments: Vec<E>, anvil_use_count: u8) -> Option<Self> {
-        if kind.supports_all(&enchantments) {
-            return None;
-        }
-        Some(OwnedItem {
-            kind,
-            enchantments,
-            anvil_use_count,
-        })
-    }
+pub enum IntoItemBuilderError {
+    KindNotFound,
+    IncompatibleEnchantments,
 }
 
-impl<T: ItemKind, E: Enchantment> Item<E> for OwnedItem<T, E> {
-    fn kind(&self) -> &impl ItemKind {
-        &self.kind
+impl Item {
+    pub fn new(
+        kind: &ItemKind,
+        enchantments: Vec<Enchantment>,
+        anvil_use_count: u8,
+    ) -> Option<Self> {
+        Some(ItemBuilder::with(kind, enchantments, anvil_use_count)?.build())
     }
 
-    fn enchantments<'a>(&'a self) -> impl Iterator<Item = &'a E>
-    where
-        E: 'a,
-    {
-        self.enchantments.iter()
-    }
-
-    fn anvil_use_count(&self) -> u8 {
-        self.anvil_use_count
-    }
-
-    fn add_enchantment(&mut self, enchantment: E) -> bool {
-        if self.kind().supports(enchantment.kind().id()) {
-            return false;
+    pub fn into_builder(
+        self,
+        kind_provider: &impl ItemKindProvider,
+    ) -> Result<ItemBuilder, IntoItemBuilderError> {
+        match kind_provider.get(&self.kind) {
+            None => Err(IntoItemBuilderError::IncompatibleEnchantments),
+            Some(kind) => match ItemBuilder::with(kind, self.enchantments, self.anvil_use_count) {
+                None => Err(IntoItemBuilderError::IncompatibleEnchantments),
+                Some(builder) => Ok(builder),
+            },
         }
-
-        self.enchantments.push(enchantment);
-        true
     }
 }
