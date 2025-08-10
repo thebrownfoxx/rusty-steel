@@ -11,6 +11,20 @@ pub struct SharedItemKind {
     pub compatible_enchantments: EditionShared<HashSet<EnchantmentKindId>>,
 }
 
+impl SharedItemKind {
+    pub fn new(
+        id: impl Into<ItemKindId>,
+        name: impl Into<EditionShared<String>>,
+        compatible_enchantments: impl Into<EditionShared<HashSet<EnchantmentKindId>>>,
+    ) -> SharedItemKind {
+        SharedItemKind {
+            id: id.into(),
+            name: name.into(),
+            compatible_enchantments: compatible_enchantments.into(),
+        }
+    }
+}
+
 impl CloneByEdition<ItemKind> for SharedItemKind {
     fn clone_by_edition(&self, edition: Edition) -> ItemKind {
         ItemKind::new(

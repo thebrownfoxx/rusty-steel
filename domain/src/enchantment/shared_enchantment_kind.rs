@@ -11,6 +11,22 @@ pub struct SharedEnchantmentKind {
     pub cost_multiplier: EditionShared<CostMultiplier>,
 }
 
+impl SharedEnchantmentKind {
+    pub fn new(
+        id: impl Into<EnchantmentKindId>,
+        name: impl Into<EditionShared<String>>,
+        max_level: impl Into<EditionShared<u8>>,
+        cost_multiplier: impl Into<EditionShared<CostMultiplier>>,
+    ) -> SharedEnchantmentKind {
+        SharedEnchantmentKind {
+            id: id.into(),
+            name: name.into(),
+            max_level: max_level.into(),
+            cost_multiplier: cost_multiplier.into(),
+        }
+    }
+}
+
 impl CloneByEdition<EnchantmentKind> for SharedEnchantmentKind {
     fn clone_by_edition(&self, edition: Edition) -> EnchantmentKind {
         EnchantmentKind::new(

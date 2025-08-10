@@ -1,5 +1,5 @@
-use crate::enchantment::Enchantment;
 use crate::enchantment::cost_multiplier::CostMultiplier;
+use crate::enchantment::Enchantment;
 use std::fmt::Debug;
 use std::hash::Hash;
 
