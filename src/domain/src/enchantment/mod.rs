@@ -9,7 +9,6 @@ pub mod enchantment_kind_provider;
 pub trait Enchantment: Eq + Clone + Hash + Debug {
     fn kind(&self) -> &impl EnchantmentKind;
     fn level(&self) -> u8;
-    fn convert(enchantment: &impl Enchantment) -> Option<Self> where Self: Sized;
 }
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
@@ -34,9 +33,5 @@ impl<T: EnchantmentKind> Enchantment for OwnedEnchantment<T> {
 
     fn level(&self) -> u8 {
         self.level
-    }
-
-    fn convert(enchantment: &impl Enchantment) -> Option<Self> {
-        Self::new(T::convert(enchantment.kind()), enchantment.level())
     }
 }

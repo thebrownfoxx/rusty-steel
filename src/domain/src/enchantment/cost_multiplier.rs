@@ -4,7 +4,6 @@ use std::hash::Hash;
 pub trait CostMultiplier: Eq + Copy + Hash + Debug {
     fn for_book(&self) -> u8;
     fn for_item(&self) -> u8;
-    fn convert(cost_multiplier: &impl CostMultiplier) -> Self;
 }
 
 #[derive(Eq, PartialEq, Copy, Clone, Hash, Debug)]
@@ -26,9 +25,5 @@ impl CostMultiplier for OwnedCostMultiplier {
 
     fn for_item(&self) -> u8 {
         self.for_item
-    }
-
-    fn convert(cost_multiplier: &impl CostMultiplier) -> Self {
-        Self::new(cost_multiplier.for_book(), cost_multiplier.for_item())
     }
 }

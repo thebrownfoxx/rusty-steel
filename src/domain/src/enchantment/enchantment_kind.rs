@@ -10,7 +10,6 @@ pub trait EnchantmentKind: Eq + Clone + Hash + Debug {
     fn name(&self) -> &str;
     fn max_level(&self) -> u8;
     fn cost_multiplier(&self) -> impl CostMultiplier;
-    fn convert(enchantment_kind: &impl EnchantmentKind) -> Self;
 }
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
@@ -52,14 +51,5 @@ impl<C: CostMultiplier> EnchantmentKind for OwnedEnchantmentKind<C> {
 
     fn cost_multiplier(&self) -> impl CostMultiplier {
         self.cost_multiplier
-    }
-
-    fn convert(enchantment_kind: &impl EnchantmentKind) -> Self {
-        Self::new(
-            enchantment_kind.id().clone(),
-            enchantment_kind.name().clone(),
-            enchantment_kind.max_level(),
-            C::convert(&enchantment_kind.cost_multiplier()),
-        )
     }
 }
