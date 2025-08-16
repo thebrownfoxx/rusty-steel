@@ -6,6 +6,12 @@ use std::hash::Hash;
 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug)]
 pub struct EnchantmentKindId(pub String);
 
+impl From<String> for EnchantmentKindId {
+    fn from(value: String) -> Self {
+        EnchantmentKindId(value)
+    }
+}
+
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct EnchantmentKind {
     pub id: EnchantmentKindId,
