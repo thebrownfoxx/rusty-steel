@@ -34,8 +34,4 @@ impl EnchantmentKind {
             cost_multiplier,
         }
     }
-
-    fn of_level(&self, level: u8) -> Option<Enchantment> {
-        Enchantment::new(self, level)
-    }
 }

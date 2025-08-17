@@ -3,28 +3,25 @@ use std::fmt::Debug;
 use std::hash::Hash;
 
 pub mod cost_multiplier;
+pub mod enchantment_compatibility;
 pub mod enchantment_kind;
 pub mod enchantment_kind_provider;
+pub mod shared_enchantment_incompatibility_matrix;
 pub mod shared_enchantment_kind;
 pub mod shared_enchantment_kind_provider;
-pub mod enchantment_compatibility;
-pub mod shared_enchantment_incompatibility_matrix;
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct Enchantment {
-    kind: EnchantmentKindId,
-    level: u8,
+    pub kind: EnchantmentKindId,
+    pub level: u8,
 }
 
 impl Enchantment {
-    pub fn new(kind: &EnchantmentKind, level: u8) -> Option<Self> {
-        if level > kind.max_level {
-            return None;
-        }
-        Some(Enchantment {
-            kind: kind.id.clone(),
+    pub fn new(kind: impl Into<EnchantmentKindId>, level: u8) -> Self {
+        Self {
+            kind: kind.into(),
             level,
-        })
+        }
     }
 
     pub fn kind(&self) -> &EnchantmentKindId {
