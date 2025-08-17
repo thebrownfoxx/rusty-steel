@@ -7,6 +7,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Serialize, Deserialize, Debug)]
 pub struct SerializableEnchantmentKindId(pub String);
 
+pub(super) fn map_enchantments(enchantments: Vec<SerializableEnchantmentKindId>) -> Vec<EnchantmentKindId> {
+    enchantments
+        .into_iter()
+        .map(EnchantmentKindId::from)
+        .collect()
+}
+
 impl From<SerializableEnchantmentKindId> for EnchantmentKindId {
     fn from(value: SerializableEnchantmentKindId) -> Self {
         EnchantmentKindId(value.0)

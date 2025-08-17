@@ -7,8 +7,8 @@ pub mod enchantment_kind;
 pub mod enchantment_kind_provider;
 pub mod shared_enchantment_kind;
 pub mod shared_enchantment_kind_provider;
-mod enchantment_compatibility;
-mod shared_enchantment_incompatibility_matrix;
+pub mod enchantment_compatibility;
+pub mod shared_enchantment_incompatibility_matrix;
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct Enchantment {

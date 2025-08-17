@@ -5,7 +5,8 @@ pub mod item_kind;
 pub mod item_kind_provider;
 pub mod shared_item_kind;
 pub mod shared_item_kind_provider;
-mod item_enchantment_compatibility;
+pub mod item_enchantment_compatibility;
+pub mod shared_item_enchantment_compatibility_matrix;
 
 #[derive(Eq, PartialEq, Clone, Debug)]
 pub struct Item {
