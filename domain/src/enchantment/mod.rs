@@ -11,7 +11,7 @@ pub mod shared_enchantment_incompatibility_matrix;
 pub mod shared_enchantment_kind;
 pub mod shared_enchantment_kind_provider;
 
-#[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize)]
+#[derive(Eq, PartialEq, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct Enchantment {
     pub kind: EnchantmentKindId,
     pub level: u8,
@@ -23,13 +23,5 @@ impl Enchantment {
             kind: kind.into(),
             level,
         }
-    }
-
-    pub fn kind(&self) -> &EnchantmentKindId {
-        &self.kind
-    }
-
-    pub fn level(&self) -> u8 {
-        self.level
     }
 }

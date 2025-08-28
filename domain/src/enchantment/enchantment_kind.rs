@@ -3,14 +3,8 @@ use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
 
-#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug, Serialize, Deserialize)]
-pub struct EnchantmentKindId(pub String);
-
-impl From<String> for EnchantmentKindId {
-    fn from(value: String) -> Self {
-        EnchantmentKindId(value)
-    }
-}
+#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
+pub struct EnchantmentKindId(pub u8);
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct EnchantmentKind {

@@ -1,12 +1,12 @@
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
-use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 
 pub trait EnchantmentCompatibility {
     fn are_compatible(
         &self,
-        enchantment_a: &EnchantmentKindId,
-        enchantment_b: &EnchantmentKindId,
+        enchantment_a: impl Into<EnchantmentKindId>,
+        enchantment_b: impl Into<EnchantmentKindId>,
     ) -> bool;
 }
 
@@ -16,12 +16,12 @@ pub struct EnchantmentIncompatibilityMatrix(pub HashMap<EnchantmentKindId, Vec<E
 impl EnchantmentCompatibility for EnchantmentIncompatibilityMatrix {
     fn are_compatible(
         &self,
-        enchantment_a: &EnchantmentKindId,
-        enchantment_b: &EnchantmentKindId,
+        enchantment_a: impl Into<EnchantmentKindId>,
+        enchantment_b: impl Into<EnchantmentKindId>,
     ) -> bool {
-        match self.0.get(enchantment_a) {
+        match self.0.get(&enchantment_a.into()) {
             None => true,
-            Some(incompatible) => incompatible.contains(enchantment_b),
+            Some(incompatible) => incompatible.contains(&enchantment_b.into()),
         }
     }
 }
