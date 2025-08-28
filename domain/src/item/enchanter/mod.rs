@@ -1,19 +1,24 @@
+pub mod agnostic_enchanter;
+pub mod compatible_item_kind_enchanter;
+pub mod compatible_enchantments_enchanter;
+
 use crate::enchantment::Enchantment;
+use crate::item::enchanter::compatible_item_kind_enchanter::IntoCompatibleItemKindEnchanter;
 use crate::item::Item;
 
-// pub struct EnchantmentError {
-//     pub kind: EnchantmentErrorKind,
-//     pub enchantment: Enchantment,
-// }
-//
-// #[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Debug)]
-// pub enum EnchantmentErrorKind {
-//     IncompatibleWithItemType,
-//     IncompatibleWithOtherEnchantments,
-// }
-//
-// pub trait ItemEnchanter {
-//     type Type;
-//
-//     fn add_enchantment(&self, item: &Item, enchantment: Enchantment) -> Self::Type;
-// }
+#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug)]
+pub enum EnchantmentError {
+    ItemKindIncompatible,
+    EnchantmentsIncompatible,
+}
+
+pub trait Enchanter {
+    fn enchant(
+        &self,
+        item: &mut Item,
+        enchantment: Enchantment,
+    ) -> Result<(), EnchantmentError>;
+}
+
+fn x() {
+}

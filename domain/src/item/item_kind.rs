@@ -5,6 +5,12 @@ use serde::{Deserialize, Serialize};
 #[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct ItemKindId(pub i8);
 
+impl From<i8> for ItemKindId {
+    fn from(value: i8) -> Self {
+        ItemKindId(value)
+    }
+}
+
 #[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
 pub struct ItemKind {
     pub id: ItemKindId,
