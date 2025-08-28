@@ -1,3 +1,4 @@
+use serde::{Deserialize, Serialize};
 use crate::enchantment::Enchantment;
 use crate::item::item_kind::ItemKindId;
 
@@ -9,7 +10,7 @@ pub mod item_enchantment_compatibility;
 pub mod shared_item_enchantment_compatibility_matrix;
 mod enchanter;
 
-#[derive(Eq, PartialEq, Clone, Debug)]
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
 pub struct Item {
     pub kind: ItemKindId,
     pub enchantments: Vec<Enchantment>,

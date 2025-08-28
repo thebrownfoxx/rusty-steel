@@ -1,9 +1,9 @@
 use crate::enchantment::cost_multiplier::CostMultiplier;
-use crate::enchantment::Enchantment;
+use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
 
-#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug)]
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct EnchantmentKindId(pub String);
 
 impl From<String> for EnchantmentKindId {
@@ -12,7 +12,7 @@ impl From<String> for EnchantmentKindId {
     }
 }
 
-#[derive(Eq, PartialEq, Clone, Hash, Debug)]
+#[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct EnchantmentKind {
     pub id: EnchantmentKindId,
     pub name: String,

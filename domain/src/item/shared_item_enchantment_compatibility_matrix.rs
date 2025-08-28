@@ -4,7 +4,9 @@ use crate::enchantment::enchantment_kind::EnchantmentKindId;
 use crate::item::item_enchantment_compatibility::ItemEnchantmentCompatibilityMatrix;
 use crate::item::item_kind::ItemKindId;
 use std::collections::HashMap;
+use serde::{Deserialize, Serialize};
 
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
 pub struct SharedItemEnchantmentCompatibilityMatrix(
     pub HashMap<ItemKindId, EditionShared<Vec<EnchantmentKindId>>>,
 );

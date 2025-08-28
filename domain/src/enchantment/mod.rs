@@ -1,4 +1,5 @@
-use crate::enchantment::enchantment_kind::{EnchantmentKind, EnchantmentKindId};
+use crate::enchantment::enchantment_kind::EnchantmentKindId;
+use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
 
@@ -10,7 +11,7 @@ pub mod shared_enchantment_incompatibility_matrix;
 pub mod shared_enchantment_kind;
 pub mod shared_enchantment_kind_provider;
 
-#[derive(Eq, PartialEq, Clone, Hash, Debug)]
+#[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct Enchantment {
     pub kind: EnchantmentKindId,
     pub level: u8,

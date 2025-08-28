@@ -1,6 +1,7 @@
+use serde::{Deserialize, Serialize};
 use crate::edition::{BorrowByEdition, CloneByEdition, Edition};
 
-#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug)]
+#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
 pub enum EditionShared<T> {
     Same(T),
     Different { for_bedrock: T, for_java: T },

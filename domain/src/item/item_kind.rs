@@ -1,7 +1,8 @@
 use std::fmt::Debug;
 use std::hash::Hash;
+use serde::{Deserialize, Serialize};
 
-#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug)]
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct ItemKindId(pub String);
 
 impl From<String> for ItemKindId {
@@ -10,7 +11,7 @@ impl From<String> for ItemKindId {
     }
 }
 
-#[derive(Eq, PartialEq, Clone, Debug)]
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
 pub struct ItemKind {
     pub id: ItemKindId,
     pub name: String,

@@ -1,8 +1,9 @@
+use serde::{Deserialize, Serialize};
 use crate::edition::edition_shared::EditionShared;
 use crate::edition::{CloneByEdition, Edition};
 use crate::item::item_kind::{ItemKind, ItemKindId};
 
-#[derive(Eq, PartialEq, Clone, Debug)]
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
 pub struct SharedItemKind {
     pub id: ItemKindId,
     pub name: EditionShared<String>,

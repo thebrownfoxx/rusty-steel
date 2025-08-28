@@ -3,7 +3,9 @@ use crate::edition::{CloneByEdition, Edition};
 use crate::enchantment::enchantment_compatibility::EnchantmentIncompatibilityMatrix;
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
 use std::collections::HashMap;
+use serde::{Deserialize, Serialize};
 
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
 pub struct SharedEnchantmentIncompatibilityMatrix(
     pub HashMap<EnchantmentKindId, EditionShared<Vec<EnchantmentKindId>>>,
 );
