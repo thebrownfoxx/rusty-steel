@@ -1,5 +1,4 @@
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
-use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 pub trait EnchantmentCompatibility {
@@ -10,7 +9,7 @@ pub trait EnchantmentCompatibility {
     ) -> bool;
 }
 
-#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+#[derive(Eq, PartialEq, Clone, Debug)]
 pub struct EnchantmentIncompatibilityMatrix(pub HashMap<EnchantmentKindId, Vec<EnchantmentKindId>>);
 
 impl EnchantmentCompatibility for EnchantmentIncompatibilityMatrix {

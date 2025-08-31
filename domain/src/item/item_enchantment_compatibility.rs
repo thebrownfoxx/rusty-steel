@@ -1,13 +1,12 @@
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
 use crate::item::item_kind::ItemKindId;
 use std::collections::HashMap;
-use serde::{Deserialize, Serialize};
 
 pub trait ItemEnchantmentCompatibility {
     fn are_compatible(&self, item: ItemKindId, enchantment: EnchantmentKindId) -> bool;
 }
 
-#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+#[derive(Eq, PartialEq, Clone, Debug)]
 pub struct ItemEnchantmentCompatibilityMatrix(pub HashMap<ItemKindId, Vec<EnchantmentKindId>>);
 
 impl ItemEnchantmentCompatibility for ItemEnchantmentCompatibilityMatrix {

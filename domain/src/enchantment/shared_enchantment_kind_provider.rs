@@ -1,10 +1,9 @@
-use serde::{Deserialize, Serialize};
 use crate::edition::{CloneByEdition, Edition};
 use crate::enchantment::enchantment_kind::EnchantmentKind;
 use crate::enchantment::enchantment_kind_provider::OwnedEnchantmentKindProvider;
 use crate::enchantment::shared_enchantment_kind::SharedEnchantmentKind;
 
-#[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize)]
+#[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct SharedEnchantmentKindProvider(pub Vec<SharedEnchantmentKind>);
 
 impl CloneByEdition<OwnedEnchantmentKindProvider> for SharedEnchantmentKindProvider {

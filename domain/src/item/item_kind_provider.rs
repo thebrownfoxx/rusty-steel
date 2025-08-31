@@ -1,4 +1,3 @@
-use serde::{Deserialize, Serialize};
 use crate::item::item_kind::{ItemKind, ItemKindId};
 
 pub trait ItemKindProvider {
@@ -6,7 +5,7 @@ pub trait ItemKindProvider {
     fn get(&self, id: ItemKindId) -> Option<&ItemKind>;
 }
 
-#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+#[derive(Eq, PartialEq, Clone, Debug)]
 pub struct OwnedItemKindProvider(pub Vec<ItemKind>);
 
 impl ItemKindProvider for OwnedItemKindProvider {
