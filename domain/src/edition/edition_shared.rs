@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use crate::edition::{BorrowByEdition, CloneByEdition, Edition};
+use serde::{Deserialize, Serialize};
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
 pub enum EditionShared<T> {

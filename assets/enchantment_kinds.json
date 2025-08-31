@@ -1,0 +1,650 @@
+[
+  {
+    "id": 0,
+    "name": {
+      "Same": "Aqua Affinity"
+    },
+    "max_level": {
+      "Same": 1
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 1,
+    "name": {
+      "Same": "Bane of Arthropods"
+    },
+    "max_level": {
+      "Same": 5
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": {
+      "Same": "Blast Protection"
+    },
+    "max_level": {
+      "Same": 4
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 3,
+    "name": {
+      "Same": "Breach"
+    },
+    "max_level": {
+      "Same": 4
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 4,
+    "name": {
+      "Same": "Channeling"
+    },
+    "max_level": {
+      "Same": 1
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 4,
+        "for_item": 8
+      }
+    }
+  },
+  {
+    "id": 5,
+    "name": {
+      "Same": "Curse of Binding"
+    },
+    "max_level": {
+      "Same": 1
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 4,
+        "for_item": 8
+      }
+    }
+  },
+  {
+    "id": 6,
+    "name": {
+      "Same": "Curse of Vanishing"
+    },
+    "max_level": {
+      "Same": 1
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 4,
+        "for_item": 8
+      }
+    }
+  },
+  {
+    "id": 7,
+    "name": {
+      "Same": "Density"
+    },
+    "max_level": {
+      "Same": 5
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 8,
+    "name": {
+      "Same": "Depth Strider"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 9,
+    "name": {
+      "Same": "Efficiency"
+    },
+    "max_level": {
+      "Same": 5
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 1
+      }
+    }
+  },
+  {
+    "id": 10,
+    "name": {
+      "Same": "Feather Falling"
+    },
+    "max_level": {
+      "Same": 4
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 11,
+    "name": {
+      "Same": "Fire Aspect"
+    },
+    "max_level": {
+      "Same": 2
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 12,
+    "name": {
+      "Same": "Fire Protection"
+    },
+    "max_level": {
+      "Same": 4
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 13,
+    "name": {
+      "Same": "Flame"
+    },
+    "max_level": {
+      "Same": 1
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 14,
+    "name": {
+      "Same": "Fortune"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 15,
+    "name": {
+      "Same": "Frost Walker"
+    },
+    "max_level": {
+      "Same": 2
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 16,
+    "name": {
+      "Same": "Impaling"
+    },
+    "max_level": {
+      "Same": 5
+    },
+    "cost_multiplier": {
+      "Different": {
+        "for_bedrock": {
+          "for_book": 2,
+          "for_item": 1
+        },
+        "for_java": {
+          "for_book": 2,
+          "for_item": 4
+        }
+      }
+    }
+  },
+  {
+    "id": 17,
+    "name": {
+      "Same": "Infinity"
+    },
+    "max_level": {
+      "Same": 1
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 4,
+        "for_item": 8
+      }
+    }
+  },
+  {
+    "id": 18,
+    "name": {
+      "Same": "Knockback"
+    },
+    "max_level": {
+      "Same": 2
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 19,
+    "name": {
+      "Same": "Looting"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 20,
+    "name": {
+      "Same": "Loyalty"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 1
+      }
+    }
+  },
+  {
+    "id": 21,
+    "name": {
+      "Same": "Luck of the Sea"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 22,
+    "name": {
+      "Same": "Lure"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 23,
+    "name": {
+      "Same": "Mending"
+    },
+    "max_level": {
+      "Same": 1
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 24,
+    "name": {
+      "Same": "Multishot"
+    },
+    "max_level": {
+      "Same": 1
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 25,
+    "name": {
+      "Same": "Piercing"
+    },
+    "max_level": {
+      "Same": 4
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 1
+      }
+    }
+  },
+  {
+    "id": 26,
+    "name": {
+      "Same": "Power"
+    },
+    "max_level": {
+      "Same": 5
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 1
+      }
+    }
+  },
+  {
+    "id": 27,
+    "name": {
+      "Same": "Projectile Protection"
+    },
+    "max_level": {
+      "Same": 4
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 28,
+    "name": {
+      "Same": "Protection"
+    },
+    "max_level": {
+      "Same": 4
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 1
+      }
+    }
+  },
+  {
+    "id": 29,
+    "name": {
+      "Same": "Punch"
+    },
+    "max_level": {
+      "Same": 2
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 30,
+    "name": {
+      "Same": "Quick Charge"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 31,
+    "name": {
+      "Same": "Respiration"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 32,
+    "name": {
+      "Same": "Riptide"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  },
+  {
+    "id": 33,
+    "name": {
+      "Same": "Sharpness"
+    },
+    "max_level": {
+      "Same": 5
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 1
+      }
+    }
+  },
+  {
+    "id": 34,
+    "name": {
+      "Same": "Silk Touch"
+    },
+    "max_level": {
+      "Same": 1
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 4,
+        "for_item": 8
+      }
+    }
+  },
+  {
+    "id": 35,
+    "name": {
+      "Same": "Smite"
+    },
+    "max_level": {
+      "Same": 5
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 36,
+    "name": {
+      "Same": "Soul Speed"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 4,
+        "for_item": 8
+      }
+    }
+  },
+  {
+    "id": 37,
+    "name": {
+      "Different": {
+        "for_bedrock": "",
+        "for_java": "Sweeping Edge"
+      }
+    },
+    "max_level": {
+      "Different": {
+        "for_bedrock": 0,
+        "for_java": 3
+      }
+    },
+    "cost_multiplier": {
+      "Different": {
+        "for_bedrock": {
+          "for_book": 0,
+          "for_item": 0
+        },
+        "for_java": {
+          "for_book": 2,
+          "for_item": 4
+        }
+      }
+    }
+  },
+  {
+    "id": 38,
+    "name": {
+      "Same": "Swift Sneak"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 4,
+        "for_item": 8
+      }
+    }
+  },
+  {
+    "id": 39,
+    "name": {
+      "Same": "Thorns"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 4,
+        "for_item": 8
+      }
+    }
+  },
+  {
+    "id": 40,
+    "name": {
+      "Same": "Unbreaking"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 1,
+        "for_item": 2
+      }
+    }
+  },
+  {
+    "id": 41,
+    "name": {
+      "Same": "Wind Burst"
+    },
+    "max_level": {
+      "Same": 3
+    },
+    "cost_multiplier": {
+      "Same": {
+        "for_book": 2,
+        "for_item": 4
+      }
+    }
+  }
+]

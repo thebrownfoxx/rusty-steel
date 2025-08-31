@@ -32,5 +32,5 @@ type CompatibleItemEnchantments = (ItemKindId, Vec<EnchantmentKindId>);
 fn clone_by_edition(
     edition: Edition,
 ) -> impl FnMut(SharedCompatibleItemEnchantments) -> CompatibleItemEnchantments {
-    move |(enchantment, incompatible)| (enchantment.clone(), incompatible.clone_by_edition(edition))
+    move |(enchantment, incompatible)| (*enchantment, incompatible.clone_by_edition(edition))
 }

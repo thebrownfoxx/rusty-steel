@@ -19,19 +19,3 @@ pub struct EnchantmentKind {
     pub max_level: u8,
     pub cost_multiplier: CostMultiplier,
 }
-
-impl EnchantmentKind {
-    pub fn new(
-        id: impl Into<EnchantmentKindId>,
-        name: impl Into<String>,
-        max_level: u8,
-        cost_multiplier: CostMultiplier,
-    ) -> Self {
-        EnchantmentKind {
-            id: id.into(),
-            name: name.into(),
-            max_level,
-            cost_multiplier,
-        }
-    }
-}

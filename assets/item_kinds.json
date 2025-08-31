@@ -1,0 +1,149 @@
+[
+  {
+    "id": 0,
+    "name": {
+      "Same": "Enchanted Book"
+    },
+    "is_book": true
+  },
+  {
+    "id": 1,
+    "name": {
+      "Same": "Helmet"
+    },
+    "is_book": false
+  },
+  {
+    "id": 2,
+    "name": {
+      "Same": "Chestplate"
+    },
+    "is_book": false
+  },
+  {
+    "id": 3,
+    "name": {
+      "Same": "Leggings"
+    },
+    "is_book": false
+  },
+  {
+    "id": 4,
+    "name": {
+      "Same": "Boots"
+    },
+    "is_book": false
+  },
+  {
+    "id": 5,
+    "name": {
+      "Same": "Elytra"
+    },
+    "is_book": false
+  },
+  {
+    "id": 6,
+    "name": {
+      "Same": "Head"
+    },
+    "is_book": false
+  },
+  {
+    "id": 7,
+    "name": {
+      "Same": "Sword"
+    },
+    "is_book": false
+  },
+  {
+    "id": 8,
+    "name": {
+      "Same": "Mace"
+    },
+    "is_book": false
+  },
+  {
+    "id": 9,
+    "name": {
+      "Same": "Axe"
+    },
+    "is_book": false
+  },
+  {
+    "id": 10,
+    "name": {
+      "Same": "Pickaxe"
+    },
+    "is_book": false
+  },
+  {
+    "id": 11,
+    "name": {
+      "Same": "Shovel"
+    },
+    "is_book": false
+  },
+  {
+    "id": 12,
+    "name": {
+      "Same": "Hoe"
+    },
+    "is_book": false
+  },
+  {
+    "id": 13,
+    "name": {
+      "Same": "Bow"
+    },
+    "is_book": false
+  },
+  {
+    "id": 14,
+    "name": {
+      "Same": "Fishing Rod"
+    },
+    "is_book": false
+  },
+  {
+    "id": 15,
+    "name": {
+      "Same": "Trident"
+    },
+    "is_book": false
+  },
+  {
+    "id": 16,
+    "name": {
+      "Same": "Crossbow"
+    },
+    "is_book": false
+  },
+  {
+    "id": 17,
+    "name": {
+      "Same": "Shears"
+    },
+    "is_book": false
+  },
+  {
+    "id": 18,
+    "name": {
+      "Same": "Flint and Steel"
+    },
+    "is_book": false
+  },
+  {
+    "id": 19,
+    "name": {
+      "Same": "Carrot on a Stick"
+    },
+    "is_book": false
+  },
+  {
+    "id": 20,
+    "name": {
+      "Same": "Warped Fungus on a Stick"
+    },
+    "is_book": false
+  }
+]
