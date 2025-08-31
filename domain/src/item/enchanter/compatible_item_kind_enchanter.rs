@@ -1,26 +1,31 @@
-use crate::enchantment::Enchantment;
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
-use crate::item::Item;
+use crate::enchantment::Enchantment;
 use crate::item::enchanter::agnostic_enchanter::AgnosticEnchanter;
 use crate::item::enchanter::{Enchanter, EnchantmentError};
 use crate::item::item_enchantment_compatibility::ItemEnchantmentCompatibility;
 use crate::item::item_kind::ItemKindId;
-use std::sync::Arc;
+use crate::item::Item;
+use std::rc::Rc;
 
 #[derive(Clone)]
 pub struct CompatibleItemKindEnchanter {
-    pub enchanter: Arc<dyn Enchanter>,
-    pub item_enchantment_compatibility: Arc<dyn ItemEnchantmentCompatibility>,
+    pub enchanter: Rc<dyn Enchanter>,
+    pub item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatibility>,
 }
 
 impl CompatibleItemKindEnchanter {
-    pub fn new(
-        item_enchantment_compatibility: impl Into<Arc<dyn ItemEnchantmentCompatibility>>,
+    pub fn wrap(
+        enchanter: Rc<dyn Enchanter>,
+        item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatibility>,
     ) -> Self {
         Self {
-            enchanter: Arc::new(AgnosticEnchanter),
-            item_enchantment_compatibility: item_enchantment_compatibility.into(),
+            enchanter,
+            item_enchantment_compatibility,
         }
+    }
+
+    pub fn new(item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatibility>) -> Self {
+        Self::wrap(Rc::new(AgnosticEnchanter), item_enchantment_compatibility)
     }
 
     fn are_compatible(&self, item: ItemKindId, enchantment: EnchantmentKindId) -> bool {
@@ -38,29 +43,23 @@ impl Enchanter for CompatibleItemKindEnchanter {
     }
 }
 
-pub trait IntoCompatibleItemKindEnchanter {
-    fn into_compatible_item_kind_enchanter(
+pub trait RequireCompatibleItemKind {
+    fn require_compatible_item_kind(
         self,
-        item_enchantment_compatibility: impl Into<Arc<dyn ItemEnchantmentCompatibility>>,
+        item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatibility>,
     ) -> CompatibleItemKindEnchanter
     where
         Self: Sized;
 }
 
-impl<T> IntoCompatibleItemKindEnchanter for T
-where
-    T: Into<Arc<dyn Enchanter>>,
-{
-    fn into_compatible_item_kind_enchanter(
+impl RequireCompatibleItemKind for Rc<dyn Enchanter> {
+    fn require_compatible_item_kind(
         self,
-        item_enchantment_compatibility: impl Into<Arc<dyn ItemEnchantmentCompatibility>>,
+        item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatibility>,
     ) -> CompatibleItemKindEnchanter
     where
         Self: Sized,
     {
-        CompatibleItemKindEnchanter {
-            enchanter: self.into(),
-            item_enchantment_compatibility: item_enchantment_compatibility.into(),
-        }
+        CompatibleItemKindEnchanter::wrap(self, item_enchantment_compatibility)
     }
 }

@@ -1,15 +1,9 @@
 use crate::enchantment::Enchantment;
-use crate::item::Item;
 use crate::item::enchanter::{Enchanter, EnchantmentError};
+use crate::item::Item;
 
-#[derive(Eq, PartialEq, Copy, Clone, Debug)]
+#[derive(Eq, PartialEq, Copy, Clone, Debug, Default)]
 pub struct AgnosticEnchanter;
-
-impl AgnosticEnchanter {
-    pub fn new() -> Self {
-        AgnosticEnchanter
-    }
-}
 
 impl Enchanter for AgnosticEnchanter {
     fn enchant(

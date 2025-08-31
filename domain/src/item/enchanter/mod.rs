@@ -3,7 +3,6 @@ pub mod compatible_item_kind_enchanter;
 pub mod compatible_enchantments_enchanter;
 
 use crate::enchantment::Enchantment;
-use crate::item::enchanter::compatible_item_kind_enchanter::IntoCompatibleItemKindEnchanter;
 use crate::item::Item;
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug)]
@@ -18,7 +17,4 @@ pub trait Enchanter {
         item: &mut Item,
         enchantment: Enchantment,
     ) -> Result<(), EnchantmentError>;
-}
-
-fn x() {
 }
