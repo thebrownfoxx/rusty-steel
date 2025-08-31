@@ -1,11 +1,11 @@
 use crate::enchantment_kinds::*;
 use domain::edition::edition_shared::EditionShared;
 use domain::enchantment::enchantment_kind::EnchantmentKindId;
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 pub fn get_enchantment_incompatibility_matrix()
--> HashMap<EnchantmentKindId, EditionShared<Vec<EnchantmentKindId>>> {
-    HashMap::from([
+-> BTreeMap<EnchantmentKindId, EditionShared<Vec<EnchantmentKindId>>> {
+    BTreeMap::from([
         (AQUA_AFFINITY_ID, EditionShared::Same(vec![])),
         (
             BANE_OF_ARTHROPODS_ID,

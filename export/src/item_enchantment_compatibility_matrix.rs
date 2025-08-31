@@ -3,15 +3,14 @@ use crate::item_kinds::*;
 use domain::edition::edition_shared::EditionShared;
 use domain::enchantment::enchantment_kind::EnchantmentKindId;
 use domain::item::item_kind::ItemKindId;
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 pub fn get_item_enchantment_compatibility_matrix()
--> HashMap<ItemKindId, EditionShared<Vec<EnchantmentKindId>>> {
-    HashMap::from([
+-> BTreeMap<ItemKindId, EditionShared<Vec<EnchantmentKindId>>> {
+    BTreeMap::from([
         (
             ENCHANTED_BOOK_ID,
             EditionShared::Same(vec![
-                // All enchantment IDs
                 AQUA_AFFINITY_ID,
                 BANE_OF_ARTHROPODS_ID,
                 BLAST_PROTECTION_ID,
