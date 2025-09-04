@@ -1,12 +1,12 @@
-use super::Enchanter;
+use super::Enchant;
 use super::Result;
 use crate::enchantment::Enchantment;
 use crate::item::Item;
 
 #[derive(Eq, PartialEq, Copy, Clone, Debug, Default)]
-pub struct AgnosticEnchanter;
+pub struct AgnosticEnchant;
 
-impl Enchanter for AgnosticEnchanter {
+impl Enchant for AgnosticEnchant {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
         item.enchantments.push(enchantment);
         Ok(())

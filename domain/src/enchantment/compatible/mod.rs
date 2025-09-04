@@ -1,0 +1,3 @@
+pub mod enchantment_incompatibility_matrix;
+pub mod enchantments_compatible;
+pub mod shared_enchantment_incompatibility_matrix;

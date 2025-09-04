@@ -1,7 +1,7 @@
 use crate::edition::edition_shared::EditionShared;
 use crate::edition::{CloneByEdition, Edition};
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
-use crate::item::item_enchantment_compatibility::ItemEnchantmentCompatibilityMatrix;
+use crate::item::compatible::item_enchantment_compatibility_matrix::ItemEnchantmentCompatibilityMatrix;
 use crate::item::item_kind::ItemKindId;
 use std::collections::HashMap;
 

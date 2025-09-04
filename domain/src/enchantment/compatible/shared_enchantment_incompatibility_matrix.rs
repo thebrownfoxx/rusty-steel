@@ -1,6 +1,6 @@
 use crate::edition::edition_shared::EditionShared;
 use crate::edition::{CloneByEdition, Edition};
-use crate::enchantment::enchantment_compatibility::EnchantmentIncompatibilityMatrix;
+use crate::enchantment::compatible::enchantment_incompatibility_matrix::EnchantmentIncompatibilityMatrix;
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
 use std::collections::HashMap;
 

@@ -1,22 +1,22 @@
-use super::agnostic_enchanter::AgnosticEnchanter;
+use super::agnostic_enchant::AgnosticEnchant;
 use super::Result;
-use super::{Enchanter, Error};
-use crate::enchantment::enchantment_compatibility::EnchantmentCompatibility;
+use super::{Enchant, Error};
+use crate::enchantment::compatible::enchantments_compatible::EnchantmentsCompatible;
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
 use crate::enchantment::Enchantment;
 use crate::item::Item;
 use std::rc::Rc;
 
 #[derive(Clone)]
-pub struct CompatibleEnchantmentsEnchanter {
-    pub enchanter: Rc<dyn Enchanter>,
-    pub enchantment_compatibility: Rc<dyn EnchantmentCompatibility>,
+pub struct CompatibleEnchantmentsEnchant {
+    pub enchanter: Rc<dyn Enchant>,
+    pub enchantment_compatibility: Rc<dyn EnchantmentsCompatible>,
 }
 
-impl CompatibleEnchantmentsEnchanter {
+impl CompatibleEnchantmentsEnchant {
     pub fn wrap(
-        enchanter: Rc<dyn Enchanter>,
-        enchantment_compatibility: Rc<dyn EnchantmentCompatibility>,
+        enchanter: Rc<dyn Enchant>,
+        enchantment_compatibility: Rc<dyn EnchantmentsCompatible>,
     ) -> Self {
         Self {
             enchanter,
@@ -24,8 +24,8 @@ impl CompatibleEnchantmentsEnchanter {
         }
     }
 
-    pub fn new(enchantment_compatibility: Rc<dyn EnchantmentCompatibility>) -> Self {
-        Self::wrap(Rc::new(AgnosticEnchanter), enchantment_compatibility)
+    pub fn new(enchantment_compatibility: Rc<dyn EnchantmentsCompatible>) -> Self {
+        Self::wrap(Rc::new(AgnosticEnchant), enchantment_compatibility)
     }
 
     fn are_compatible(
@@ -46,7 +46,7 @@ impl CompatibleEnchantmentsEnchanter {
     }
 }
 
-impl Enchanter for CompatibleEnchantmentsEnchanter {
+impl Enchant for CompatibleEnchantmentsEnchant {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
         match self.new_enchantment_compatible(item.enchantment_kinds(), enchantment.kind) {
             true => self.enchanter.enchant(item, enchantment),
@@ -58,20 +58,20 @@ impl Enchanter for CompatibleEnchantmentsEnchanter {
 pub trait RequireCompatibleEnchantments {
     fn require_compatible_enchantments(
         self,
-        enchantment_compatibility: Rc<dyn EnchantmentCompatibility>,
-    ) -> CompatibleEnchantmentsEnchanter
+        enchantment_compatibility: Rc<dyn EnchantmentsCompatible>,
+    ) -> CompatibleEnchantmentsEnchant
     where
         Self: Sized;
 }
 
-impl RequireCompatibleEnchantments for Rc<dyn Enchanter> {
+impl RequireCompatibleEnchantments for Rc<dyn Enchant> {
     fn require_compatible_enchantments(
         self,
-        enchantment_compatibility: Rc<dyn EnchantmentCompatibility>,
-    ) -> CompatibleEnchantmentsEnchanter
+        enchantment_compatibility: Rc<dyn EnchantmentsCompatible>,
+    ) -> CompatibleEnchantmentsEnchant
     where
         Self: Sized,
     {
-        CompatibleEnchantmentsEnchanter::wrap(self, enchantment_compatibility)
+        CompatibleEnchantmentsEnchant::wrap(self, enchantment_compatibility)
     }
 }

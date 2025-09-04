@@ -1,18 +1,11 @@
+use crate::enchantment::compatible::enchantments_compatible::EnchantmentsCompatible;
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
 use std::collections::HashMap;
-
-pub trait EnchantmentCompatibility {
-    fn are_compatible(
-        &self,
-        enchantment_a: EnchantmentKindId,
-        enchantment_b: EnchantmentKindId,
-    ) -> bool;
-}
 
 #[derive(Eq, PartialEq, Clone, Debug)]
 pub struct EnchantmentIncompatibilityMatrix(pub HashMap<EnchantmentKindId, Vec<EnchantmentKindId>>);
 
-impl EnchantmentCompatibility for EnchantmentIncompatibilityMatrix {
+impl EnchantmentsCompatible for EnchantmentIncompatibilityMatrix {
     fn are_compatible(
         &self,
         enchantment_a: EnchantmentKindId,

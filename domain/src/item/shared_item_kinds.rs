@@ -1,18 +1,18 @@
 use crate::edition::{CloneByEdition, Edition};
 use crate::item::item_kind::ItemKind;
-use crate::item::item_kind_provider::OwnedItemKindProvider;
+use crate::item::item_kinds::OwnedItemKinds;
 use crate::item::shared_item_kind::SharedItemKind;
 
 #[derive(Eq, PartialEq, Clone, Debug)]
-pub struct SharedItemKindProvider(pub Vec<SharedItemKind>);
+pub struct SharedItemKinds(pub Vec<SharedItemKind>);
 
-impl CloneByEdition<OwnedItemKindProvider> for SharedItemKindProvider {
-    fn clone_by_edition(&self, edition: Edition) -> OwnedItemKindProvider {
-        OwnedItemKindProvider(self.contents_by_edition(edition))
+impl CloneByEdition<OwnedItemKinds> for SharedItemKinds {
+    fn clone_by_edition(&self, edition: Edition) -> OwnedItemKinds {
+        OwnedItemKinds(self.contents_by_edition(edition))
     }
 }
 
-impl SharedItemKindProvider {
+impl SharedItemKinds {
     fn contents_by_edition(&self, edition: Edition) -> Vec<ItemKind> {
         self.0
             .iter()

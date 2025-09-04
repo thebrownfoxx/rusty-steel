@@ -3,13 +3,12 @@ use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
 
+pub mod compatible;
 pub mod cost_multiplier;
-pub mod enchantment_compatibility;
 pub mod enchantment_kind;
-pub mod enchantment_kind_provider;
-pub mod shared_enchantment_incompatibility_matrix;
+pub mod enchantment_kinds;
 pub mod shared_enchantment_kind;
-pub mod shared_enchantment_kind_provider;
+pub mod shared_enchantment_kinds;
 
 #[derive(Eq, PartialEq, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct Enchantment {

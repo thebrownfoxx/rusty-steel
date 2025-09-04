@@ -1,14 +1,14 @@
 use crate::item::item_kind::{ItemKind, ItemKindId};
 
-pub trait ItemKindProvider {
+pub trait ItemKinds {
     fn all_ids(&self) -> impl Iterator<Item = ItemKindId>;
     fn get(&self, id: ItemKindId) -> Option<&ItemKind>;
 }
 
 #[derive(Eq, PartialEq, Clone, Debug)]
-pub struct OwnedItemKindProvider(pub Vec<ItemKind>);
+pub struct OwnedItemKinds(pub Vec<ItemKind>);
 
-impl ItemKindProvider for OwnedItemKindProvider {
+impl ItemKinds for OwnedItemKinds {
     fn all_ids(&self) -> impl Iterator<Item = ItemKindId> {
         self.0.iter().map(|kind| kind.id)
     }
