@@ -1,8 +1,9 @@
+use super::agnostic_enchanter::AgnosticEnchanter;
+use super::Result;
+use super::{Enchanter, Error};
 use crate::enchantment::enchantment_compatibility::EnchantmentCompatibility;
 use crate::enchantment::enchantment_kind::EnchantmentKindId;
 use crate::enchantment::Enchantment;
-use crate::item::enchanter::agnostic_enchanter::AgnosticEnchanter;
-use crate::item::enchanter::{Enchanter, EnchantmentError};
 use crate::item::Item;
 use std::rc::Rc;
 
@@ -46,10 +47,10 @@ impl CompatibleEnchantmentsEnchanter {
 }
 
 impl Enchanter for CompatibleEnchantmentsEnchanter {
-    fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<(), EnchantmentError> {
+    fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
         match self.new_enchantment_compatible(item.enchantment_kinds(), enchantment.kind) {
             true => self.enchanter.enchant(item, enchantment),
-            false => Err(EnchantmentError::EnchantmentsIncompatible),
+            false => Err(Error::EnchantmentsIncompatible),
         }
     }
 }
