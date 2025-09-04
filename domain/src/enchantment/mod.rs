@@ -1,14 +1,23 @@
-use crate::enchantment::enchantment_kind::EnchantmentKindId;
+mod compatible;
+mod cost_multiplier;
+mod enchantment_kind;
+mod enchantment_kinds;
+mod shared_enchantment_kind;
+mod shared_enchantment_kinds;
+
+pub use compatible::{
+    EnchantmentIncompatibilityMatrix, EnchantmentsCompatible,
+    SharedEnchantmentIncompatibilityMatrix,
+};
+pub use cost_multiplier::CostMultiplier;
+pub use enchantment_kind::{EnchantmentKind, EnchantmentKindId};
+pub use enchantment_kinds::{EnchantmentKinds, OwnedEnchantmentKinds};
+pub use shared_enchantment_kind::SharedEnchantmentKind;
+pub use shared_enchantment_kinds::SharedEnchantmentKinds;
+
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
-
-pub mod compatible;
-pub mod cost_multiplier;
-pub mod enchantment_kind;
-pub mod enchantment_kinds;
-pub mod shared_enchantment_kind;
-pub mod shared_enchantment_kinds;
 
 #[derive(Eq, PartialEq, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct Enchantment {

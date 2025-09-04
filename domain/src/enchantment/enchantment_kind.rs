@@ -1,4 +1,4 @@
-use crate::enchantment::cost_multiplier::CostMultiplier;
+use super::CostMultiplier;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;

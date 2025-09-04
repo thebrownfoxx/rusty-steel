@@ -1,7 +1,10 @@
-use serde::{Deserialize, Serialize};
+mod cached_edition_variants;
+mod edition_shared;
 
-pub mod cached_edition_variants;
-pub mod edition_shared;
+pub use cached_edition_variants::{CacheByEdition, CachedEditionVariants};
+pub use edition_shared::EditionShared;
+
+use serde::{Deserialize, Serialize};
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
 pub enum Edition {

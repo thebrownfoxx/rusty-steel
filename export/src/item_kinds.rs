@@ -1,6 +1,5 @@
-use domain::edition::edition_shared::EditionShared;
-use domain::item::item_kind::ItemKindId;
-use domain::item::shared_item_kind::SharedItemKind;
+use domain::edition::EditionShared;
+use domain::item::{ItemKindId, SharedItemKind};
 
 pub const ENCHANTED_BOOK_ID: ItemKindId = ItemKindId(0);
 pub const HELMET_ID: ItemKindId = ItemKindId(1);

@@ -1,3 +1,7 @@
-pub mod item_enchantment_compatibility_matrix;
-pub mod item_enchantment_compatible;
-pub mod shared_item_enchantment_compatibility_matrix;
+mod item_enchantment_compatibility_matrix;
+mod item_enchantment_compatible;
+mod shared_item_enchantment_compatibility_matrix;
+
+pub use item_enchantment_compatibility_matrix::ItemEnchantmentCompatibilityMatrix;
+pub use item_enchantment_compatible::ItemEnchantmentCompatible;
+pub use shared_item_enchantment_compatibility_matrix::SharedItemEnchantmentCompatibilityMatrix;

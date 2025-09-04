@@ -1,7 +1,5 @@
+use super::{EnchantmentKind, OwnedEnchantmentKinds, SharedEnchantmentKind};
 use crate::edition::{CloneByEdition, Edition};
-use crate::enchantment::enchantment_kind::EnchantmentKind;
-use crate::enchantment::enchantment_kinds::OwnedEnchantmentKinds;
-use crate::enchantment::shared_enchantment_kind::SharedEnchantmentKind;
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct SharedEnchantmentKinds(pub Vec<SharedEnchantmentKind>);

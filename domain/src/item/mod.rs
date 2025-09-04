@@ -1,13 +1,20 @@
-use crate::enchantment::enchantment_kind::EnchantmentKindId;
-use crate::enchantment::Enchantment;
-use crate::item::item_kind::ItemKindId;
-use serde::{Deserialize, Serialize};
+mod compatible;
+mod item_kind;
+mod item_kinds;
+mod shared_item_kind;
+mod shared_item_kinds;
 
-pub mod compatible;
-pub mod item_kind;
-pub mod item_kinds;
-pub mod shared_item_kind;
-pub mod shared_item_kinds;
+pub use compatible::{
+    ItemEnchantmentCompatibilityMatrix, ItemEnchantmentCompatible,
+    SharedItemEnchantmentCompatibilityMatrix,
+};
+pub use item_kind::{ItemKind, ItemKindId};
+pub use item_kinds::{ItemKinds, OwnedItemKinds};
+pub use shared_item_kind::SharedItemKind;
+pub use shared_item_kinds::SharedItemKinds;
+
+use crate::enchantment::{Enchantment, EnchantmentKindId};
+use serde::{Deserialize, Serialize};
 
 #[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
 pub struct Item {

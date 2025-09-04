@@ -1,4 +1,4 @@
-use crate::enchantment::enchantment_kind::{EnchantmentKind, EnchantmentKindId};
+use super::{EnchantmentKind, EnchantmentKindId};
 
 pub trait EnchantmentKinds {
     fn all_ids(&self) -> impl Iterator<Item = EnchantmentKindId>;

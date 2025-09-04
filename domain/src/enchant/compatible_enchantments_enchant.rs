@@ -1,9 +1,6 @@
-use super::agnostic_enchant::AgnosticEnchant;
-use super::Result;
+use super::{AgnosticEnchant, Result};
 use super::{Enchant, Error};
-use crate::enchantment::compatible::enchantments_compatible::EnchantmentsCompatible;
-use crate::enchantment::enchantment_kind::EnchantmentKindId;
-use crate::enchantment::Enchantment;
+use crate::enchantment::{Enchantment, EnchantmentKindId, EnchantmentsCompatible};
 use crate::item::Item;
 use std::rc::Rc;
 

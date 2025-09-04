@@ -1,5 +1,5 @@
+use super::{BorrowByEdition, CloneByEdition, Edition};
 use serde::{Deserialize, Serialize};
-use crate::edition::{BorrowByEdition, CloneByEdition, Edition};
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct CachedEditionVariants<T> {

@@ -1,6 +1,6 @@
 use crate::enchantment_kinds::*;
-use domain::edition::edition_shared::EditionShared;
-use domain::enchantment::enchantment_kind::EnchantmentKindId;
+use domain::edition::EditionShared;
+use domain::enchantment::EnchantmentKindId;
 use std::collections::BTreeMap;
 
 pub fn get_enchantment_incompatibility_matrix()

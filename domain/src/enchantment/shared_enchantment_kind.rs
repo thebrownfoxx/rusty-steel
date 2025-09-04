@@ -1,8 +1,6 @@
+use super::{CostMultiplier, EnchantmentKind, EnchantmentKindId};
+use crate::edition::{CloneByEdition, Edition, EditionShared};
 use serde::{Deserialize, Serialize};
-use crate::edition::edition_shared::EditionShared;
-use crate::edition::{CloneByEdition, Edition};
-use crate::enchantment::cost_multiplier::CostMultiplier;
-use crate::enchantment::enchantment_kind::{EnchantmentKind, EnchantmentKindId};
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct SharedEnchantmentKind {

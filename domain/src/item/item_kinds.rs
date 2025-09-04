@@ -1,4 +1,4 @@
-use crate::item::item_kind::{ItemKind, ItemKindId};
+use super::{ItemKind, ItemKindId};
 
 pub trait ItemKinds {
     fn all_ids(&self) -> impl Iterator<Item = ItemKindId>;

@@ -1,8 +1,7 @@
-use crate::edition::edition_shared::EditionShared;
-use crate::edition::{CloneByEdition, Edition};
-use crate::enchantment::enchantment_kind::EnchantmentKindId;
-use crate::item::compatible::item_enchantment_compatibility_matrix::ItemEnchantmentCompatibilityMatrix;
-use crate::item::item_kind::ItemKindId;
+use super::ItemEnchantmentCompatibilityMatrix;
+use crate::edition::{CloneByEdition, Edition, EditionShared};
+use crate::enchantment::EnchantmentKindId;
+use crate::item::ItemKindId;
 use std::collections::HashMap;
 
 #[derive(Eq, PartialEq, Clone, Debug)]

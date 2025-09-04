@@ -1,7 +1,5 @@
+use super::{ItemKind, OwnedItemKinds, SharedItemKind};
 use crate::edition::{CloneByEdition, Edition};
-use crate::item::item_kind::ItemKind;
-use crate::item::item_kinds::OwnedItemKinds;
-use crate::item::shared_item_kind::SharedItemKind;
 
 #[derive(Eq, PartialEq, Clone, Debug)]
 pub struct SharedItemKinds(pub Vec<SharedItemKind>);

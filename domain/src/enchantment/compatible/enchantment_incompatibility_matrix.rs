@@ -1,5 +1,5 @@
-use crate::enchantment::compatible::enchantments_compatible::EnchantmentsCompatible;
-use crate::enchantment::enchantment_kind::EnchantmentKindId;
+use super::EnchantmentsCompatible;
+use crate::enchantment::EnchantmentKindId;
 use std::collections::HashMap;
 
 #[derive(Eq, PartialEq, Clone, Debug)]

@@ -1,4 +1,4 @@
-use crate::enchantment::enchantment_kind::EnchantmentKindId;
+use crate::enchantment::EnchantmentKindId;
 
 pub trait EnchantmentsCompatible {
     fn are_compatible(

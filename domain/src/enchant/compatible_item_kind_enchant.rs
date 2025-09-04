@@ -1,10 +1,6 @@
-use super::agnostic_enchant::AgnosticEnchant;
-use super::{Enchant, Error, Result};
-use crate::enchantment::enchantment_kind::EnchantmentKindId;
-use crate::enchantment::Enchantment;
-use crate::item::compatible::item_enchantment_compatible::ItemEnchantmentCompatible;
-use crate::item::item_kind::ItemKindId;
-use crate::item::Item;
+use crate::enchant::{AgnosticEnchant, Enchant, Error, Result};
+use crate::enchantment::{Enchantment, EnchantmentKindId};
+use crate::item::{Item, ItemEnchantmentCompatible, ItemKindId};
 use std::rc::Rc;
 
 #[derive(Clone)]

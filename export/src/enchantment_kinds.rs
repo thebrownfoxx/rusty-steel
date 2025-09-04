@@ -1,7 +1,5 @@
-use domain::edition::edition_shared::EditionShared;
-use domain::enchantment::cost_multiplier::CostMultiplier;
-use domain::enchantment::enchantment_kind::EnchantmentKindId;
-use domain::enchantment::shared_enchantment_kind::SharedEnchantmentKind;
+use domain::edition::EditionShared;
+use domain::enchantment::{CostMultiplier, EnchantmentKindId, SharedEnchantmentKind};
 
 pub const AQUA_AFFINITY_ID: EnchantmentKindId = EnchantmentKindId(0);
 pub const BANE_OF_ARTHROPODS_ID: EnchantmentKindId = EnchantmentKindId(1);
