@@ -1,42 +1,23 @@
 use super::{ItemKind, ItemKindId};
 use crate::edition::{CloneByEdition, Edition, EditionShared};
+use bon::Builder;
 use serde::{Deserialize, Serialize};
+use std::rc::Rc;
 
-#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize, Builder)]
 pub struct SharedItemKind {
+    #[builder(into)]
     pub id: ItemKindId,
-    pub name: EditionShared<String>,
+    #[builder(into)]
+    pub name: EditionShared<Rc<str>>,
+    #[builder(default)]
     pub is_book: bool,
-}
-
-impl SharedItemKind {
-    pub fn book(
-        id: impl Into<ItemKindId>,
-        name: impl Into<EditionShared<String>>,
-    ) -> SharedItemKind {
-        SharedItemKind {
-            id: id.into(),
-            name: name.into(),
-            is_book: true,
-        }
-    }
-
-    pub fn item(
-        id: impl Into<ItemKindId>,
-        name: impl Into<EditionShared<String>>,
-    ) -> SharedItemKind {
-        SharedItemKind {
-            id: id.into(),
-            name: name.into(),
-            is_book: false,
-        }
-    }
 }
 
 impl CloneByEdition<ItemKind> for SharedItemKind {
     fn clone_by_edition(&self, edition: Edition) -> ItemKind {
         ItemKind {
-            id: self.id,
+            id: self.id.clone(),
             name: self.name.clone_by_edition(edition),
             is_book: self.is_book,
         }

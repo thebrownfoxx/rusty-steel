@@ -1,37 +1,55 @@
+use bon::Builder;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
+use std::rc::Rc;
 
-#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
-pub struct ItemKindId(pub i8);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug, Serialize, Deserialize)]
+pub struct ItemKindId(pub Rc<str>);
 
-impl From<i8> for ItemKindId {
-    fn from(value: i8) -> Self {
-        ItemKindId(value)
+impl ItemKindId {
+    pub fn new(value: impl Into<Rc<str>>) -> Self {
+        Self(value.into())
+    }
+
+    pub fn as_str(&self) -> &str {
+        &self.0
     }
 }
 
-#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+impl<T> From<T> for ItemKindId
+where
+    T: Into<Rc<str>>,
+{
+    fn from(value: T) -> Self {
+        Self::new(value)
+    }
+}
+
+impl AsRef<str> for ItemKindId {
+    fn as_ref(&self) -> &str {
+        self.as_str()
+    }
+}
+
+impl AsRef<ItemKindId> for ItemKindId {
+    fn as_ref(&self) -> &ItemKindId {
+        self
+    }
+}
+
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize, Builder)]
 pub struct ItemKind {
+    #[builder(into)]
     pub id: ItemKindId,
-    pub name: String,
+    #[builder(into)]
+    pub name: Rc<str>,
+    #[builder(default)]
     pub is_book: bool,
 }
 
-impl ItemKind {
-    pub fn book(id: impl Into<ItemKindId>, name: impl Into<String>) -> Self {
-        ItemKind {
-            id: id.into(),
-            name: name.into(),
-            is_book: true,
-        }
-    }
-
-    pub fn item(id: impl Into<ItemKindId>, name: impl Into<String>) -> Self {
-        ItemKind {
-            id: id.into(),
-            name: name.into(),
-            is_book: false,
-        }
+impl AsRef<ItemKindId> for ItemKind {
+    fn as_ref(&self) -> &ItemKindId {
+        &self.id
     }
 }

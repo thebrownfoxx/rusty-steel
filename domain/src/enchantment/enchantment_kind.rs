@@ -1,21 +1,62 @@
 use super::CostMultiplier;
+use bon::{builder, Builder};
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
+use std::rc::Rc;
 
-#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
-pub struct EnchantmentKindId(pub u8);
+#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug, Serialize, Deserialize)]
+pub struct EnchantmentKindId(pub Rc<str>);
 
-impl From<u8> for EnchantmentKindId {
-    fn from(value: u8) -> Self {
-        EnchantmentKindId(value)
+impl EnchantmentKindId {
+    pub fn new(value: impl Into<Rc<str>>) -> Self {
+        Self(value.into())
+    }
+
+    pub fn as_str(&self) -> &str {
+        &self.0
     }
 }
 
-#[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize)]
+impl<T> From<T> for EnchantmentKindId
+where
+    T: Into<Rc<str>>,
+{
+    fn from(value: T) -> Self {
+        Self::new(value)
+    }
+}
+
+impl AsRef<str> for EnchantmentKindId {
+    fn as_ref(&self) -> &str {
+        &self.0
+    }
+}
+
+impl AsRef<EnchantmentKindId> for EnchantmentKindId {
+    fn as_ref(&self) -> &EnchantmentKindId {
+        self
+    }
+}
+
+#[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize, Builder)]
 pub struct EnchantmentKind {
+    #[builder(into)]
     pub id: EnchantmentKindId,
-    pub name: String,
+    #[builder(into)]
+    pub name: Rc<str>,
     pub max_level: u8,
     pub cost_multiplier: CostMultiplier,
+}
+
+impl From<&EnchantmentKind> for EnchantmentKindId {
+    fn from(value: &EnchantmentKind) -> Self {
+        value.id.clone()
+    }
+}
+
+impl AsRef<EnchantmentKindId> for EnchantmentKind {
+    fn as_ref(&self) -> &EnchantmentKindId {
+        &self.id
+    }
 }

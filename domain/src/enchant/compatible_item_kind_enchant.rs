@@ -24,7 +24,11 @@ impl CompatibleItemKindEnchant {
         Self::wrap(Rc::new(AgnosticEnchant), item_enchantment_compatibility)
     }
 
-    fn are_compatible(&self, item: ItemKindId, enchantment: EnchantmentKindId) -> bool {
+    fn are_compatible(
+        &self,
+        item: &dyn AsRef<ItemKindId>,
+        enchantment: &dyn AsRef<EnchantmentKindId>,
+    ) -> bool {
         self.item_enchantment_compatibility
             .are_compatible(item, enchantment)
     }
@@ -32,7 +36,7 @@ impl CompatibleItemKindEnchant {
 
 impl Enchant for CompatibleItemKindEnchant {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
-        match self.are_compatible(item.kind, enchantment.kind) {
+        match self.are_compatible(&item.kind, &enchantment.kind) {
             true => self.enchanter.enchant(item, enchantment),
             false => Err(Error::ItemKindIncompatible),
         }

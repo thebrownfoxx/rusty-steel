@@ -1,7 +1,7 @@
 use super::{ItemKind, ItemKindId};
 
 pub trait ItemKinds {
-    fn all_ids(&self) -> impl Iterator<Item = ItemKindId>;
+    fn all_ids(&self) -> impl Iterator<Item = &ItemKindId>;
     fn get(&self, id: ItemKindId) -> Option<&ItemKind>;
 }
 
@@ -9,8 +9,8 @@ pub trait ItemKinds {
 pub struct OwnedItemKinds(pub Vec<ItemKind>);
 
 impl ItemKinds for OwnedItemKinds {
-    fn all_ids(&self) -> impl Iterator<Item = ItemKindId> {
-        self.0.iter().map(|kind| kind.id)
+    fn all_ids(&self) -> impl Iterator<Item = &ItemKindId> {
+        self.0.iter().map(|kind| &kind.id)
     }
 
     fn get(&self, id: ItemKindId) -> Option<&ItemKind> {

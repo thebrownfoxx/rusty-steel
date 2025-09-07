@@ -4,6 +4,7 @@ mod item_kinds;
 mod shared_item_kind;
 mod shared_item_kinds;
 
+use bon::Builder;
 pub use compatible::{
     ItemEnchantmentCompatibilityMatrix, ItemEnchantmentCompatible,
     SharedItemEnchantmentCompatibilityMatrix,
@@ -16,31 +17,27 @@ pub use shared_item_kinds::SharedItemKinds;
 use crate::enchantment::{Enchantment, EnchantmentKindId};
 use serde::{Deserialize, Serialize};
 
-#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize, Builder)]
 pub struct Item {
+    #[builder(into)]
     pub kind: ItemKindId,
+    #[builder(into)]
     pub enchantments: Vec<Enchantment>,
     pub anvil_use_count: u8,
 }
 
 impl Item {
     pub fn new(kind: impl Into<ItemKindId>) -> Self {
-        Self::with(kind, vec![], 0)
-    }
-
-    pub fn with(
-        kind: impl Into<ItemKindId>,
-        enchantments: Vec<Enchantment>,
-        anvil_use_count: u8,
-    ) -> Self {
-        Item {
+        Self {
             kind: kind.into(),
-            enchantments,
-            anvil_use_count,
+            enchantments: vec![],
+            anvil_use_count: 0,
         }
     }
 
-    pub fn enchantment_kinds(&self) -> impl Iterator<Item = EnchantmentKindId> {
-        self.enchantments.iter().map(|enchantment| enchantment.kind)
+    pub fn enchantment_kinds(&self) -> impl Iterator<Item = &EnchantmentKindId> {
+        self.enchantments
+            .iter()
+            .map(|enchantment| &enchantment.kind)
     }
 }

@@ -7,6 +7,13 @@ pub enum EditionShared<T> {
     Different { for_bedrock: T, for_java: T },
 }
 
+impl<T> From<T> for EditionShared<T>
+{
+    fn from(value: T) -> Self {
+        EditionShared::Same(value)
+    }
+}
+
 impl<T> EditionShared<T> {
     pub fn map<R, F>(self, f: F) -> EditionShared<R>
     where

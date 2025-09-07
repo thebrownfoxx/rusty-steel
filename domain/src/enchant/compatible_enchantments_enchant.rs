@@ -27,25 +27,25 @@ impl CompatibleEnchantmentsEnchant {
 
     fn are_compatible(
         &self,
-        enchantment_a: EnchantmentKindId,
-        enchantment_b: EnchantmentKindId,
+        enchantment_a: &dyn AsRef<EnchantmentKindId>,
+        enchantment_b: &dyn AsRef<EnchantmentKindId>,
     ) -> bool {
         self.enchantment_compatibility
             .are_compatible(enchantment_a, enchantment_b)
     }
 
-    fn new_enchantment_compatible(
+    fn new_enchantment_compatible<'a>(
         &self,
-        mut existing_enchantments: impl Iterator<Item = EnchantmentKindId>,
-        new_enchantment: EnchantmentKindId,
+        mut existing_enchantments: impl Iterator<Item = &'a EnchantmentKindId>,
+        new_enchantment: impl AsRef<EnchantmentKindId>,
     ) -> bool {
-        existing_enchantments.all(|existing| self.are_compatible(existing, new_enchantment))
+        existing_enchantments.all(|existing| self.are_compatible(&existing, &new_enchantment))
     }
 }
 
 impl Enchant for CompatibleEnchantmentsEnchant {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
-        match self.new_enchantment_compatible(item.enchantment_kinds(), enchantment.kind) {
+        match self.new_enchantment_compatible(item.enchantment_kinds(), &enchantment.kind) {
             true => self.enchanter.enchant(item, enchantment),
             false => Err(Error::EnchantmentsIncompatible),
         }

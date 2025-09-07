@@ -11,6 +11,7 @@ mod enchantment_incompatibility_matrix;
 mod enchantment_kinds;
 mod item_enchantment_compatibility_matrix;
 mod item_kinds;
+mod enchantment_kind_ids;
 
 fn main() {
     write_json_file("../assets/enchantment_kinds.json", &get_enchantment_kinds());

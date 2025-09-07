@@ -8,12 +8,12 @@ pub struct EnchantmentIncompatibilityMatrix(pub HashMap<EnchantmentKindId, Vec<E
 impl EnchantmentsCompatible for EnchantmentIncompatibilityMatrix {
     fn are_compatible(
         &self,
-        enchantment_a: EnchantmentKindId,
-        enchantment_b: EnchantmentKindId,
+        enchantment_a: &dyn AsRef<EnchantmentKindId>,
+        enchantment_b: &dyn AsRef<EnchantmentKindId>,
     ) -> bool {
-        match self.0.get(&enchantment_a.into()) {
+        match self.0.get(enchantment_a.as_ref()) {
             None => true,
-            Some(incompatible) => incompatible.contains(&enchantment_b.into()),
+            Some(incompatible) => incompatible.contains(enchantment_b.as_ref()),
         }
     }
 }

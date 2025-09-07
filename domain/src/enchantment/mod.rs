@@ -18,18 +18,11 @@ pub use shared_enchantment_kinds::SharedEnchantmentKinds;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
+use bon::Builder;
 
-#[derive(Eq, PartialEq, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
+#[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize, Builder)]
 pub struct Enchantment {
+    #[builder(into)]
     pub kind: EnchantmentKindId,
     pub level: u8,
-}
-
-impl Enchantment {
-    pub fn new(kind: impl Into<EnchantmentKindId>, level: u8) -> Self {
-        Self {
-            kind: kind.into(),
-            level,
-        }
-    }
 }

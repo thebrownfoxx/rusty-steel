@@ -7,10 +7,14 @@ use std::collections::HashMap;
 pub struct ItemEnchantmentCompatibilityMatrix(pub HashMap<ItemKindId, Vec<EnchantmentKindId>>);
 
 impl ItemEnchantmentCompatible for ItemEnchantmentCompatibilityMatrix {
-    fn are_compatible(&self, item: ItemKindId, enchantment: EnchantmentKindId) -> bool {
-        match self.0.get(&item) {
+    fn are_compatible(
+        &self,
+        item: &dyn AsRef<ItemKindId>,
+        enchantment: &dyn AsRef<EnchantmentKindId>,
+    ) -> bool {
+        match self.0.get(item.as_ref()) {
             None => false,
-            Some(compatible) => compatible.contains(&enchantment),
+            Some(compatible) => compatible.contains(enchantment.as_ref()),
         }
     }
 }

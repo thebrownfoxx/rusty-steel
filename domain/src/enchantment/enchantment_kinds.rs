@@ -1,7 +1,7 @@
 use super::{EnchantmentKind, EnchantmentKindId};
 
 pub trait EnchantmentKinds {
-    fn all_ids(&self) -> impl Iterator<Item = EnchantmentKindId>;
+    fn all_ids(&self) -> impl Iterator<Item = &EnchantmentKindId>;
     fn get(&self, id: EnchantmentKindId) -> Option<&EnchantmentKind>;
 }
 
@@ -9,8 +9,8 @@ pub trait EnchantmentKinds {
 pub struct OwnedEnchantmentKinds(pub Vec<EnchantmentKind>);
 
 impl EnchantmentKinds for OwnedEnchantmentKinds {
-    fn all_ids(&self) -> impl Iterator<Item = EnchantmentKindId> {
-        self.0.iter().map(|kind| kind.id)
+    fn all_ids(&self) -> impl Iterator<Item = &EnchantmentKindId> {
+        self.0.iter().map(|kind| &kind.id)
     }
 
     fn get(&self, id: EnchantmentKindId) -> Option<&EnchantmentKind> {
