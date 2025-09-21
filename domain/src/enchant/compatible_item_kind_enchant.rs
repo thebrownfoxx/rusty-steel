@@ -3,15 +3,14 @@ use crate::enchantment::{Enchantment, EnchantmentKindId};
 use crate::item::{Item, ItemEnchantmentCompatible, ItemKindId};
 use std::rc::Rc;
 
-#[derive(Clone)]
 pub struct CompatibleItemKindEnchant {
-    pub enchanter: Rc<dyn Enchant>,
+    pub enchanter: Box<dyn Enchant>,
     pub item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatible>,
 }
 
 impl CompatibleItemKindEnchant {
     pub fn wrap(
-        enchanter: Rc<dyn Enchant>,
+        enchanter: Box<dyn Enchant>,
         item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatible>,
     ) -> Self {
         Self {
@@ -21,7 +20,7 @@ impl CompatibleItemKindEnchant {
     }
 
     pub fn new(item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatible>) -> Self {
-        Self::wrap(Rc::new(AgnosticEnchant), item_enchantment_compatibility)
+        Self::wrap(Box::new(AgnosticEnchant), item_enchantment_compatibility)
     }
 
     fn are_compatible(
@@ -47,19 +46,17 @@ pub trait RequireCompatibleItemKind {
     fn require_compatible_item_kind(
         self,
         item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatible>,
-    ) -> CompatibleItemKindEnchant
-    where
-        Self: Sized;
+    ) -> CompatibleItemKindEnchant;
 }
 
-impl RequireCompatibleItemKind for Rc<dyn Enchant> {
+impl<T> RequireCompatibleItemKind for T
+where
+    T: Enchant + 'static,
+{
     fn require_compatible_item_kind(
         self,
         item_enchantment_compatibility: Rc<dyn ItemEnchantmentCompatible>,
-    ) -> CompatibleItemKindEnchant
-    where
-        Self: Sized,
-    {
-        CompatibleItemKindEnchant::wrap(self, item_enchantment_compatibility)
+    ) -> CompatibleItemKindEnchant {
+        CompatibleItemKindEnchant::wrap(Box::new(self), item_enchantment_compatibility)
     }
 }
