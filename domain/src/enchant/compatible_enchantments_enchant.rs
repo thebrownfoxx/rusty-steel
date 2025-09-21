@@ -5,23 +5,13 @@ use crate::item::Item;
 use std::rc::Rc;
 
 pub struct CompatibleEnchantmentsEnchant {
-    pub enchanter: Box<dyn Enchant>,
+    pub enchant: Box<dyn Enchant>,
     pub enchantment_compatibility: Rc<dyn EnchantmentsCompatible>,
 }
 
 impl CompatibleEnchantmentsEnchant {
-    pub fn wrap(
-        enchanter: Box<dyn Enchant>,
-        enchantment_compatibility: Rc<dyn EnchantmentsCompatible>,
-    ) -> Self {
-        Self {
-            enchanter,
-            enchantment_compatibility,
-        }
-    }
-
     pub fn new(enchantment_compatibility: Rc<dyn EnchantmentsCompatible>) -> Self {
-        Self::wrap(Box::new(AgnosticEnchant), enchantment_compatibility)
+        AgnosticEnchant.require_compatible_enchantments(enchantment_compatibility)
     }
 
     fn are_compatible(
@@ -45,7 +35,7 @@ impl CompatibleEnchantmentsEnchant {
 impl Enchant for CompatibleEnchantmentsEnchant {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
         match self.new_enchantment_compatible(item.enchantment_kinds(), &enchantment.kind) {
-            true => self.enchanter.enchant(item, enchantment),
+            true => self.enchant.enchant(item, enchantment),
             false => Err(Error::EnchantmentsIncompatible),
         }
     }
@@ -66,6 +56,9 @@ where
         self,
         enchantment_compatibility: Rc<dyn EnchantmentsCompatible>,
     ) -> CompatibleEnchantmentsEnchant {
-        CompatibleEnchantmentsEnchant::wrap(Box::new(self), enchantment_compatibility)
+        CompatibleEnchantmentsEnchant {
+            enchant: Box::new(self),
+            enchantment_compatibility,
+        }
     }
 }

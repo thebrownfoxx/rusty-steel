@@ -3,7 +3,6 @@ use super::Result;
 use crate::enchantment::Enchantment;
 use crate::item::Item;
 
-#[derive(Eq, PartialEq, Copy, Clone, Debug, Default)]
 pub struct AgnosticEnchant;
 
 impl Enchant for AgnosticEnchant {
