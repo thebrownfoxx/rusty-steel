@@ -1,146 +1,146 @@
 [
   {
-    "id": 0,
+    "id": "enchanted_book",
     "name": {
       "Same": "Enchanted Book"
     },
     "is_book": true
   },
   {
-    "id": 1,
+    "id": "helmet",
     "name": {
       "Same": "Helmet"
     },
     "is_book": false
   },
   {
-    "id": 2,
+    "id": "chestplate",
     "name": {
       "Same": "Chestplate"
     },
     "is_book": false
   },
   {
-    "id": 3,
+    "id": "leggings",
     "name": {
       "Same": "Leggings"
     },
     "is_book": false
   },
   {
-    "id": 4,
+    "id": "boots",
     "name": {
       "Same": "Boots"
     },
     "is_book": false
   },
   {
-    "id": 5,
+    "id": "elytra",
     "name": {
       "Same": "Elytra"
     },
     "is_book": false
   },
   {
-    "id": 6,
+    "id": "head",
     "name": {
       "Same": "Head"
     },
     "is_book": false
   },
   {
-    "id": 7,
+    "id": "sword",
     "name": {
       "Same": "Sword"
     },
     "is_book": false
   },
   {
-    "id": 8,
+    "id": "mace",
     "name": {
       "Same": "Mace"
     },
     "is_book": false
   },
   {
-    "id": 9,
+    "id": "axe",
     "name": {
       "Same": "Axe"
     },
     "is_book": false
   },
   {
-    "id": 10,
+    "id": "pickaxe",
     "name": {
       "Same": "Pickaxe"
     },
     "is_book": false
   },
   {
-    "id": 11,
+    "id": "shovel",
     "name": {
       "Same": "Shovel"
     },
     "is_book": false
   },
   {
-    "id": 12,
+    "id": "hoe",
     "name": {
       "Same": "Hoe"
     },
     "is_book": false
   },
   {
-    "id": 13,
+    "id": "bow",
     "name": {
       "Same": "Bow"
     },
     "is_book": false
   },
   {
-    "id": 14,
+    "id": "fishing_rod",
     "name": {
       "Same": "Fishing Rod"
     },
     "is_book": false
   },
   {
-    "id": 15,
+    "id": "trident",
     "name": {
       "Same": "Trident"
     },
     "is_book": false
   },
   {
-    "id": 16,
+    "id": "crossbow",
     "name": {
       "Same": "Crossbow"
     },
     "is_book": false
   },
   {
-    "id": 17,
+    "id": "shears",
     "name": {
       "Same": "Shears"
     },
     "is_book": false
   },
   {
-    "id": 18,
+    "id": "flint_and_steel",
     "name": {
       "Same": "Flint and Steel"
     },
     "is_book": false
   },
   {
-    "id": 19,
+    "id": "carrot_on_a_stick",
     "name": {
       "Same": "Carrot on a Stick"
     },
     "is_book": false
   },
   {
-    "id": 20,
+    "id": "warped_fungus_on_a_stick",
     "name": {
       "Same": "Warped Fungus on a Stick"
     },

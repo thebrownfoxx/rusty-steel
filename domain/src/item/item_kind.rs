@@ -5,7 +5,7 @@ use std::hash::Hash;
 use std::rc::Rc;
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug, Serialize, Deserialize)]
-pub struct ItemKindId(pub Rc<str>);
+pub struct ItemKindId(Rc<str>);
 
 impl ItemKindId {
     pub fn new(value: impl Into<Rc<str>>) -> Self {

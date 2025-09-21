@@ -1,62 +1,93 @@
-use domain::edition::EditionShared;
-use domain::item::{ItemKindId, SharedItemKind};
+use crate::item_kind_ids::ItemKindIds;
+use domain::item::SharedItemKind;
+use std::rc::Rc;
 
-pub const ENCHANTED_BOOK_ID: ItemKindId = ItemKindId(0);
-pub const HELMET_ID: ItemKindId = ItemKindId(1);
-pub const CHESTPLATE_ID: ItemKindId = ItemKindId(2);
-pub const LEGGINGS_ID: ItemKindId = ItemKindId(3);
-pub const BOOTS_ID: ItemKindId = ItemKindId(4);
-pub const ELYTRA_ID: ItemKindId = ItemKindId(5);
-pub const HEAD_ID: ItemKindId = ItemKindId(6);
-pub const SWORD_ID: ItemKindId = ItemKindId(7);
-pub const MACE_ID: ItemKindId = ItemKindId(8);
-pub const AXE_ID: ItemKindId = ItemKindId(9);
-pub const PICKAXE_ID: ItemKindId = ItemKindId(10);
-pub const SHOVEL_ID: ItemKindId = ItemKindId(11);
-pub const HOE_ID: ItemKindId = ItemKindId(12);
-pub const BOW_ID: ItemKindId = ItemKindId(13);
-pub const FISHING_ROD_ID: ItemKindId = ItemKindId(14);
-pub const TRIDENT_ID: ItemKindId = ItemKindId(15);
-pub const CROSSBOW_ID: ItemKindId = ItemKindId(16);
-pub const SHEARS_ID: ItemKindId = ItemKindId(17);
-pub const FLINT_AND_STEEL_ID: ItemKindId = ItemKindId(18);
-pub const CARROT_ON_A_STICK_ID: ItemKindId = ItemKindId(19);
-pub const WARPED_FUNGUS_ON_A_STICK_ID: ItemKindId = ItemKindId(20);
-
-pub fn get_item_kinds() -> Vec<SharedItemKind> {
+pub fn get_item_kinds(ids: &ItemKindIds) -> Vec<SharedItemKind> {
     vec![
-        SharedItemKind::book(
-            ENCHANTED_BOOK_ID,
-            EditionShared::Same("Enchanted Book".into()),
-        ),
-        SharedItemKind::item(HELMET_ID, EditionShared::Same("Helmet".into())),
-        SharedItemKind::item(CHESTPLATE_ID, EditionShared::Same("Chestplate".into())),
-        SharedItemKind::item(LEGGINGS_ID, EditionShared::Same("Leggings".into())),
-        SharedItemKind::item(BOOTS_ID, EditionShared::Same("Boots".into())),
-        SharedItemKind::item(ELYTRA_ID, EditionShared::Same("Elytra".into())),
-        SharedItemKind::item(HEAD_ID, EditionShared::Same("Head".into())),
-        SharedItemKind::item(SWORD_ID, EditionShared::Same("Sword".into())),
-        SharedItemKind::item(MACE_ID, EditionShared::Same("Mace".into())),
-        SharedItemKind::item(AXE_ID, EditionShared::Same("Axe".into())),
-        SharedItemKind::item(PICKAXE_ID, EditionShared::Same("Pickaxe".into())),
-        SharedItemKind::item(SHOVEL_ID, EditionShared::Same("Shovel".into())),
-        SharedItemKind::item(HOE_ID, EditionShared::Same("Hoe".into())),
-        SharedItemKind::item(BOW_ID, EditionShared::Same("Bow".into())),
-        SharedItemKind::item(FISHING_ROD_ID, EditionShared::Same("Fishing Rod".into())),
-        SharedItemKind::item(TRIDENT_ID, EditionShared::Same("Trident".into())),
-        SharedItemKind::item(CROSSBOW_ID, EditionShared::Same("Crossbow".into())),
-        SharedItemKind::item(SHEARS_ID, EditionShared::Same("Shears".into())),
-        SharedItemKind::item(
-            FLINT_AND_STEEL_ID,
-            EditionShared::Same("Flint and Steel".into()),
-        ),
-        SharedItemKind::item(
-            CARROT_ON_A_STICK_ID,
-            EditionShared::Same("Carrot on a Stick".into()),
-        ),
-        SharedItemKind::item(
-            WARPED_FUNGUS_ON_A_STICK_ID,
-            EditionShared::Same("Warped Fungus on a Stick".into()),
-        ),
+        SharedItemKind::builder()
+            .id(ids.enchanted_book.clone())
+            .name(Rc::from("Enchanted Book"))
+            .is_book(true)
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.helmet.clone())
+            .name(Rc::from("Helmet"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.chestplate.clone())
+            .name(Rc::from("Chestplate"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.leggings.clone())
+            .name(Rc::from("Leggings"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.boots.clone())
+            .name(Rc::from("Boots"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.elytra.clone())
+            .name(Rc::from("Elytra"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.head.clone())
+            .name(Rc::from("Head"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.sword.clone())
+            .name(Rc::from("Sword"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.mace.clone())
+            .name(Rc::from("Mace"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.axe.clone())
+            .name(Rc::from("Axe"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.pickaxe.clone())
+            .name(Rc::from("Pickaxe"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.shovel.clone())
+            .name(Rc::from("Shovel"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.hoe.clone())
+            .name(Rc::from("Hoe"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.bow.clone())
+            .name(Rc::from("Bow"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.fishing_rod.clone())
+            .name(Rc::from("Fishing Rod"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.trident.clone())
+            .name(Rc::from("Trident"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.crossbow.clone())
+            .name(Rc::from("Crossbow"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.shears.clone())
+            .name(Rc::from("Shears"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.flint_and_steel.clone())
+            .name(Rc::from("Flint and Steel"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.carrot_on_a_stick.clone())
+            .name(Rc::from("Carrot on a Stick"))
+            .build(),
+        SharedItemKind::builder()
+            .id(ids.warped_fungus_on_a_stick.clone())
+            .name(Rc::from("Warped Fungus on a Stick"))
+            .build(),
     ]
 }

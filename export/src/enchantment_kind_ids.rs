@@ -6,6 +6,12 @@ macro_rules! enchantment_kind_ids {
             $(pub $name: EnchantmentKindId,)+
         }
 
+        impl EnchantmentKindIds {
+            pub fn all(&self) -> Vec<EnchantmentKindId> {
+                vec![$(self.$name.clone(),)+]
+            }
+        }
+
         impl Default for EnchantmentKindIds {
             fn default() -> Self {
                 Self {

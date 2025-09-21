@@ -1,6 +1,6 @@
 [
   {
-    "id": 0,
+    "id": "aqua_affinity",
     "name": {
       "Same": "Aqua Affinity"
     },
@@ -15,7 +15,7 @@
     }
   },
   {
-    "id": 1,
+    "id": "bane_of_arthropods",
     "name": {
       "Same": "Bane of Arthropods"
     },
@@ -30,7 +30,7 @@
     }
   },
   {
-    "id": 2,
+    "id": "blast_protection",
     "name": {
       "Same": "Blast Protection"
     },
@@ -45,7 +45,7 @@
     }
   },
   {
-    "id": 3,
+    "id": "breach",
     "name": {
       "Same": "Breach"
     },
@@ -60,7 +60,7 @@
     }
   },
   {
-    "id": 4,
+    "id": "channeling",
     "name": {
       "Same": "Channeling"
     },
@@ -75,7 +75,7 @@
     }
   },
   {
-    "id": 5,
+    "id": "curse_of_binding",
     "name": {
       "Same": "Curse of Binding"
     },
@@ -90,7 +90,7 @@
     }
   },
   {
-    "id": 6,
+    "id": "curse_of_vanishing",
     "name": {
       "Same": "Curse of Vanishing"
     },
@@ -105,7 +105,7 @@
     }
   },
   {
-    "id": 7,
+    "id": "density",
     "name": {
       "Same": "Density"
     },
@@ -120,7 +120,7 @@
     }
   },
   {
-    "id": 8,
+    "id": "depth_strider",
     "name": {
       "Same": "Depth Strider"
     },
@@ -135,7 +135,7 @@
     }
   },
   {
-    "id": 9,
+    "id": "efficiency",
     "name": {
       "Same": "Efficiency"
     },
@@ -150,7 +150,7 @@
     }
   },
   {
-    "id": 10,
+    "id": "feather_falling",
     "name": {
       "Same": "Feather Falling"
     },
@@ -165,7 +165,7 @@
     }
   },
   {
-    "id": 11,
+    "id": "fire_aspect",
     "name": {
       "Same": "Fire Aspect"
     },
@@ -180,7 +180,7 @@
     }
   },
   {
-    "id": 12,
+    "id": "fire_protection",
     "name": {
       "Same": "Fire Protection"
     },
@@ -195,7 +195,7 @@
     }
   },
   {
-    "id": 13,
+    "id": "flame",
     "name": {
       "Same": "Flame"
     },
@@ -210,7 +210,7 @@
     }
   },
   {
-    "id": 14,
+    "id": "fortune",
     "name": {
       "Same": "Fortune"
     },
@@ -225,7 +225,7 @@
     }
   },
   {
-    "id": 15,
+    "id": "frost_walker",
     "name": {
       "Same": "Frost Walker"
     },
@@ -240,7 +240,7 @@
     }
   },
   {
-    "id": 16,
+    "id": "impaling",
     "name": {
       "Same": "Impaling"
     },
@@ -261,7 +261,7 @@
     }
   },
   {
-    "id": 17,
+    "id": "infinity",
     "name": {
       "Same": "Infinity"
     },
@@ -276,7 +276,7 @@
     }
   },
   {
-    "id": 18,
+    "id": "knockback",
     "name": {
       "Same": "Knockback"
     },
@@ -291,7 +291,7 @@
     }
   },
   {
-    "id": 19,
+    "id": "looting",
     "name": {
       "Same": "Looting"
     },
@@ -306,7 +306,7 @@
     }
   },
   {
-    "id": 20,
+    "id": "loyalty",
     "name": {
       "Same": "Loyalty"
     },
@@ -321,7 +321,7 @@
     }
   },
   {
-    "id": 21,
+    "id": "luck_of_the_sea",
     "name": {
       "Same": "Luck of the Sea"
     },
@@ -336,7 +336,7 @@
     }
   },
   {
-    "id": 22,
+    "id": "lure",
     "name": {
       "Same": "Lure"
     },
@@ -351,7 +351,7 @@
     }
   },
   {
-    "id": 23,
+    "id": "mending",
     "name": {
       "Same": "Mending"
     },
@@ -366,7 +366,7 @@
     }
   },
   {
-    "id": 24,
+    "id": "multishot",
     "name": {
       "Same": "Multishot"
     },
@@ -381,7 +381,7 @@
     }
   },
   {
-    "id": 25,
+    "id": "piercing",
     "name": {
       "Same": "Piercing"
     },
@@ -396,7 +396,7 @@
     }
   },
   {
-    "id": 26,
+    "id": "power",
     "name": {
       "Same": "Power"
     },
@@ -411,7 +411,7 @@
     }
   },
   {
-    "id": 27,
+    "id": "projectile_protection",
     "name": {
       "Same": "Projectile Protection"
     },
@@ -426,7 +426,7 @@
     }
   },
   {
-    "id": 28,
+    "id": "protection",
     "name": {
       "Same": "Protection"
     },
@@ -441,7 +441,7 @@
     }
   },
   {
-    "id": 29,
+    "id": "punch",
     "name": {
       "Same": "Punch"
     },
@@ -456,7 +456,7 @@
     }
   },
   {
-    "id": 30,
+    "id": "quick_charge",
     "name": {
       "Same": "Quick Charge"
     },
@@ -471,7 +471,7 @@
     }
   },
   {
-    "id": 31,
+    "id": "respiration",
     "name": {
       "Same": "Respiration"
     },
@@ -486,7 +486,7 @@
     }
   },
   {
-    "id": 32,
+    "id": "riptide",
     "name": {
       "Same": "Riptide"
     },
@@ -501,7 +501,7 @@
     }
   },
   {
-    "id": 33,
+    "id": "sharpness",
     "name": {
       "Same": "Sharpness"
     },
@@ -516,7 +516,7 @@
     }
   },
   {
-    "id": 34,
+    "id": "silk_touch",
     "name": {
       "Same": "Silk Touch"
     },
@@ -531,7 +531,7 @@
     }
   },
   {
-    "id": 35,
+    "id": "smite",
     "name": {
       "Same": "Smite"
     },
@@ -546,7 +546,7 @@
     }
   },
   {
-    "id": 36,
+    "id": "soul_speed",
     "name": {
       "Same": "Soul Speed"
     },
@@ -561,7 +561,7 @@
     }
   },
   {
-    "id": 37,
+    "id": "sweeping_edge",
     "name": {
       "Different": {
         "for_bedrock": "",
@@ -588,7 +588,7 @@
     }
   },
   {
-    "id": 38,
+    "id": "swift_sneak",
     "name": {
       "Same": "Swift Sneak"
     },
@@ -603,7 +603,7 @@
     }
   },
   {
-    "id": 39,
+    "id": "thorns",
     "name": {
       "Same": "Thorns"
     },
@@ -618,7 +618,7 @@
     }
   },
   {
-    "id": 40,
+    "id": "unbreaking",
     "name": {
       "Same": "Unbreaking"
     },
@@ -633,7 +633,7 @@
     }
   },
   {
-    "id": 41,
+    "id": "wind_burst",
     "name": {
       "Same": "Wind Burst"
     },

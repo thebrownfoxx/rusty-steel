@@ -17,3 +17,9 @@ impl EnchantmentKinds for OwnedEnchantmentKinds {
         self.0.iter().find(|kind| kind.id == id)
     }
 }
+
+impl From<Vec<EnchantmentKind>> for OwnedEnchantmentKinds {
+    fn from(value: Vec<EnchantmentKind>) -> Self {
+        OwnedEnchantmentKinds(value)
+    }
+}

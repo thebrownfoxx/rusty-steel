@@ -1,184 +1,184 @@
 {
-  "0": {
+  "aqua_affinity": {
     "Same": []
   },
-  "1": {
+  "bane_of_arthropods": {
     "Same": [
-      33,
-      35
+      "sharpness",
+      "smite"
     ]
   },
-  "2": {
+  "blast_protection": {
     "Same": [
-      12,
-      27,
-      28
+      "fire_protection",
+      "projectile_protection",
+      "protection"
     ]
   },
-  "3": {
+  "breach": {
     "Same": [
-      1,
-      7,
-      35
+      "bane_of_arthropods",
+      "density",
+      "smite"
     ]
   },
-  "4": {
+  "channeling": {
     "Same": [
-      32
+      "riptide"
     ]
   },
-  "5": {
+  "curse_of_binding": {
     "Same": []
   },
-  "6": {
+  "curse_of_vanishing": {
     "Same": []
   },
-  "7": {
+  "density": {
     "Same": [
-      1,
-      3,
-      35
+      "bane_of_arthropods",
+      "breach",
+      "smite"
     ]
   },
-  "8": {
+  "depth_strider": {
     "Same": [
-      15
+      "frost_walker"
     ]
   },
-  "9": {
+  "efficiency": {
     "Same": []
   },
-  "10": {
+  "feather_falling": {
     "Same": []
   },
-  "11": {
+  "fire_aspect": {
     "Same": []
   },
-  "12": {
+  "fire_protection": {
     "Same": [
-      2,
-      27,
-      28
+      "blast_protection",
+      "projectile_protection",
+      "protection"
     ]
   },
-  "13": {
+  "flame": {
     "Same": []
   },
-  "14": {
+  "fortune": {
     "Same": [
-      34
+      "silk_touch"
     ]
   },
-  "15": {
+  "frost_walker": {
     "Same": [
-      8
+      "depth_strider"
     ]
   },
-  "16": {
+  "impaling": {
     "Same": []
   },
-  "17": {
+  "infinity": {
     "Same": [
-      23
+      "mending"
     ]
   },
-  "18": {
+  "knockback": {
     "Same": []
   },
-  "19": {
+  "looting": {
     "Same": []
   },
-  "20": {
+  "loyalty": {
     "Same": [
-      32
+      "riptide"
     ]
   },
-  "21": {
+  "luck_of_the_sea": {
     "Same": []
   },
-  "22": {
+  "lure": {
     "Same": []
   },
-  "23": {
+  "mending": {
     "Same": [
-      17
+      "infinity"
     ]
   },
-  "24": {
+  "multishot": {
     "Same": [
-      25
+      "piercing"
     ]
   },
-  "25": {
+  "piercing": {
     "Same": [
-      24
+      "multishot"
     ]
   },
-  "26": {
+  "power": {
     "Same": []
   },
-  "27": {
+  "projectile_protection": {
     "Same": [
-      2,
-      12,
-      28
+      "blast_protection",
+      "fire_protection",
+      "protection"
     ]
   },
-  "28": {
+  "protection": {
     "Same": [
-      2,
-      12,
-      27
+      "blast_protection",
+      "fire_protection",
+      "projectile_protection"
     ]
   },
-  "29": {
+  "punch": {
     "Same": []
   },
-  "30": {
+  "quick_charge": {
     "Same": []
   },
-  "31": {
+  "respiration": {
     "Same": []
   },
-  "32": {
+  "riptide": {
     "Same": [
-      4,
-      20
+      "channeling",
+      "loyalty"
     ]
   },
-  "33": {
+  "sharpness": {
     "Same": [
-      1,
-      35
+      "bane_of_arthropods",
+      "smite"
     ]
   },
-  "34": {
+  "silk_touch": {
     "Same": [
-      14
+      "fortune"
     ]
   },
-  "35": {
+  "smite": {
     "Same": [
-      1,
-      33
+      "bane_of_arthropods",
+      "sharpness"
     ]
   },
-  "36": {
+  "soul_speed": {
     "Same": []
   },
-  "37": {
+  "sweeping_edge": {
     "Same": []
   },
-  "38": {
+  "swift_sneak": {
     "Same": []
   },
-  "39": {
+  "thorns": {
     "Same": []
   },
-  "40": {
+  "unbreaking": {
     "Same": []
   },
-  "41": {
+  "wind_burst": {
     "Same": []
   }
 }

@@ -1,261 +1,261 @@
 {
-  "0": {
+  "axe": {
     "Same": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-      31,
-      32,
-      33,
-      34,
-      35,
-      36,
-      37,
-      38,
-      39,
-      40,
-      41
+      "bane_of_arthropods",
+      "curse_of_vanishing",
+      "efficiency",
+      "fortune",
+      "mending",
+      "sharpness",
+      "silk_touch",
+      "smite",
+      "unbreaking"
     ]
   },
-  "1": {
+  "boots": {
     "Same": [
-      0,
-      2,
-      5,
-      6,
-      12,
-      23,
-      27,
-      28,
-      31,
-      39,
-      40
+      "blast_protection",
+      "curse_of_binding",
+      "curse_of_vanishing",
+      "depth_strider",
+      "feather_falling",
+      "fire_protection",
+      "frost_walker",
+      "mending",
+      "projectile_protection",
+      "protection",
+      "soul_speed",
+      "thorns",
+      "unbreaking"
     ]
   },
-  "2": {
+  "bow": {
     "Same": [
-      2,
-      5,
-      6,
-      12,
-      23,
-      27,
-      28,
-      39,
-      40
+      "curse_of_vanishing",
+      "flame",
+      "infinity",
+      "mending",
+      "power",
+      "punch",
+      "unbreaking"
     ]
   },
-  "3": {
+  "carrot_on_a_stick": {
     "Same": [
-      2,
-      5,
-      6,
-      12,
-      23,
-      27,
-      28,
-      38,
-      39,
-      40
+      "curse_of_vanishing",
+      "mending",
+      "unbreaking"
     ]
   },
-  "4": {
+  "chestplate": {
     "Same": [
-      2,
-      5,
-      6,
-      8,
-      10,
-      12,
-      15,
-      23,
-      27,
-      28,
-      36,
-      39,
-      40
+      "blast_protection",
+      "curse_of_binding",
+      "curse_of_vanishing",
+      "fire_protection",
+      "mending",
+      "projectile_protection",
+      "protection",
+      "thorns",
+      "unbreaking"
     ]
   },
-  "5": {
+  "crossbow": {
     "Same": [
-      5,
-      6,
-      23,
-      40
+      "curse_of_vanishing",
+      "mending",
+      "multishot",
+      "piercing",
+      "quick_charge",
+      "unbreaking"
     ]
   },
-  "6": {
+  "elytra": {
     "Same": [
-      5,
-      6
+      "curse_of_binding",
+      "curse_of_vanishing",
+      "mending",
+      "unbreaking"
     ]
   },
-  "7": {
+  "enchanted_book": {
     "Same": [
-      1,
-      6,
-      11,
-      18,
-      19,
-      23,
-      33,
-      35,
-      37,
-      40
+      "aqua_affinity",
+      "bane_of_arthropods",
+      "blast_protection",
+      "breach",
+      "channeling",
+      "curse_of_binding",
+      "curse_of_vanishing",
+      "density",
+      "depth_strider",
+      "efficiency",
+      "feather_falling",
+      "fire_aspect",
+      "fire_protection",
+      "flame",
+      "fortune",
+      "frost_walker",
+      "impaling",
+      "infinity",
+      "knockback",
+      "looting",
+      "loyalty",
+      "luck_of_the_sea",
+      "lure",
+      "mending",
+      "multishot",
+      "piercing",
+      "power",
+      "projectile_protection",
+      "protection",
+      "punch",
+      "quick_charge",
+      "respiration",
+      "riptide",
+      "sharpness",
+      "silk_touch",
+      "smite",
+      "soul_speed",
+      "sweeping_edge",
+      "swift_sneak",
+      "thorns",
+      "unbreaking",
+      "wind_burst"
     ]
   },
-  "8": {
+  "fishing_rod": {
     "Same": [
-      7,
-      3,
-      41,
-      35,
-      1,
-      11,
-      40,
-      23,
-      6
+      "curse_of_vanishing",
+      "luck_of_the_sea",
+      "lure",
+      "mending",
+      "unbreaking"
     ]
   },
-  "9": {
+  "flint_and_steel": {
     "Same": [
-      1,
-      6,
-      9,
-      14,
-      23,
-      33,
-      34,
-      35,
-      40
+      "curse_of_vanishing",
+      "mending",
+      "unbreaking"
     ]
   },
-  "10": {
+  "head": {
     "Same": [
-      6,
-      9,
-      14,
-      23,
-      34,
-      40
+      "curse_of_binding",
+      "curse_of_vanishing"
     ]
   },
-  "11": {
+  "helmet": {
     "Same": [
-      6,
-      9,
-      14,
-      23,
-      34,
-      40
+      "aqua_affinity",
+      "blast_protection",
+      "curse_of_binding",
+      "curse_of_vanishing",
+      "fire_protection",
+      "mending",
+      "projectile_protection",
+      "protection",
+      "respiration",
+      "thorns",
+      "unbreaking"
     ]
   },
-  "12": {
+  "hoe": {
     "Same": [
-      6,
-      9,
-      14,
-      23,
-      34,
-      40
+      "curse_of_vanishing",
+      "efficiency",
+      "fortune",
+      "mending",
+      "silk_touch",
+      "unbreaking"
     ]
   },
-  "13": {
+  "leggings": {
     "Same": [
-      6,
-      13,
-      17,
-      23,
-      26,
-      29,
-      40
+      "blast_protection",
+      "curse_of_binding",
+      "curse_of_vanishing",
+      "fire_protection",
+      "mending",
+      "projectile_protection",
+      "protection",
+      "swift_sneak",
+      "thorns",
+      "unbreaking"
     ]
   },
-  "14": {
+  "mace": {
     "Same": [
-      6,
-      21,
-      22,
-      23,
-      40
+      "density",
+      "breach",
+      "wind_burst",
+      "smite",
+      "bane_of_arthropods",
+      "fire_aspect",
+      "unbreaking",
+      "mending",
+      "curse_of_vanishing"
     ]
   },
-  "15": {
+  "pickaxe": {
     "Same": [
-      4,
-      6,
-      16,
-      20,
-      23,
-      32,
-      40
+      "curse_of_vanishing",
+      "efficiency",
+      "fortune",
+      "mending",
+      "silk_touch",
+      "unbreaking"
     ]
   },
-  "16": {
+  "shears": {
     "Same": [
-      6,
-      23,
-      24,
-      25,
-      30,
-      40
+      "curse_of_vanishing",
+      "efficiency",
+      "mending",
+      "unbreaking"
     ]
   },
-  "17": {
+  "shovel": {
     "Same": [
-      6,
-      9,
-      23,
-      40
+      "curse_of_vanishing",
+      "efficiency",
+      "fortune",
+      "mending",
+      "silk_touch",
+      "unbreaking"
     ]
   },
-  "18": {
+  "sword": {
     "Same": [
-      6,
-      23,
-      40
+      "bane_of_arthropods",
+      "curse_of_vanishing",
+      "fire_aspect",
+      "knockback",
+      "looting",
+      "mending",
+      "sharpness",
+      "smite",
+      "sweeping_edge",
+      "unbreaking"
     ]
   },
-  "19": {
+  "trident": {
     "Same": [
-      6,
-      23,
-      40
+      "channeling",
+      "curse_of_vanishing",
+      "impaling",
+      "loyalty",
+      "mending",
+      "riptide",
+      "unbreaking"
     ]
   },
-  "20": {
+  "warped_fungus_on_a_stick": {
     "Same": [
-      6,
-      23,
-      40
+      "curse_of_vanishing",
+      "mending",
+      "unbreaking"
     ]
   }
 }

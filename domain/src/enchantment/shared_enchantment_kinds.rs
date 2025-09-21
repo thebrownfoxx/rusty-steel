@@ -18,3 +18,9 @@ impl SharedEnchantmentKinds {
             .collect()
     }
 }
+
+impl From<Vec<SharedEnchantmentKind>> for SharedEnchantmentKinds {
+    fn from(value: Vec<SharedEnchantmentKind>) -> Self {
+        SharedEnchantmentKinds(value)
+    }
+}

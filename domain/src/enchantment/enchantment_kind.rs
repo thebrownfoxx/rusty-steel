@@ -6,7 +6,7 @@ use std::hash::Hash;
 use std::rc::Rc;
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug, Serialize, Deserialize)]
-pub struct EnchantmentKindId(pub Rc<str>);
+pub struct EnchantmentKindId(Rc<str>);
 
 impl EnchantmentKindId {
     pub fn new(value: impl Into<Rc<str>>) -> Self {
@@ -29,7 +29,7 @@ where
 
 impl AsRef<str> for EnchantmentKindId {
     fn as_ref(&self) -> &str {
-        &self.0
+        self.as_str()
     }
 }
 
