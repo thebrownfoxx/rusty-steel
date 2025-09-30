@@ -1,12 +1,7 @@
-mod zero_combining_cost;
-mod target_prior_work_penalty;
-mod prior_work_penalty;
-mod sacrifice_prior_work_penalty;
+mod innate;
+mod enchantment;
 
-use crate::item::Item;
-
-// TODO: Revert to innate and individual enchantments.
-//  This will cause too many unnecessary iterations.
-pub trait CombiningCost {
-    fn combining_cost(&self, target: &Item, sacrifice: &Item) -> u8;
-}
+pub use innate::{
+    AddSacrificePriorWorkPenalty, AddTargetPriorWorkPenalty, InnateCost, SacrificePriorWorkPenalty,
+    TargetPriorWorkPenalty,
+};

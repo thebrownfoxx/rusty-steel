@@ -26,3 +26,9 @@ pub struct Enchantment {
     pub kind: EnchantmentKindId,
     pub level: u8,
 }
+
+impl AsRef<EnchantmentKindId> for Enchantment {
+    fn as_ref(&self) -> &EnchantmentKindId {
+        &self.kind
+    }
+}
