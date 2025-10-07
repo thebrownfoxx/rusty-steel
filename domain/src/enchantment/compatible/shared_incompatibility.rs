@@ -1,20 +1,20 @@
-use super::EnchantmentIncompatibilityMatrix;
+use super::IncompatibilityMap;
 use crate::edition::{CloneByEdition, Edition, EditionShared};
 use crate::enchantment::EnchantmentKindId;
 use std::collections::HashMap;
 
 #[derive(Eq, PartialEq, Clone, Debug)]
-pub struct SharedEnchantmentIncompatibilityMatrix(
+pub struct SharedIncompatibilityMap(
     pub HashMap<EnchantmentKindId, EditionShared<Vec<EnchantmentKindId>>>,
 );
 
-impl CloneByEdition<EnchantmentIncompatibilityMatrix> for SharedEnchantmentIncompatibilityMatrix {
-    fn clone_by_edition(&self, edition: Edition) -> EnchantmentIncompatibilityMatrix {
-        EnchantmentIncompatibilityMatrix(self.contents_by_edition(edition))
+impl CloneByEdition<IncompatibilityMap> for SharedIncompatibilityMap {
+    fn clone_by_edition(&self, edition: Edition) -> IncompatibilityMap {
+        IncompatibilityMap(self.contents_by_edition(edition))
     }
 }
 
-impl SharedEnchantmentIncompatibilityMatrix {
+impl SharedIncompatibilityMap {
     fn contents_by_edition(
         &self,
         edition: Edition,

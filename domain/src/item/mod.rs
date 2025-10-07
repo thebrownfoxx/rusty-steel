@@ -6,8 +6,8 @@ mod shared_item_kinds;
 
 use bon::Builder;
 pub use compatible::{
-    ItemEnchantmentCompatibilityMatrix, ItemEnchantmentCompatible,
-    SharedItemEnchantmentCompatibilityMatrix,
+    EnchantmentCompatibilityMap, AreCompatible,
+    SharedEnchantmentCompatibilityMap,
 };
 pub use item_kind::{ItemKind, ItemKindId};
 pub use item_kinds::{ItemKinds, OwnedItemKinds};

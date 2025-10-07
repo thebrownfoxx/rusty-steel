@@ -1,12 +1,12 @@
-use super::ItemEnchantmentCompatible;
+use super::AreCompatible;
 use crate::enchantment::EnchantmentKindId;
 use crate::item::ItemKindId;
 use std::collections::HashMap;
 
 #[derive(Eq, PartialEq, Clone, Debug)]
-pub struct ItemEnchantmentCompatibilityMatrix(pub HashMap<ItemKindId, Vec<EnchantmentKindId>>);
+pub struct EnchantmentCompatibilityMap(pub HashMap<ItemKindId, Vec<EnchantmentKindId>>);
 
-impl ItemEnchantmentCompatible for ItemEnchantmentCompatibilityMatrix {
+impl AreCompatible for EnchantmentCompatibilityMap {
     fn are_compatible(
         &self,
         item: &dyn AsRef<ItemKindId>,

@@ -1,14 +1,12 @@
-mod agnostic_enchant;
-mod compatible_enchantments_enchant;
-mod compatible_item_kind_enchant;
+mod agnostic;
+mod compatible_enchantments;
+mod compatible_item_kind;
 mod error;
 
-pub use agnostic_enchant::AgnosticEnchant;
-pub use compatible_enchantments_enchant::{
-    CompatibleEnchantmentsEnchant, RequireCompatibleEnchantments,
-};
-pub use compatible_item_kind_enchant::{CompatibleItemKindEnchant, RequireCompatibleItemKind};
-pub use error::{Error, Result};
+pub use agnostic::Agnostic;
+pub use compatible_enchantments::{CompatibleEnchantments, RequireCompatibleEnchantments};
+pub use compatible_item_kind::{CompatibleItemKind, RequireCompatibleItemKind};
+pub use error::{Error, ErrorKind, Result};
 
 use crate::enchantment::Enchantment;
 use crate::item::Item;

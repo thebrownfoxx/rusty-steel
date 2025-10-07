@@ -1,7 +1,14 @@
-mod enchantment_incompatibility_matrix;
-mod enchantments_compatible;
-mod shared_enchantment_incompatibility_matrix;
+mod incompatibility;
+mod shared_incompatibility;
 
-pub use enchantment_incompatibility_matrix::EnchantmentIncompatibilityMatrix;
-pub use enchantments_compatible::EnchantmentsCompatible;
-pub use shared_enchantment_incompatibility_matrix::SharedEnchantmentIncompatibilityMatrix;
+pub use incompatibility::IncompatibilityMap;
+pub use shared_incompatibility::SharedIncompatibilityMap;
+use crate::enchantment::EnchantmentKindId;
+
+pub trait AreCompatible {
+    fn are_compatible(
+        &self,
+        enchantment_a: &impl AsRef<EnchantmentKindId>,
+        enchantment_b: &impl AsRef<EnchantmentKindId>,
+    ) -> bool;
+}

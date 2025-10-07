@@ -1,15 +1,15 @@
-use super::EnchantmentsCompatible;
+use super::AreCompatible;
 use crate::enchantment::EnchantmentKindId;
 use std::collections::HashMap;
 
 #[derive(Eq, PartialEq, Clone, Debug)]
-pub struct EnchantmentIncompatibilityMatrix(pub HashMap<EnchantmentKindId, Vec<EnchantmentKindId>>);
+pub struct IncompatibilityMap(pub HashMap<EnchantmentKindId, Vec<EnchantmentKindId>>);
 
-impl EnchantmentsCompatible for EnchantmentIncompatibilityMatrix {
+impl AreCompatible for IncompatibilityMap {
     fn are_compatible(
         &self,
-        enchantment_a: &dyn AsRef<EnchantmentKindId>,
-        enchantment_b: &dyn AsRef<EnchantmentKindId>,
+        enchantment_a: &impl AsRef<EnchantmentKindId>,
+        enchantment_b: &impl AsRef<EnchantmentKindId>,
     ) -> bool {
         match self.0.get(enchantment_a.as_ref()) {
             None => true,

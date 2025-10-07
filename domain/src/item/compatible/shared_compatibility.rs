@@ -1,23 +1,21 @@
-use super::ItemEnchantmentCompatibilityMatrix;
+use super::EnchantmentCompatibilityMap;
 use crate::edition::{CloneByEdition, Edition, EditionShared};
 use crate::enchantment::EnchantmentKindId;
 use crate::item::ItemKindId;
 use std::collections::HashMap;
 
 #[derive(Eq, PartialEq, Clone, Debug)]
-pub struct SharedItemEnchantmentCompatibilityMatrix(
+pub struct SharedEnchantmentCompatibilityMap(
     pub HashMap<ItemKindId, EditionShared<Vec<EnchantmentKindId>>>,
 );
 
-impl CloneByEdition<ItemEnchantmentCompatibilityMatrix>
-    for SharedItemEnchantmentCompatibilityMatrix
-{
-    fn clone_by_edition(&self, edition: Edition) -> ItemEnchantmentCompatibilityMatrix {
-        ItemEnchantmentCompatibilityMatrix(self.contents_by_edition(edition))
+impl CloneByEdition<EnchantmentCompatibilityMap> for SharedEnchantmentCompatibilityMap {
+    fn clone_by_edition(&self, edition: Edition) -> EnchantmentCompatibilityMap {
+        EnchantmentCompatibilityMap(self.contents_by_edition(edition))
     }
 }
 
-impl SharedItemEnchantmentCompatibilityMatrix {
+impl SharedEnchantmentCompatibilityMap {
     fn contents_by_edition(&self, edition: Edition) -> HashMap<ItemKindId, Vec<EnchantmentKindId>> {
         self.0.iter().map(clone_by_edition(edition)).collect()
     }

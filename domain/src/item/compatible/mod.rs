@@ -1,7 +1,15 @@
-mod item_enchantment_compatibility_matrix;
-mod item_enchantment_compatible;
-mod shared_item_enchantment_compatibility_matrix;
+mod compatibility;
+mod shared_compatibility;
 
-pub use item_enchantment_compatibility_matrix::ItemEnchantmentCompatibilityMatrix;
-pub use item_enchantment_compatible::ItemEnchantmentCompatible;
-pub use shared_item_enchantment_compatibility_matrix::SharedItemEnchantmentCompatibilityMatrix;
+use crate::enchantment::EnchantmentKindId;
+use crate::item::ItemKindId;
+pub use compatibility::EnchantmentCompatibilityMap;
+pub use shared_compatibility::SharedEnchantmentCompatibilityMap;
+
+pub trait AreCompatible {
+    fn are_compatible(
+        &self,
+        item: &dyn AsRef<ItemKindId>,
+        enchantment: &dyn AsRef<EnchantmentKindId>,
+    ) -> bool;
+}

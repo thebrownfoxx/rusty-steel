@@ -2,7 +2,7 @@ use super::{ItemKind, ItemKindId};
 
 pub trait ItemKinds {
     fn all_ids(&self) -> impl Iterator<Item = &ItemKindId>;
-    fn get(&self, id: ItemKindId) -> Option<&ItemKind>;
+    fn get(&self, id: &impl AsRef<ItemKindId>) -> Option<&ItemKind>;
 }
 
 #[derive(Eq, PartialEq, Clone, Debug)]
@@ -13,7 +13,7 @@ impl ItemKinds for OwnedItemKinds {
         self.0.iter().map(|kind| &kind.id)
     }
 
-    fn get(&self, id: ItemKindId) -> Option<&ItemKind> {
-        self.0.iter().find(|kind| kind.id == id)
+    fn get(&self, id: &impl AsRef<ItemKindId>) -> Option<&ItemKind> {
+        self.0.iter().find(|kind| kind.id == *id.as_ref())
     }
 }

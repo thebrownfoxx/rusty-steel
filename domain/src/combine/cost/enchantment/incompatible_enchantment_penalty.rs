@@ -1,17 +1,17 @@
 use crate::combine::cost::enchantment::EnchantmentCost;
 use crate::combine::cost::enchantment::zero_enchantment_cost::ZeroEnchantmentCost;
-use crate::enchantment::{Enchantment, EnchantmentKindId, EnchantmentsCompatible};
+use crate::enchantment::{Enchantment, EnchantmentKindId, AreCompatible};
 use crate::item::Item;
 use std::rc::Rc;
 
 pub struct IncompatibleEnchantmentPenalty {
     pub enchantment_cost: Box<dyn EnchantmentCost>,
-    pub enchantments_compatible: Rc<dyn EnchantmentsCompatible>,
+    pub enchantments_compatible: Rc<dyn AreCompatible>,
     pub penalty: u8,
 }
 
 impl IncompatibleEnchantmentPenalty {
-    fn new(enchantment_compatibility: Rc<dyn EnchantmentsCompatible>, penalty: u8) -> Self {
+    fn new(enchantment_compatibility: Rc<dyn AreCompatible>, penalty: u8) -> Self {
         ZeroEnchantmentCost.add_incompatible_enchantment_penalty(enchantment_compatibility, penalty)
     }
 
@@ -39,7 +39,7 @@ impl EnchantmentCost for IncompatibleEnchantmentPenalty {
 pub trait AddIncompatibleEnchantmentPenalty {
     fn add_incompatible_enchantment_penalty(
         self,
-        enchantments_compatible: Rc<dyn EnchantmentsCompatible>,
+        enchantments_compatible: Rc<dyn AreCompatible>,
         penalty: u8,
     ) -> IncompatibleEnchantmentPenalty;
 }
@@ -50,7 +50,7 @@ where
 {
     fn add_incompatible_enchantment_penalty(
         self,
-        enchantments_compatible: Rc<dyn EnchantmentsCompatible>,
+        enchantments_compatible: Rc<dyn AreCompatible>,
         penalty: u8,
     ) -> IncompatibleEnchantmentPenalty {
         IncompatibleEnchantmentPenalty {
