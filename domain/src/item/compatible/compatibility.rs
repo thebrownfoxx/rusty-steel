@@ -1,4 +1,4 @@
-use super::AreCompatible;
+use super::EnchantmentCompatible;
 use crate::enchantment::EnchantmentKindId;
 use crate::item::ItemKindId;
 use std::collections::HashMap;
@@ -6,7 +6,7 @@ use std::collections::HashMap;
 #[derive(Eq, PartialEq, Clone, Debug)]
 pub struct EnchantmentCompatibilityMap(pub HashMap<ItemKindId, Vec<EnchantmentKindId>>);
 
-impl AreCompatible for EnchantmentCompatibilityMap {
+impl EnchantmentCompatible for EnchantmentCompatibilityMap {
     fn are_compatible(
         &self,
         item: &dyn AsRef<ItemKindId>,

@@ -1,28 +1,29 @@
 use crate::enchant::{Enchant, Error, ErrorKind, Result};
 use crate::enchantment::{Enchantment, EnchantmentKindId};
-use crate::item::{AreCompatible, Item, ItemKindId};
+use crate::item;
+use crate::item::{Item, ItemKindId};
 use std::rc::Rc;
 
 pub struct CompatibleItemKind<Impl, Compat>
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: item::EnchantmentCompatible,
 {
-    pub enchant: Impl,
-    pub item_enchantment_compatible: Rc<Compat>,
+    enchant: Impl,
+    compatibility: Rc<Compat>,
 }
 
 impl<Impl, Compat> CompatibleItemKind<Impl, Compat>
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: item::EnchantmentCompatible,
 {
     fn are_compatible(
         &self,
         item: &impl AsRef<ItemKindId>,
         enchantment: &impl AsRef<EnchantmentKindId>,
     ) -> bool {
-        self.item_enchantment_compatible
+        self.compatibility
             .are_compatible(item, enchantment)
     }
 }
@@ -30,7 +31,7 @@ where
 impl<Impl, Compat> Enchant for CompatibleItemKind<Impl, Compat>
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: item::EnchantmentCompatible,
 {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
         if !self.are_compatible(&item.kind, &enchantment.kind) {
@@ -47,7 +48,7 @@ where
 pub trait RequireCompatibleItemKind<Impl, Compat>
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: item::EnchantmentCompatible,
 {
     fn require_compatible_item_kind(
         self,
@@ -58,15 +59,15 @@ where
 impl<Impl, Compat> RequireCompatibleItemKind<Impl, Compat> for Impl
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: item::EnchantmentCompatible,
 {
     fn require_compatible_item_kind(
         self,
-        item_enchantment_compatible: Rc<Compat>,
+        compatibility: Rc<Compat>,
     ) -> CompatibleItemKind<Impl, Compat> {
         CompatibleItemKind {
             enchant: self,
-            item_enchantment_compatible,
+            compatibility,
         }
     }
 }

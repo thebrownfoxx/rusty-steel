@@ -5,7 +5,7 @@ pub use incompatibility::IncompatibilityMap;
 pub use shared_incompatibility::SharedIncompatibilityMap;
 use crate::enchantment::EnchantmentKindId;
 
-pub trait AreCompatible {
+pub trait Compatible {
     fn are_compatible(
         &self,
         enchantment_a: &impl AsRef<EnchantmentKindId>,

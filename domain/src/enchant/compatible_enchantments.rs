@@ -1,12 +1,13 @@
 use super::{Enchant, Error, ErrorKind, Result};
-use crate::enchantment::{AreCompatible, Enchantment, EnchantmentKindId};
+use crate::enchantment;
+use crate::enchantment::{Enchantment, EnchantmentKindId};
 use crate::item::Item;
 use std::rc::Rc;
 
 pub struct CompatibleEnchantments<Impl, Compat>
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: enchantment::Compatible,
 {
     enchant: Impl,
     compatibility: Rc<Compat>,
@@ -15,7 +16,7 @@ where
 impl<Impl, Compat> CompatibleEnchantments<Impl, Compat>
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: enchantment::Compatible,
 {
     fn are_compatible(
         &self,
@@ -38,7 +39,7 @@ where
 impl<Impl, Compat> Enchant for CompatibleEnchantments<Impl, Compat>
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: enchantment::Compatible,
 {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
         if !self.new_enchantment_compatible(item.enchantment_kinds(), &enchantment.kind) {
@@ -55,7 +56,7 @@ where
 pub trait RequireCompatibleEnchantments<Impl, Compat>
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: enchantment::Compatible,
 {
     fn require_compatible_enchantments(
         self,
@@ -66,7 +67,7 @@ where
 impl<Impl, Compat> RequireCompatibleEnchantments<Impl, Compat> for Impl
 where
     Impl: Enchant,
-    Compat: AreCompatible,
+    Compat: enchantment::Compatible,
 {
     fn require_compatible_enchantments(
         self,

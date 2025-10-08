@@ -8,7 +8,7 @@ mod shared_enchantment_kinds;
 
 pub use cap_max_level::CapMaxLevel;
 pub use compatible::{
-    IncompatibilityMap, AreCompatible,
+    IncompatibilityMap, Compatible,
     SharedIncompatibilityMap,
 };
 pub use cost_multiplier::CostMultiplier;

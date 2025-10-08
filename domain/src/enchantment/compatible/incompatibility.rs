@@ -1,11 +1,11 @@
-use super::AreCompatible;
+use super::Compatible;
 use crate::enchantment::EnchantmentKindId;
 use std::collections::HashMap;
 
 #[derive(Eq, PartialEq, Clone, Debug)]
 pub struct IncompatibilityMap(pub HashMap<EnchantmentKindId, Vec<EnchantmentKindId>>);
 
-impl AreCompatible for IncompatibilityMap {
+impl Compatible for IncompatibilityMap {
     fn are_compatible(
         &self,
         enchantment_a: &impl AsRef<EnchantmentKindId>,

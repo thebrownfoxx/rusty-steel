@@ -1,7 +1,7 @@
 use std::fmt::{Display, Formatter};
 use crate::enchantment::Enchantment;
 
-pub type Result = std::result::Result<(), Error>;
+pub type Result<T = ()> = std::result::Result<T, Error>;
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub struct Error {
