@@ -8,8 +8,10 @@ use std::rc::Rc;
 pub struct SharedItemKind {
     #[builder(into)]
     pub id: ItemKindId,
+
     #[builder(into)]
     pub name: EditionShared<Rc<str>>,
+
     #[builder(default)]
     pub is_book: bool,
 }

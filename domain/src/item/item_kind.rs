@@ -42,8 +42,10 @@ impl AsRef<ItemKindId> for ItemKindId {
 pub struct ItemKind {
     #[builder(into)]
     pub id: ItemKindId,
+
     #[builder(into)]
     pub name: Rc<str>,
+
     #[builder(default)]
     pub is_book: bool,
 }

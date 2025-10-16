@@ -1,73 +1,49 @@
-use super::{Enchant, Error, ErrorKind, Result};
+use super::{Enchant, Error, Result};
 use crate::enchantment;
 use crate::enchantment::{Enchantment, EnchantmentKindId};
 use crate::item::Item;
 use std::rc::Rc;
 
-pub struct CompatibleEnchantments<Impl, Compat>
-where
-    Impl: Enchant,
-    Compat: enchantment::Compatible,
-{
+pub struct CompatibleEnchantments<Impl: Enchant, Compat: enchantment::Compatible> {
     enchant: Impl,
     compatibility: Rc<Compat>,
 }
 
-impl<Impl, Compat> CompatibleEnchantments<Impl, Compat>
-where
-    Impl: Enchant,
-    Compat: enchantment::Compatible,
-{
-    fn are_compatible(
+impl<Impl: Enchant, Compat: enchantment::Compatible> CompatibleEnchantments<Impl, Compat> {
+    fn get_conflict<'a>(
         &self,
-        enchantment_a: &impl AsRef<EnchantmentKindId>,
-        enchantment_b: &impl AsRef<EnchantmentKindId>,
-    ) -> bool {
-        self.compatibility
-            .are_compatible(enchantment_a, enchantment_b)
-    }
+        mut existing: impl Iterator<Item = &'a EnchantmentKindId>,
+        new: impl AsRef<EnchantmentKindId>,
+    ) -> Option<EnchantmentKindId> {
+        let compatibility = &self.compatibility;
 
-    fn new_enchantment_compatible<'a>(
-        &self,
-        mut existing_enchantments: impl Iterator<Item = &'a EnchantmentKindId>,
-        new_enchantment: impl AsRef<EnchantmentKindId>,
-    ) -> bool {
-        existing_enchantments.all(|existing| self.are_compatible(&existing, &new_enchantment))
+        existing
+            .find(|existing| !compatibility.are_compatible(&existing, &new))
+            .cloned()
     }
 }
 
-impl<Impl, Compat> Enchant for CompatibleEnchantments<Impl, Compat>
-where
-    Impl: Enchant,
-    Compat: enchantment::Compatible,
+impl<Impl: Enchant, Compat: enchantment::Compatible> Enchant
+    for CompatibleEnchantments<Impl, Compat>
 {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
-        if !self.new_enchantment_compatible(item.enchantment_kinds(), &enchantment.kind) {
-            return Err(Error {
-                enchantment,
-                kind: ErrorKind::EnchantmentsIncompatible,
-            });
+        if let Some(conflict) = self.get_conflict(item.enchantment_kinds(), &enchantment) {
+            return Err(Error::EnchantmentsIncompatible { conflict });
         }
 
         self.enchant.enchant(item, enchantment)
     }
 }
 
-pub trait RequireCompatibleEnchantments<Impl, Compat>
-where
-    Impl: Enchant,
-    Compat: enchantment::Compatible,
-{
+pub trait RequireCompatibleEnchantments<Impl: Enchant, Compat: enchantment::Compatible> {
     fn require_compatible_enchantments(
         self,
         enchantment_compatible: Rc<Compat>,
     ) -> CompatibleEnchantments<Impl, Compat>;
 }
 
-impl<Impl, Compat> RequireCompatibleEnchantments<Impl, Compat> for Impl
-where
-    Impl: Enchant,
-    Compat: enchantment::Compatible,
+impl<Impl: Enchant, Compat: enchantment::Compatible> RequireCompatibleEnchantments<Impl, Compat>
+    for Impl
 {
     fn require_compatible_enchantments(
         self,

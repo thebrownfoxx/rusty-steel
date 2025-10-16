@@ -7,10 +7,7 @@ mod shared_enchantment_kind;
 mod shared_enchantment_kinds;
 
 pub use cap_max_level::CapMaxLevel;
-pub use compatible::{
-    IncompatibilityMap, Compatible,
-    SharedIncompatibilityMap,
-};
+pub use compatible::{Compatible, IncompatibilityMap, SharedIncompatibilityMap};
 pub use cost_multiplier::CostMultiplier;
 pub use enchantment_kind::{EnchantmentKind, EnchantmentKindId};
 pub use enchantment_kinds::{EnchantmentKinds, OwnedEnchantmentKinds};
@@ -21,11 +18,13 @@ use bon::Builder;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
+use std::ops::Deref;
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize, Builder)]
 pub struct Enchantment {
     #[builder(into)]
     pub kind: EnchantmentKindId,
+
     pub level: u8,
 }
 

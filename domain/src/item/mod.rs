@@ -4,10 +4,10 @@ mod item_kinds;
 mod shared_item_kind;
 mod shared_item_kinds;
 
+use std::ops::Deref;
 use bon::Builder;
 pub use compatible::{
-    EnchantmentCompatibilityMap, EnchantmentCompatible,
-    SharedEnchantmentCompatibilityMap,
+    EnchantmentCompatibilityMap, EnchantmentCompatible, SharedEnchantmentCompatibilityMap,
 };
 pub use item_kind::{ItemKind, ItemKindId};
 pub use item_kinds::{ItemKinds, OwnedItemKinds};
@@ -21,8 +21,10 @@ use serde::{Deserialize, Serialize};
 pub struct Item {
     #[builder(into)]
     pub kind: ItemKindId,
+
     #[builder(into)]
     pub enchantments: Vec<Enchantment>,
+
     pub anvil_use_count: u8,
 }
 
@@ -39,5 +41,11 @@ impl Item {
         self.enchantments
             .iter()
             .map(|enchantment| &enchantment.kind)
+    }
+}
+
+impl AsRef<ItemKindId> for Item {
+    fn as_ref(&self) -> &ItemKindId {
+        &self.kind
     }
 }

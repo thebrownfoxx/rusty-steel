@@ -1,5 +1,5 @@
 use super::CostMultiplier;
-use bon::{builder, Builder};
+use bon::{Builder, builder};
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
@@ -43,16 +43,13 @@ impl AsRef<EnchantmentKindId> for EnchantmentKindId {
 pub struct EnchantmentKind {
     #[builder(into)]
     pub id: EnchantmentKindId,
+
     #[builder(into)]
     pub name: Rc<str>,
-    pub max_level: u8,
-    pub cost_multiplier: CostMultiplier,
-}
 
-impl From<&EnchantmentKind> for EnchantmentKindId {
-    fn from(value: &EnchantmentKind) -> Self {
-        value.id.clone()
-    }
+    pub max_level: u8,
+
+    pub cost_multiplier: CostMultiplier,
 }
 
 impl AsRef<EnchantmentKindId> for EnchantmentKind {

@@ -1,6 +1,7 @@
 use super::{EnchantmentKind, EnchantmentKindId};
+use std::fmt::Debug;
 
-pub trait EnchantmentKinds {
+pub trait EnchantmentKinds: Debug {
     fn all_ids(&self) -> impl Iterator<Item = &EnchantmentKindId>;
     fn get(&self, id: &impl AsRef<EnchantmentKindId>) -> Option<&EnchantmentKind>;
 }

@@ -1,22 +1,13 @@
 use super::{Combine, Result};
-use crate::enchantment::{CapMaxLevel, Enchantment, EnchantmentKinds};
-use std::rc::Rc;
+use crate::enchantment::{CapMaxLevel, Enchantment};
 
-pub struct MaxLevelCapped<Impl, Cap>
-where
-    Impl: Combine,
-    Cap: CapMaxLevel,
-{
-    implementation: Impl,
-    cap_strategy: Rc<Cap>,
+pub struct MaxLevelCapped<Impl: Combine, Cap: CapMaxLevel> {
+    pub implementation: Impl,
+    pub cap_strategy: Cap,
 }
 
-impl<Impl, Cap> Combine for MaxLevelCapped<Impl, Cap>
-where
-    Impl: Combine,
-    Cap: CapMaxLevel,
-{
-    fn combine(&self, target: &mut Enchantment, sacrifice: Enchantment) -> Result {
+impl<Impl: Combine, Cap: CapMaxLevel> Combine for MaxLevelCapped<Impl, Cap> {
+    fn combine(&self, target: &mut Enchantment, sacrifice: &Enchantment) -> Result {
         let result = self.implementation.combine(target, sacrifice);
 
         if result.is_ok() {
@@ -24,26 +15,5 @@ where
         }
 
         result
-    }
-}
-
-pub trait WithMaxLevelCapped<Impl, Cap>
-where
-    Impl: Combine,
-    Cap: CapMaxLevel,
-{
-    fn with_max_level_capped(self, cap_strategy: Rc<Cap>) -> MaxLevelCapped<Impl, Cap>;
-}
-
-impl<Impl, Cap> WithMaxLevelCapped<Impl, Cap> for Impl
-where
-    Impl: Combine,
-    Cap: CapMaxLevel,
-{
-    fn with_max_level_capped(self, cap_strategy: Rc<Cap>) -> MaxLevelCapped<Impl, Cap> {
-        MaxLevelCapped {
-            implementation: self,
-            cap_strategy,
-        }
     }
 }

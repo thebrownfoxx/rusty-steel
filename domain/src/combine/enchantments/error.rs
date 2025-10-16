@@ -1,18 +1,11 @@
 use std::fmt::{Display, Formatter};
-use crate::enchantment::Enchantment;
 
 pub type Result<T = ()> = std::result::Result<T, Error>;
 
-#[derive(Eq, PartialEq, Clone, Hash, Debug)]
-pub struct Error {
-    pub sacrifice: Enchantment,
-    pub kind: ErrorKind,
-}
-
 #[derive(Eq, PartialEq, Copy, Clone, Hash, Debug)]
-pub enum ErrorKind {
-    IncompatibleEnchantments,
-    IncompatibleLevels,
+pub enum Error {
+    EnchantmentKindsIncompatible,
+    LevelsIncompatible,
 }
 
 impl Display for Error {

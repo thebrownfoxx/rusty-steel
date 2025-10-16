@@ -8,10 +8,13 @@ use std::rc::Rc;
 pub struct SharedEnchantmentKind {
     #[builder(into)]
     pub id: EnchantmentKindId,
+
     #[builder(into)]
     pub name: EditionShared<Rc<str>>,
+
     #[builder(into)]
     pub max_level: EditionShared<u8>,
+
     #[builder(into)]
     pub cost_multiplier: EditionShared<CostMultiplier>,
 }
