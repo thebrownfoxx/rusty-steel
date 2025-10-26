@@ -1,13 +1,20 @@
 use super::{CombineEnchantments, CombineEnchantmentsResult};
 use crate::enchantment::{CapMaxLevel, Enchantment};
 
-pub struct MaxLevelCappedCombineEnchantments<Impl: CombineEnchantments, Cap: CapMaxLevel> {
+#[derive(Debug)]
+pub struct MaxLevelCappedEnchantmentCombiner<Impl, Cap>
+where
+    Impl: CombineEnchantments,
+    Cap: CapMaxLevel,
+{
     implementation: Impl,
     cap_strategy: Cap,
 }
 
-impl<Impl: CombineEnchantments, Cap: CapMaxLevel> CombineEnchantments
-    for MaxLevelCappedCombineEnchantments<Impl, Cap>
+impl<Impl, Cap> CombineEnchantments for MaxLevelCappedEnchantmentCombiner<Impl, Cap>
+where
+    Impl: CombineEnchantments,
+    Cap: CapMaxLevel,
 {
     fn combine(
         &self,
@@ -24,13 +31,21 @@ impl<Impl: CombineEnchantments, Cap: CapMaxLevel> CombineEnchantments
     }
 }
 
-pub trait MaxLevelCapped<Impl: CombineEnchantments, Cap: CapMaxLevel> {
-    fn max_level_capped(self, cap_strategy: Cap) -> MaxLevelCappedCombineEnchantments<Impl, Cap>;
+pub trait MaxLevelCappedCombineEnchantments<Impl, Cap>
+where
+    Impl: CombineEnchantments,
+    Cap: CapMaxLevel,
+{
+    fn max_level_capped(self, cap_strategy: Cap) -> MaxLevelCappedEnchantmentCombiner<Impl, Cap>;
 }
 
-impl<Impl: CombineEnchantments, Cap: CapMaxLevel> MaxLevelCapped<Impl, Cap> for Impl {
-    fn max_level_capped(self, cap_strategy: Cap) -> MaxLevelCappedCombineEnchantments<Impl, Cap> {
-        MaxLevelCappedCombineEnchantments {
+impl<Impl, Cap> MaxLevelCappedCombineEnchantments<Impl, Cap> for Impl
+where
+    Impl: CombineEnchantments,
+    Cap: CapMaxLevel,
+{
+    fn max_level_capped(self, cap_strategy: Cap) -> MaxLevelCappedEnchantmentCombiner<Impl, Cap> {
+        MaxLevelCappedEnchantmentCombiner {
             implementation: self,
             cap_strategy,
         }

@@ -3,7 +3,7 @@ use crate::enchant::resolve::{EnchantmentsResolution, ResolveEnchantments};
 use crate::enchantment::{Enchantment, EnchantmentKindId};
 
 #[derive(Debug)]
-pub struct RequireCompatibleResolveEnchantments<Impl, Compat>
+pub struct RejectIncompatibleEnchantmentResolver<Impl, Compat>
 where
     Impl: ResolveEnchantments,
     Compat: AreCompatible<EnchantmentKindId>,
@@ -12,7 +12,7 @@ where
     compatibility: Compat,
 }
 
-impl<Impl, Compat> ResolveEnchantments for RequireCompatibleResolveEnchantments<Impl, Compat>
+impl<Impl, Compat> ResolveEnchantments for RejectIncompatibleEnchantmentResolver<Impl, Compat>
 where
     Impl: ResolveEnchantments,
     Compat: AreCompatible<EnchantmentKindId>,
@@ -28,27 +28,27 @@ where
     }
 }
 
-pub trait RequireCompatible<Impl, Compat>
+pub trait RejectIncompatibleResolveEnchantments<Impl, Compat>
 where
     Impl: ResolveEnchantments,
     Compat: AreCompatible<EnchantmentKindId>,
 {
-    fn require_compatible(
+    fn reject_incompatible(
         self,
         compatibility: Compat,
-    ) -> RequireCompatibleResolveEnchantments<Impl, Compat>;
+    ) -> RejectIncompatibleEnchantmentResolver<Impl, Compat>;
 }
 
-impl<Impl, Compat> RequireCompatible<Impl, Compat> for Impl
+impl<Impl, Compat> RejectIncompatibleResolveEnchantments<Impl, Compat> for Impl
 where
     Impl: ResolveEnchantments,
     Compat: AreCompatible<EnchantmentKindId>,
 {
-    fn require_compatible(
+    fn reject_incompatible(
         self,
         compatibility: Compat,
-    ) -> RequireCompatibleResolveEnchantments<Impl, Compat> {
-        RequireCompatibleResolveEnchantments {
+    ) -> RejectIncompatibleEnchantmentResolver<Impl, Compat> {
+        RejectIncompatibleEnchantmentResolver {
             implementation: self,
             compatibility,
         }

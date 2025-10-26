@@ -1,11 +1,11 @@
 pub mod resolve;
 
-mod compatible_item_kind;
-mod standard;
 mod agnostic;
+mod require_compatible_item;
+mod standard;
 
-pub use compatible_item_kind::{CompatibleItemKindEnchant, RequireCompatibleItemKind};
-pub use standard::standard;
+pub use require_compatible_item::{RequireCompatibleItemEnchant, RequireCompatibleItemEnchanter};
+pub use standard::standard_enchanter;
 
 use crate::enchantment::{Enchantment, EnchantmentKindId};
 use crate::item::Item;

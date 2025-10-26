@@ -14,6 +14,7 @@ where
     }
 }
 
+#[derive(Debug)]
 pub struct EnchantmentKindsMaxLevel<Kinds: EnchantmentKinds> {
     enchantment_kinds: Kinds,
 }

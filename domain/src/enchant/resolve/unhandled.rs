@@ -1,9 +1,9 @@
 use crate::enchant::resolve::{EnchantmentsResolution, ResolveEnchantments};
 use crate::enchantment::Enchantment;
 
-pub struct UnhandledResolveEnchantments;
+pub struct UnhandledEnchantmentResolver;
 
-impl ResolveEnchantments for UnhandledResolveEnchantments {
+impl ResolveEnchantments for UnhandledEnchantmentResolver {
     fn resolve(&self, _: &mut Enchantment, _: &Enchantment) -> EnchantmentsResolution {
         EnchantmentsResolution::Unhandled
     }

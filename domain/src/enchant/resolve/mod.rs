@@ -1,14 +1,16 @@
-mod compatible;
 mod enchant;
 mod merge;
+mod reject_incompatible;
 mod standard;
 mod unhandled;
 
-pub use compatible::{RequireCompatible, RequireCompatibleResolveEnchantments};
-pub use enchant::{ResolveAgainstTargetEnchantments, ResolvingEnchant};
-pub use merge::{Merge, MergeResolveEnchantments};
-pub use standard::standard_resolver;
-pub use unhandled::UnhandledResolveEnchantments;
+pub use enchant::{ResolveEnchantmentsEnchant, ResolveEnchantmentsEnchanter};
+pub use merge::{MergeEnchantmentResolver, MergeResolveEnchantments};
+pub use reject_incompatible::{
+    RejectIncompatibleEnchantmentResolver, RejectIncompatibleResolveEnchantments,
+};
+pub use standard::standard_enchantment_resolver;
+pub use unhandled::UnhandledEnchantmentResolver;
 
 use crate::enchantment::{Enchantment, EnchantmentKindId};
 

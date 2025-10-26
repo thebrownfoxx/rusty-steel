@@ -15,6 +15,7 @@ where
     }
 }
 
+#[derive(Debug)]
 pub struct MaxLevelCapMaxLevel<Max: MaxLevel> {
     max_level_provider: Max,
 }

@@ -1,26 +1,27 @@
 use super::{
-    CombineEnchantments, CombineEnchantmentsError, CombineEnchantmentsResult, MaxLevelCapped,
-    RejectLowerLevelSacrifice,
+    CombineEnchantments, CombineEnchantmentsError, CombineEnchantmentsResult,
+    MaxLevelCappedCombineEnchantments, RejectLowerLevelSacrificeCombineEnchantments,
 };
-use crate::enchantment::combine::reject_level_overflow::RejectLevelOverflow;
+use crate::enchantment::combine::reject_level_overflow::RejectLevelOverflowCombineEnchantments;
 use crate::enchantment::{CapMaxLevel, Enchantment, MaxLevel};
 use std::cmp::max;
 
-pub struct StandardCombineEnchantments;
+#[derive(Debug)]
+pub struct StandardEnchantmentCombiner;
 
-impl StandardCombineEnchantments {
+impl StandardEnchantmentCombiner {
     pub fn bedrock(max_level_provider: impl MaxLevel) -> impl CombineEnchantments {
-        StandardCombineEnchantments
+        StandardEnchantmentCombiner
             .reject_lower_level_sacrifice()
             .reject_level_overflow(max_level_provider)
     }
 
     pub fn java(cap_strategy: impl CapMaxLevel) -> impl CombineEnchantments {
-        StandardCombineEnchantments.max_level_capped(cap_strategy)
+        StandardEnchantmentCombiner.max_level_capped(cap_strategy)
     }
 }
 
-impl CombineEnchantments for StandardCombineEnchantments {
+impl CombineEnchantments for StandardEnchantmentCombiner {
     fn combine(
         &self,
         target: &mut Enchantment,

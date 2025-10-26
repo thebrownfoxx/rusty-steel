@@ -3,13 +3,19 @@ use crate::enchantment::combine::{CombineEnchantments, CombineEnchantmentsError 
 use crate::enchantment::Enchantment;
 
 #[derive(Debug)]
-pub struct MergeResolveEnchantments<Combine: CombineEnchantments, Fallback: ResolveEnchantments> {
+pub struct MergeEnchantmentResolver<Combine, Fallback>
+where
+    Combine: CombineEnchantments,
+    Fallback: ResolveEnchantments,
+{
     combiner: Combine,
     fallback: Fallback,
 }
 
-impl<Combine: CombineEnchantments, Fallback: ResolveEnchantments> ResolveEnchantments
-    for MergeResolveEnchantments<Combine, Fallback>
+impl<Combine, Fallback> ResolveEnchantments for MergeEnchantmentResolver<Combine, Fallback>
+where
+    Combine: CombineEnchantments,
+    Fallback: ResolveEnchantments,
 {
     fn resolve(&self, target: &mut Enchantment, sacrifice: &Enchantment) -> Resolution {
         let Err(error) = self.combiner.combine(target, sacrifice) else {
@@ -17,7 +23,7 @@ impl<Combine: CombineEnchantments, Fallback: ResolveEnchantments> ResolveEnchant
         };
 
         match error {
-            CombineError::EnchantmentKindsIncompatible => Resolution::Unhandled,
+            CombineError::EnchantmentKindsIncompatible => self.fallback.resolve(target, sacrifice),
             CombineError::LevelsIncompatible => Resolution::Incompatible {
                 conflict: target.kind.clone(),
             },
@@ -25,15 +31,21 @@ impl<Combine: CombineEnchantments, Fallback: ResolveEnchantments> ResolveEnchant
     }
 }
 
-pub trait Merge<Combine: CombineEnchantments, Fallback: ResolveEnchantments> {
-    fn merge(self, combiner: Combine) -> MergeResolveEnchantments<Combine, Fallback>;
+pub trait MergeResolveEnchantments<Combine, Fallback>
+where
+    Combine: CombineEnchantments,
+    Fallback: ResolveEnchantments,
+{
+    fn merge(self, combiner: Combine) -> MergeEnchantmentResolver<Combine, Fallback>;
 }
 
-impl<Combine: CombineEnchantments, Fallback: ResolveEnchantments> Merge<Combine, Fallback>
-    for Fallback
+impl<Combine, Fallback> MergeResolveEnchantments<Combine, Fallback> for Fallback
+where
+    Combine: CombineEnchantments,
+    Fallback: ResolveEnchantments,
 {
-    fn merge(self, combiner: Combine) -> MergeResolveEnchantments<Combine, Fallback> {
-        MergeResolveEnchantments {
+    fn merge(self, combiner: Combine) -> MergeEnchantmentResolver<Combine, Fallback> {
+        MergeEnchantmentResolver {
             combiner,
             fallback: self,
         }

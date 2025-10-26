@@ -1,10 +1,11 @@
 use super::{CombineEnchantments, CombineEnchantmentsError, CombineEnchantmentsResult};
 use crate::enchantment::Enchantment;
 
-pub struct RejectLowerLevelSacrificeCombineEnchantments<Impl: CombineEnchantments>(Impl);
+#[derive(Debug)]
+pub struct RejectLowerLevelSacrificeEnchantmentCombiner<Impl: CombineEnchantments>(Impl);
 
 impl<Impl: CombineEnchantments> CombineEnchantments
-    for RejectLowerLevelSacrificeCombineEnchantments<Impl>
+    for RejectLowerLevelSacrificeEnchantmentCombiner<Impl>
 {
     fn combine(
         &self,
@@ -19,12 +20,12 @@ impl<Impl: CombineEnchantments> CombineEnchantments
     }
 }
 
-pub trait RejectLowerLevelSacrifice<Impl: CombineEnchantments> {
-    fn reject_lower_level_sacrifice(self) -> RejectLowerLevelSacrificeCombineEnchantments<Impl>;
+pub trait RejectLowerLevelSacrificeCombineEnchantments<Impl: CombineEnchantments> {
+    fn reject_lower_level_sacrifice(self) -> RejectLowerLevelSacrificeEnchantmentCombiner<Impl>;
 }
 
-impl<Impl: CombineEnchantments> RejectLowerLevelSacrifice<Impl> for Impl {
-    fn reject_lower_level_sacrifice(self) -> RejectLowerLevelSacrificeCombineEnchantments<Impl> {
-        RejectLowerLevelSacrificeCombineEnchantments(self)
+impl<Impl: CombineEnchantments> RejectLowerLevelSacrificeCombineEnchantments<Impl> for Impl {
+    fn reject_lower_level_sacrifice(self) -> RejectLowerLevelSacrificeEnchantmentCombiner<Impl> {
+        RejectLowerLevelSacrificeEnchantmentCombiner(self)
     }
 }

@@ -1,15 +1,16 @@
 use crate::compatible::AreCompatible;
 use crate::enchant::resolve::{
-    Merge, RequireCompatible, ResolveEnchantments, UnhandledResolveEnchantments,
+    MergeResolveEnchantments, RejectIncompatibleResolveEnchantments, ResolveEnchantments,
+    UnhandledEnchantmentResolver,
 };
 use crate::enchantment::combine::CombineEnchantments;
 use crate::enchantment::EnchantmentKindId;
 
-pub fn standard_resolver(
+pub fn standard_enchantment_resolver(
     combiner: impl CombineEnchantments,
     compatibility: impl AreCompatible<EnchantmentKindId>,
 ) -> impl ResolveEnchantments {
-    UnhandledResolveEnchantments
+    UnhandledEnchantmentResolver
         .merge(combiner)
-        .require_compatible(compatibility)
+        .reject_incompatible(compatibility)
 }

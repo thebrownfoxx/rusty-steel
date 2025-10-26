@@ -1,17 +1,18 @@
 use crate::compatible::AreCompatible;
-use crate::enchant::agnostic::AgnosticEnchant;
-use crate::enchant::resolve::{standard_resolver, ResolveAgainstTargetEnchantments};
-use crate::enchant::{Enchant, RequireCompatibleItemKind};
+use crate::enchant::agnostic::AgnosticEnchanter;
+use crate::enchant::resolve::{standard_enchantment_resolver, ResolveEnchantmentsEnchant};
+use crate::enchant::{Enchant, RequireCompatibleItemEnchant};
 use crate::enchantment::combine::CombineEnchantments;
 use crate::enchantment::EnchantmentKindId;
 use crate::item::ItemKindId;
 
-pub fn standard(
+pub fn standard_enchanter(
     combiner: impl CombineEnchantments,
     enchantment_compatibility: impl AreCompatible<EnchantmentKindId>,
     item_compatibility: impl AreCompatible<ItemKindId, EnchantmentKindId>,
 ) -> impl Enchant {
-    AgnosticEnchant
-        .resolve_against_target_enchantments(standard_resolver(combiner, enchantment_compatibility))
-        .require_compatible_item_kind(item_compatibility)
+    let resolver = standard_enchantment_resolver(combiner, enchantment_compatibility);
+    AgnosticEnchanter
+        .resolve_enchantments(resolver)
+        .require_compatible_item(item_compatibility)
 }

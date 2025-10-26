@@ -3,14 +3,13 @@ use crate::enchant::{Enchant, EnchantError, EnchantResult};
 use crate::enchantment::Enchantment;
 use crate::item::Item;
 
-pub struct ResolvingEnchant<Resolve: ResolveEnchantments, Fallback: Enchant>
-{
+pub struct ResolveEnchantmentsEnchanter<Resolve: ResolveEnchantments, Fallback: Enchant> {
     resolver: Resolve,
     fallback: Fallback,
 }
 
 impl<Resolve: ResolveEnchantments, Fallback: Enchant> Enchant
-    for ResolvingEnchant<Resolve, Fallback>
+    for ResolveEnchantmentsEnchanter<Resolve, Fallback>
 {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> EnchantResult {
         for target in item.enchantments.iter_mut() {
@@ -29,21 +28,21 @@ impl<Resolve: ResolveEnchantments, Fallback: Enchant> Enchant
     }
 }
 
-pub trait ResolveAgainstTargetEnchantments<Resolve: ResolveEnchantments, Fallback: Enchant> {
-    fn resolve_against_target_enchantments(
+pub trait ResolveEnchantmentsEnchant<Resolve: ResolveEnchantments, Fallback: Enchant> {
+    fn resolve_enchantments(
         self,
         resolver: Resolve,
-    ) -> ResolvingEnchant<Resolve, Fallback>;
+    ) -> ResolveEnchantmentsEnchanter<Resolve, Fallback>;
 }
 
-impl<Resolve: ResolveEnchantments, Fallback: Enchant>
-    ResolveAgainstTargetEnchantments<Resolve, Fallback> for Fallback
+impl<Resolve: ResolveEnchantments, Fallback: Enchant> ResolveEnchantmentsEnchant<Resolve, Fallback>
+    for Fallback
 {
-    fn resolve_against_target_enchantments(
+    fn resolve_enchantments(
         self,
         resolver: Resolve,
-    ) -> ResolvingEnchant<Resolve, Fallback> {
-        ResolvingEnchant {
+    ) -> ResolveEnchantmentsEnchanter<Resolve, Fallback> {
+        ResolveEnchantmentsEnchanter {
             resolver,
             fallback: self,
         }
