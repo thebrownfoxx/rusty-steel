@@ -1,17 +1,17 @@
 use std::fmt::{Display, Formatter};
 
-pub type Result<T = ()> = std::result::Result<T, Error>;
+pub type CombineEnchantmentsResult<T = ()> = Result<T, CombineEnchantmentsError>;
 
 #[derive(Eq, PartialEq, Copy, Clone, Hash, Debug)]
-pub enum Error {
+pub enum CombineEnchantmentsError {
     EnchantmentKindsIncompatible,
     LevelsIncompatible,
 }
 
-impl Display for Error {
+impl Display for CombineEnchantmentsError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{self:?}")
     }
 }
 
-impl std::error::Error for Error {}
+impl std::error::Error for CombineEnchantmentsError {}

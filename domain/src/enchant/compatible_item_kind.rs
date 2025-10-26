@@ -1,28 +1,27 @@
 use crate::compatible::AreCompatible;
-use crate::enchant::{Enchant, Error, Result};
+use crate::enchant::{Enchant, EnchantError, EnchantResult};
 use crate::enchantment::{Enchantment, EnchantmentKindId};
 use crate::item::{Item, ItemKindId};
-use std::rc::Rc;
 
-pub struct CompatibleItemKind<Impl, Compat>
+pub struct CompatibleItemKindEnchant<Impl, Compat>
 where
     Impl: Enchant,
     Compat: AreCompatible<ItemKindId, EnchantmentKindId>,
 {
     implementation: Impl,
-    compatibility: Rc<Compat>,
+    compatibility: Compat,
 }
 
-impl<Impl, Compat> Enchant for CompatibleItemKind<Impl, Compat>
+impl<Impl, Compat> Enchant for CompatibleItemKindEnchant<Impl, Compat>
 where
     Impl: Enchant,
     Compat: AreCompatible<ItemKindId, EnchantmentKindId>,
 {
-    fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> Result<()> {
+    fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> EnchantResult<()> {
         let compatibility = &self.compatibility;
 
         if !compatibility.are_compatible(&item, &enchantment) {
-            return Err(Error::ItemKindIncompatible);
+            return Err(EnchantError::ItemKindIncompatible);
         }
 
         self.implementation.enchant(item, enchantment)
@@ -36,8 +35,8 @@ where
 {
     fn require_compatible_item_kind(
         self,
-        item_enchantment_compatibility: Rc<Compat>,
-    ) -> CompatibleItemKind<Impl, Compat>;
+        item_enchantment_compatibility: Compat,
+    ) -> CompatibleItemKindEnchant<Impl, Compat>;
 }
 
 impl<Impl, Compat> RequireCompatibleItemKind<Impl, Compat> for Impl
@@ -47,9 +46,9 @@ where
 {
     fn require_compatible_item_kind(
         self,
-        compatibility: Rc<Compat>,
-    ) -> CompatibleItemKind<Impl, Compat> {
-        CompatibleItemKind {
+        compatibility: Compat,
+    ) -> CompatibleItemKindEnchant<Impl, Compat> {
+        CompatibleItemKindEnchant {
             implementation: self,
             compatibility,
         }

@@ -1,3 +1,5 @@
+pub mod combine;
+
 mod cap_max_level;
 mod cost_multiplier;
 mod enchantment_kind;
