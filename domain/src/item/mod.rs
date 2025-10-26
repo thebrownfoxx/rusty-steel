@@ -1,3 +1,4 @@
+mod combine;
 mod item_kind;
 mod item_kinds;
 mod shared_item_kind;

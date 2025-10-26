@@ -3,8 +3,8 @@ use crate::enchant::resolve::{
     MergeResolveEnchantments, RejectIncompatibleResolveEnchantments, ResolveEnchantments,
     UnhandledEnchantmentResolver,
 };
-use crate::enchantment::combine::CombineEnchantments;
 use crate::enchantment::EnchantmentKindId;
+use crate::enchantment::combine::CombineEnchantments;
 
 pub fn standard_enchantment_resolver(
     combiner: impl CombineEnchantments,

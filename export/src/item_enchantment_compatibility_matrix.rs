@@ -1,10 +1,10 @@
+use crate::compatibility_entry::entry;
 use crate::enchantment_kind_ids::EnchantmentKindIds;
 use crate::item_kind_ids::ItemKindIds;
 use domain::edition::EditionShared;
 use domain::enchantment::EnchantmentKindId;
 use domain::item::ItemKindId;
 use std::collections::BTreeMap;
-use crate::compatibility_entry::entry;
 
 pub fn get_item_enchantment_compatibility_matrix(
     item_ids: &ItemKindIds,

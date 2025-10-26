@@ -1,6 +1,6 @@
 use crate::enchant::resolve::{EnchantmentsResolution as Resolution, ResolveEnchantments};
-use crate::enchantment::combine::{CombineEnchantments, CombineEnchantmentsError as CombineError};
 use crate::enchantment::Enchantment;
+use crate::enchantment::combine::{CombineEnchantments, CombineEnchantmentsError as CombineError};
 
 #[derive(Debug)]
 pub struct MergeEnchantmentResolver<Combine, Fallback>

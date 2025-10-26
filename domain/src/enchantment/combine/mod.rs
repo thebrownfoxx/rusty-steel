@@ -11,9 +11,9 @@ pub use reject_lower_level_sacrifice::{
     RejectLowerLevelSacrificeCombineEnchantments, RejectLowerLevelSacrificeEnchantmentCombiner,
 };
 pub use standard::StandardEnchantmentCombiner;
-use std::fmt::{Display, Formatter};
 
 use crate::enchantment::Enchantment;
+use std::fmt::{Display, Formatter};
 
 pub trait CombineEnchantments {
     fn combine(

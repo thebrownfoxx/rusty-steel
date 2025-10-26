@@ -1,9 +1,9 @@
 use crate::compatible::AreCompatible;
 use crate::enchant::agnostic::AgnosticEnchanter;
-use crate::enchant::resolve::{standard_enchantment_resolver, ResolveEnchantmentsEnchant};
+use crate::enchant::resolve::{ResolveEnchantmentsEnchant, standard_enchantment_resolver};
 use crate::enchant::{Enchant, RequireCompatibleItemEnchant};
-use crate::enchantment::combine::CombineEnchantments;
 use crate::enchantment::EnchantmentKindId;
+use crate::enchantment::combine::CombineEnchantments;
 use crate::item::ItemKindId;
 
 pub fn standard_enchanter(
