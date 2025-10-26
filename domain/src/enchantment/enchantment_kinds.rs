@@ -1,7 +1,8 @@
 use super::{EnchantmentKind, EnchantmentKindId};
 use std::fmt::Debug;
+use std::ops::Deref;
 
-pub trait EnchantmentKinds: Debug {
+pub trait EnchantmentKinds {
     fn all_ids(&self) -> impl Iterator<Item = &EnchantmentKindId>;
     fn get(&self, id: &impl AsRef<EnchantmentKindId>) -> Option<&EnchantmentKind>;
 }
@@ -22,5 +23,18 @@ impl EnchantmentKinds for OwnedEnchantmentKinds {
 impl From<Vec<EnchantmentKind>> for OwnedEnchantmentKinds {
     fn from(value: Vec<EnchantmentKind>) -> Self {
         OwnedEnchantmentKinds(value)
+    }
+}
+
+impl<Wrapper> EnchantmentKinds for Wrapper
+where
+    Wrapper: Deref<Target: EnchantmentKinds>,
+{
+    fn all_ids(&self) -> impl Iterator<Item = &EnchantmentKindId> {
+        self.deref().all_ids()
+    }
+
+    fn get(&self, id: &impl AsRef<EnchantmentKindId>) -> Option<&EnchantmentKind> {
+        self.deref().get(id)
     }
 }

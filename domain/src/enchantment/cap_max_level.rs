@@ -1,31 +1,38 @@
-use crate::enchantment::{Enchantment, EnchantmentKinds};
+use crate::enchantment::{Enchantment, MaxLevel};
 use std::cmp::min;
 use std::ops::Deref;
-use std::rc::Rc;
-use std::sync::Arc;
 
 pub trait CapMaxLevel {
     fn cap_max_level(&self, enchantment: &mut Enchantment);
 }
 
-impl<Kinds: EnchantmentKinds> CapMaxLevel for Kinds {
+impl<Wrapper> CapMaxLevel for Wrapper
+where
+    Wrapper: Deref<Target: CapMaxLevel>,
+{
     fn cap_max_level(&self, enchantment: &mut Enchantment) {
-        let Some(kind) = self.get(enchantment) else {
+        self.deref().cap_max_level(enchantment)
+    }
+}
+
+pub struct MaxLevelCapMaxLevel<Max: MaxLevel> {
+    max_level_provider: Max,
+}
+
+impl<Max: MaxLevel> CapMaxLevel for MaxLevelCapMaxLevel<Max> {
+    fn cap_max_level(&self, enchantment: &mut Enchantment) {
+        let Some(max_level) = self.max_level_provider.max_level(&enchantment) else {
             return;
         };
 
-        enchantment.level = min(enchantment.level, kind.max_level);
+        enchantment.level = min(max_level, enchantment.level);
     }
 }
 
-impl<Impl: CapMaxLevel> CapMaxLevel for Rc<Impl> {
-    fn cap_max_level(&self, enchantment: &mut Enchantment) {
-        self.deref().cap_max_level(enchantment)
-    }
-}
-
-impl<Impl: CapMaxLevel> CapMaxLevel for Arc<Impl> {
-    fn cap_max_level(&self, enchantment: &mut Enchantment) {
-        self.deref().cap_max_level(enchantment)
+impl<Max: MaxLevel> From<Max> for MaxLevelCapMaxLevel<Max> {
+    fn from(value: Max) -> Self {
+        Self {
+            max_level_provider: value,
+        }
     }
 }

@@ -1,14 +1,9 @@
-mod compatible;
 mod item_kind;
 mod item_kinds;
 mod shared_item_kind;
 mod shared_item_kinds;
 
-use std::ops::Deref;
 use bon::Builder;
-pub use compatible::{
-    EnchantmentCompatibilityMap, EnchantmentCompatible, SharedEnchantmentCompatibilityMap,
-};
 pub use item_kind::{ItemKind, ItemKindId};
 pub use item_kinds::{ItemKinds, OwnedItemKinds};
 pub use shared_item_kind::SharedItemKind;

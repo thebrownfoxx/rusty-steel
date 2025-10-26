@@ -1,19 +1,19 @@
 use super::{Combine, Error, MaxLevelCapped, RejectLowerLevelSacrifice, Result};
-use crate::enchantment::{CapMaxLevel, Enchantment};
+use crate::combine::enchantments::reject_level_overflow::RejectLevelOverflow;
+use crate::enchantment::{CapMaxLevel, Enchantment, MaxLevel};
 use std::cmp::max;
 
 pub struct Standard;
 
 impl Standard {
-    pub fn bedrock(cap_strategy: impl CapMaxLevel) -> impl Combine {
-        MaxLevelCapped {
-            implementation: RejectLowerLevelSacrifice(Standard),
-            cap_strategy,
-        }
+    pub fn bedrock(max_level_provider: impl MaxLevel) -> impl Combine {
+        Standard
+            .reject_lower_level_sacrifice()
+            .reject_level_overflow(max_level_provider)
     }
 
-    pub fn java() -> impl Combine {
-        Standard
+    pub fn java(cap_strategy: impl CapMaxLevel) -> impl Combine {
+        Standard.max_level_capped(cap_strategy)
     }
 }
 
