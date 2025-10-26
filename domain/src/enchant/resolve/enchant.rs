@@ -3,6 +3,7 @@ use crate::enchant::{Enchant, EnchantError, EnchantResult};
 use crate::enchantment::Enchantment;
 use crate::item::Item;
 
+#[derive(Debug)]
 pub struct ResolveEnchantmentsEnchanter<Resolve: ResolveEnchantments, Fallback: Enchant> {
     resolver: Resolve,
     fallback: Fallback,

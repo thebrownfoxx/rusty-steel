@@ -1,6 +1,7 @@
 use crate::enchant::resolve::{EnchantmentsResolution, ResolveEnchantments};
 use crate::enchantment::Enchantment;
 
+#[derive(Debug)]
 pub struct UnhandledEnchantmentResolver;
 
 impl ResolveEnchantments for UnhandledEnchantmentResolver {
