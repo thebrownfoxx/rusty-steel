@@ -1,10 +1,12 @@
 pub mod resolve;
 
 mod agnostic;
-mod require_compatible_item;
+mod reject_incompatible_item;
+mod resolve_enchantments;
 mod standard;
 
-pub use require_compatible_item::{RequireCompatibleItemEnchant, RequireCompatibleItemEnchanter};
+pub use reject_incompatible_item::{RejectIncompatibleItem, RejectIncompatibleItemBuilder};
+pub use resolve_enchantments::{IterateEnchantments, IterateEnchantmentsBuilder};
 pub use standard::standard_enchanter;
 
 use crate::enchantment::{Enchantment, EnchantmentKindId};

@@ -1,20 +1,22 @@
 use super::{CombineEnchantments, CombineEnchantmentsError, CombineEnchantmentsResult};
-use crate::enchantment::{Enchantment, MaxLevel};
+use crate::builder::Builder;
+use crate::enchantment::level::EnchantmentLevel;
+use crate::enchantment::{Enchantment, EnchantmentKindId};
 
 #[derive(Debug)]
-pub struct RejectLevelOverflowEnchantmentCombiner<Impl, Max>
+pub struct RejectLevelOverflow<Impl, Max>
 where
     Impl: CombineEnchantments,
-    Max: MaxLevel,
+    Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     implementation: Impl,
-    max_level_provider: Max,
+    max_level: Max,
 }
 
-impl<Impl, Cap> CombineEnchantments for RejectLevelOverflowEnchantmentCombiner<Impl, Cap>
+impl<Impl, Max> CombineEnchantments for RejectLevelOverflow<Impl, Max>
 where
     Impl: CombineEnchantments,
-    Cap: MaxLevel,
+    Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     fn combine(
         &self,
@@ -25,9 +27,7 @@ where
 
         let () = self.implementation.combine(target, sacrifice)?;
 
-        let Some(max_level) = self.max_level_provider.max_level(&target) else {
-            return Ok(());
-        };
+        let max_level = (self.max_level)(&target.kind);
 
         if target.level <= max_level {
             return Ok(());
@@ -38,29 +38,23 @@ where
     }
 }
 
-pub trait RejectLevelOverflowCombineEnchantments<Impl, Max>
+pub trait RejectLevelOverflowBuilder<Impl, Max>
 where
     Impl: CombineEnchantments,
-    Max: MaxLevel,
+    Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
-    fn reject_level_overflow(
-        self,
-        max_level_provider: Max,
-    ) -> RejectLevelOverflowEnchantmentCombiner<Impl, Max>;
+    fn reject_level_overflow(self, max_level: Max) -> Builder<RejectLevelOverflow<Impl, Max>>;
 }
 
-impl<Impl, Max> RejectLevelOverflowCombineEnchantments<Impl, Max> for Impl
+impl<Impl, Max> RejectLevelOverflowBuilder<Impl, Max> for Builder<Impl>
 where
     Impl: CombineEnchantments,
-    Max: MaxLevel,
+    Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
-    fn reject_level_overflow(
-        self,
-        max_level_provider: Max,
-    ) -> RejectLevelOverflowEnchantmentCombiner<Impl, Max> {
-        RejectLevelOverflowEnchantmentCombiner {
-            implementation: self,
-            max_level_provider,
-        }
+    fn reject_level_overflow(self, max_level: Max) -> Builder<RejectLevelOverflow<Impl, Max>> {
+        self.reimplement(|implementation| RejectLevelOverflow {
+            implementation,
+            max_level,
+        })
     }
 }

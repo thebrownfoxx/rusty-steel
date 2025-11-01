@@ -1,18 +1,14 @@
-mod enchant;
 mod merge;
 mod reject_incompatible;
 mod standard;
 mod unhandled;
 
-pub use enchant::{ResolveEnchantmentsEnchant, ResolveEnchantmentsEnchanter};
-pub use merge::{MergeEnchantmentResolver, MergeResolveEnchantments};
-pub use reject_incompatible::{
-    RejectIncompatibleEnchantmentResolver, RejectIncompatibleResolveEnchantments,
-};
+pub use merge::{Merge, MergeBuilder};
+pub use reject_incompatible::{RejectIncompatible, RejectIncompatibleBuilder};
 pub use standard::standard_enchantment_resolver;
-pub use unhandled::UnhandledEnchantmentResolver;
+pub use unhandled::UnhandledEnchantmentsResolver;
 
-use crate::enchantment::{Enchantment, EnchantmentKindId};
+use crate::enchantment::Enchantment;
 
 pub trait ResolveEnchantments {
     fn resolve(&self, target: &mut Enchantment, sacrifice: &Enchantment) -> EnchantmentsResolution;
@@ -20,7 +16,7 @@ pub trait ResolveEnchantments {
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub enum EnchantmentsResolution {
-    Handled,
-    Unhandled,
-    Incompatible { conflict: EnchantmentKindId },
+    Resolved,
+    Unresolved,
+    Incompatible,
 }

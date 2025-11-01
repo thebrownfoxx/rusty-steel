@@ -1,5 +1,6 @@
 use super::CostMultiplier;
-use bon::{Builder, builder};
+use crate::enchantment::level::EnchantmentLevel;
+use bon::{builder, Builder};
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use std::hash::Hash;
@@ -18,10 +19,7 @@ impl EnchantmentKindId {
     }
 }
 
-impl<T> From<T> for EnchantmentKindId
-where
-    T: Into<Rc<str>>,
-{
+impl<T: Into<Rc<str>>> From<T> for EnchantmentKindId {
     fn from(value: T) -> Self {
         Self::new(value)
     }
@@ -47,7 +45,7 @@ pub struct EnchantmentKind {
     #[builder(into)]
     pub name: Rc<str>,
 
-    pub max_level: u8,
+    pub max_level: EnchantmentLevel,
 
     pub cost_multiplier: CostMultiplier,
 }

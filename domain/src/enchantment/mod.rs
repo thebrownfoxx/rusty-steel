@@ -1,21 +1,15 @@
 pub mod combine;
 
-mod cap_max_level;
 mod cost_multiplier;
-mod enchantment_kind;
-mod enchantment_kinds;
-mod max_level;
-mod shared_enchantment_kind;
-mod shared_enchantment_kinds;
+mod kind;
+mod kinds;
+mod level;
 
-pub use cap_max_level::{CapMaxLevel, MaxLevelCapMaxLevel};
 pub use cost_multiplier::CostMultiplier;
-pub use enchantment_kind::{EnchantmentKind, EnchantmentKindId};
-pub use enchantment_kinds::{EnchantmentKinds, OwnedEnchantmentKinds};
-pub use max_level::{EnchantmentKindsMaxLevel, MaxLevel};
-pub use shared_enchantment_kind::SharedEnchantmentKind;
-pub use shared_enchantment_kinds::SharedEnchantmentKinds;
+pub use kind::{EnchantmentKind, EnchantmentKindId};
+pub use kinds::{EnchantmentKinds, OwnedEnchantmentKinds};
 
+use crate::enchantment::level::EnchantmentLevel;
 use bon::Builder;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
@@ -26,7 +20,7 @@ pub struct Enchantment {
     #[builder(into)]
     pub kind: EnchantmentKindId,
 
-    pub level: u8,
+    pub level: EnchantmentLevel,
 }
 
 impl AsRef<EnchantmentKindId> for Enchantment {

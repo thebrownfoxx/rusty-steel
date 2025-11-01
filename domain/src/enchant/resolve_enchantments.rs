@@ -1,25 +1,27 @@
+use crate::builder::Builder;
 use crate::enchant::resolve::{EnchantmentsResolution, ResolveEnchantments};
 use crate::enchant::{Enchant, EnchantError, EnchantResult};
 use crate::enchantment::Enchantment;
 use crate::item::Item;
 
 #[derive(Debug)]
-pub struct ResolveEnchantmentsEnchanter<Resolve: ResolveEnchantments, Fallback: Enchant> {
+pub struct IterateEnchantments<Resolve: ResolveEnchantments, Fallback: Enchant> {
     resolver: Resolve,
     fallback: Fallback,
 }
 
 impl<Resolve: ResolveEnchantments, Fallback: Enchant> Enchant
-    for ResolveEnchantmentsEnchanter<Resolve, Fallback>
+    for IterateEnchantments<Resolve, Fallback>
 {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> EnchantResult {
         for target in item.enchantments.iter_mut() {
             let resolution = self.resolver.resolve(target, &enchantment);
 
             match resolution {
-                EnchantmentsResolution::Handled => return Ok(()),
-                EnchantmentsResolution::Unhandled => continue,
-                EnchantmentsResolution::Incompatible { conflict } => {
+                EnchantmentsResolution::Resolved => return Ok(()),
+                EnchantmentsResolution::Unresolved => continue,
+                EnchantmentsResolution::Incompatible => {
+                    let conflict = target.kind.clone();
                     return Err(EnchantError::EnchantmentsIncompatible { conflict });
                 }
             }
@@ -29,23 +31,20 @@ impl<Resolve: ResolveEnchantments, Fallback: Enchant> Enchant
     }
 }
 
-pub trait ResolveEnchantmentsEnchant<Resolve: ResolveEnchantments, Fallback: Enchant> {
+pub trait IterateEnchantmentsBuilder<Resolve: ResolveEnchantments, Fallback: Enchant> {
     fn resolve_enchantments(
         self,
         resolver: Resolve,
-    ) -> ResolveEnchantmentsEnchanter<Resolve, Fallback>;
+    ) -> Builder<IterateEnchantments<Resolve, Fallback>>;
 }
 
-impl<Resolve: ResolveEnchantments, Fallback: Enchant> ResolveEnchantmentsEnchant<Resolve, Fallback>
-    for Fallback
+impl<Resolve: ResolveEnchantments, Fallback: Enchant> IterateEnchantmentsBuilder<Resolve, Fallback>
+    for Builder<Fallback>
 {
     fn resolve_enchantments(
         self,
         resolver: Resolve,
-    ) -> ResolveEnchantmentsEnchanter<Resolve, Fallback> {
-        ResolveEnchantmentsEnchanter {
-            resolver,
-            fallback: self,
-        }
+    ) -> Builder<IterateEnchantments<Resolve, Fallback>> {
+        self.reimplement(|fallback| IterateEnchantments { resolver, fallback })
     }
 }

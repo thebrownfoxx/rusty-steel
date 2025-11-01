@@ -1,10 +1,11 @@
+use crate::builder::Builder;
 use crate::compatible::AreCompatible;
 use crate::enchant::{Enchant, EnchantError, EnchantResult};
 use crate::enchantment::{Enchantment, EnchantmentKindId};
 use crate::item::{Item, ItemKindId};
 
 #[derive(Debug)]
-pub struct RequireCompatibleItemEnchanter<Impl, Compat>
+pub struct RejectIncompatibleItem<Impl, Compat>
 where
     Impl: Enchant,
     Compat: AreCompatible<ItemKindId, EnchantmentKindId>,
@@ -13,12 +14,12 @@ where
     compatibility: Compat,
 }
 
-impl<Impl, Compat> Enchant for RequireCompatibleItemEnchanter<Impl, Compat>
+impl<Impl, Compat> Enchant for RejectIncompatibleItem<Impl, Compat>
 where
     Impl: Enchant,
     Compat: AreCompatible<ItemKindId, EnchantmentKindId>,
 {
-    fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> EnchantResult<()> {
+    fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> EnchantResult {
         let compatibility = &self.compatibility;
 
         if !compatibility.are_compatible(&item, &enchantment) {
@@ -29,29 +30,29 @@ where
     }
 }
 
-pub trait RequireCompatibleItemEnchant<Impl, Compat>
+pub trait RejectIncompatibleItemBuilder<Impl, Compat>
 where
     Impl: Enchant,
     Compat: AreCompatible<ItemKindId, EnchantmentKindId>,
 {
-    fn require_compatible_item(
+    fn reject_incompatible_item(
         self,
         item_enchantment_compatibility: Compat,
-    ) -> RequireCompatibleItemEnchanter<Impl, Compat>;
+    ) -> Builder<RejectIncompatibleItem<Impl, Compat>>;
 }
 
-impl<Impl, Compat> RequireCompatibleItemEnchant<Impl, Compat> for Impl
+impl<Impl, Compat> RejectIncompatibleItemBuilder<Impl, Compat> for Builder<Impl>
 where
     Impl: Enchant,
     Compat: AreCompatible<ItemKindId, EnchantmentKindId>,
 {
-    fn require_compatible_item(
+    fn reject_incompatible_item(
         self,
         compatibility: Compat,
-    ) -> RequireCompatibleItemEnchanter<Impl, Compat> {
-        RequireCompatibleItemEnchanter {
-            implementation: self,
+    ) -> Builder<RejectIncompatibleItem<Impl, Compat>> {
+        self.reimplement(|implementation| RejectIncompatibleItem {
+            implementation,
             compatibility,
-        }
+        })
     }
 }

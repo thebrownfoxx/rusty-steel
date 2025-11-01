@@ -1,20 +1,23 @@
 use super::{CombineEnchantments, CombineEnchantmentsResult};
-use crate::enchantment::{CapMaxLevel, Enchantment};
+use crate::builder::Builder;
+use crate::enchantment::level::EnchantmentLevel;
+use crate::enchantment::{Enchantment, EnchantmentKindId};
+use std::cmp::min;
 
 #[derive(Debug)]
-pub struct MaxLevelCappedEnchantmentCombiner<Impl, Cap>
+pub struct MaxLevelCapped<Impl, Max>
 where
     Impl: CombineEnchantments,
-    Cap: CapMaxLevel,
+    Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     implementation: Impl,
-    cap_strategy: Cap,
+    max_level: Max,
 }
 
-impl<Impl, Cap> CombineEnchantments for MaxLevelCappedEnchantmentCombiner<Impl, Cap>
+impl<Impl, Max> CombineEnchantments for MaxLevelCapped<Impl, Max>
 where
     Impl: CombineEnchantments,
-    Cap: CapMaxLevel,
+    Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     fn combine(
         &self,
@@ -24,30 +27,31 @@ where
         let result = self.implementation.combine(target, sacrifice);
 
         if result.is_ok() {
-            self.cap_strategy.cap_max_level(target);
+            let max_level = (self.max_level)(&target.kind);
+            target.level = min(target.level, max_level)
         }
 
         result
     }
 }
 
-pub trait MaxLevelCappedCombineEnchantments<Impl, Cap>
+pub trait MaxLevelCappedBuilder<Impl, Max>
 where
     Impl: CombineEnchantments,
-    Cap: CapMaxLevel,
+    Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
-    fn max_level_capped(self, cap_strategy: Cap) -> MaxLevelCappedEnchantmentCombiner<Impl, Cap>;
+    fn max_level_capped(self, max_level: Max) -> Builder<MaxLevelCapped<Impl, Max>>;
 }
 
-impl<Impl, Cap> MaxLevelCappedCombineEnchantments<Impl, Cap> for Impl
+impl<Impl, Max> MaxLevelCappedBuilder<Impl, Max> for Builder<Impl>
 where
     Impl: CombineEnchantments,
-    Cap: CapMaxLevel,
+    Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
-    fn max_level_capped(self, cap_strategy: Cap) -> MaxLevelCappedEnchantmentCombiner<Impl, Cap> {
-        MaxLevelCappedEnchantmentCombiner {
-            implementation: self,
-            cap_strategy,
-        }
+    fn max_level_capped(self, max_level: Max) -> Builder<MaxLevelCapped<Impl, Max>> {
+        self.reimplement(|implementation| MaxLevelCapped {
+            implementation,
+            max_level,
+        })
     }
 }

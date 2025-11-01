@@ -38,7 +38,7 @@ impl AsRef<ItemKindId> for ItemKindId {
     }
 }
 
-#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize, Builder)]
+#[derive(Eq, PartialEq, Clone, Hash, Debug, Serialize, Deserialize, Builder)]
 pub struct ItemKind {
     #[builder(into)]
     pub id: ItemKindId,

@@ -1,14 +1,10 @@
 mod combine;
-mod item_kind;
-mod item_kinds;
-mod shared_item_kind;
-mod shared_item_kinds;
+mod kind;
+mod kinds;
 
 use bon::Builder;
-pub use item_kind::{ItemKind, ItemKindId};
-pub use item_kinds::{ItemKinds, OwnedItemKinds};
-pub use shared_item_kind::SharedItemKind;
-pub use shared_item_kinds::SharedItemKinds;
+pub use kind::{ItemKind, ItemKindId};
+pub use kinds::{ItemKinds, OwnedItemKinds};
 
 use crate::enchantment::{Enchantment, EnchantmentKindId};
 use serde::{Deserialize, Serialize};
