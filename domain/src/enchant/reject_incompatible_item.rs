@@ -23,7 +23,7 @@ where
         let compatibility = &self.compatibility;
 
         if !compatibility.are_compatible(&item, &enchantment) {
-            return Err(EnchantError::ItemKindIncompatible);
+            return Err(EnchantError::IncompatibleItemKind);
         }
 
         self.implementation.enchant(item, enchantment)

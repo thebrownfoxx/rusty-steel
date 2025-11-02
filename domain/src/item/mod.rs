@@ -1,22 +1,16 @@
-mod combine;
 mod kind;
 mod kinds;
 
-use bon::Builder;
 pub use kind::{ItemKind, ItemKindId};
 pub use kinds::{ItemKinds, OwnedItemKinds};
 
 use crate::enchantment::{Enchantment, EnchantmentKindId};
 use serde::{Deserialize, Serialize};
 
-#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize, Builder)]
+#[derive(Eq, PartialEq, Clone, Debug)]
 pub struct Item {
-    #[builder(into)]
     pub kind: ItemKindId,
-
-    #[builder(into)]
     pub enchantments: Vec<Enchantment>,
-
     pub anvil_use_count: u8,
 }
 

@@ -34,7 +34,7 @@ where
         }
 
         target.level = original_level;
-        Err(CombineEnchantmentsError::LevelsIncompatible)
+        Err(CombineEnchantmentsError::IncompatibleLevels)
     }
 }
 

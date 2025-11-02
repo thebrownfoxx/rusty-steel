@@ -12,7 +12,7 @@ impl<Impl: CombineEnchantments> CombineEnchantments for RejectLowerLevelSacrific
         sacrifice: &Enchantment,
     ) -> CombineEnchantmentsResult {
         if sacrifice.level < target.level {
-            return Err(CombineEnchantmentsError::LevelsIncompatible);
+            return Err(CombineEnchantmentsError::IncompatibleLevels);
         }
 
         Ok(())

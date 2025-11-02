@@ -36,10 +36,10 @@ impl CombineEnchantments for StandardEnchantmentCombiner {
         sacrifice: &Enchantment,
     ) -> CombineEnchantmentsResult {
         if target.kind != sacrifice.kind {
-            return Err(CombineEnchantmentsError::EnchantmentKindsIncompatible);
+            return Err(CombineEnchantmentsError::IncompatibleKinds);
         }
 
-        target.level = target.level.combine(sacrifice.level);
+        target.level.combine_mut(sacrifice.level);
         Ok(())
     }
 }

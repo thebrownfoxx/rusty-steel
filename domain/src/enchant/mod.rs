@@ -22,8 +22,8 @@ pub type EnchantResult<T = ()> = Result<T, EnchantError>;
 
 #[derive(Eq, PartialEq, Clone, Hash, Debug)]
 pub enum EnchantError {
-    ItemKindIncompatible,
-    EnchantmentsIncompatible { conflict: EnchantmentKindId },
+    IncompatibleItemKind,
+    IncompatibleEnchantments { conflict: EnchantmentKindId },
 }
 
 impl Display for EnchantError {

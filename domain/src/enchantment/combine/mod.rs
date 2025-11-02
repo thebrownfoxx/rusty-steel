@@ -36,8 +36,8 @@ pub type CombineEnchantmentsResult<T = ()> = Result<T, CombineEnchantmentsError>
 
 #[derive(Eq, PartialEq, Copy, Clone, Hash, Debug)]
 pub enum CombineEnchantmentsError {
-    EnchantmentKindsIncompatible,
-    LevelsIncompatible,
+    IncompatibleKinds,
+    IncompatibleLevels,
 }
 
 impl Display for CombineEnchantmentsError {

@@ -24,8 +24,8 @@ where
         };
 
         match error {
-            CombineError::EnchantmentKindsIncompatible => self.fallback.resolve(target, sacrifice),
-            CombineError::LevelsIncompatible => Resolution::Incompatible,
+            CombineError::IncompatibleKinds => self.fallback.resolve(target, sacrifice),
+            CombineError::IncompatibleLevels => Resolution::Incompatible,
         }
     }
 }

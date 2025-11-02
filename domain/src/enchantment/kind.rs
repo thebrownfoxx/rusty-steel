@@ -45,6 +45,7 @@ pub struct EnchantmentKind {
     #[builder(into)]
     pub name: Rc<str>,
 
+    #[builder(into)]
     pub max_level: EnchantmentLevel,
 
     pub cost_multiplier: CostMultiplier,

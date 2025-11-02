@@ -6,7 +6,7 @@ pub struct EnchantmentLevel(u8);
 
 impl EnchantmentLevel {
     pub fn new(value: impl Into<u8>) -> Self {
-        EnchantmentLevel(value.into())
+        Self(value.into())
     }
 
     pub fn combine(self, other: EnchantmentLevel) -> EnchantmentLevel {

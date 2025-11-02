@@ -22,7 +22,7 @@ impl<Resolve: ResolveEnchantments, Fallback: Enchant> Enchant
                 EnchantmentsResolution::Unresolved => continue,
                 EnchantmentsResolution::Incompatible => {
                     let conflict = target.kind.clone();
-                    return Err(EnchantError::EnchantmentsIncompatible { conflict });
+                    return Err(EnchantError::IncompatibleEnchantments { conflict });
                 }
             }
         }
