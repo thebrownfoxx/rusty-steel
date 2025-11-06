@@ -1,15 +1,15 @@
-pub mod combine;
-
+mod combine;
 mod cost_multiplier;
 mod kind;
 mod kinds;
 mod level;
 
+pub use crate::enchantment::level::EnchantmentLevel;
+pub use combine::CombineEnchantments;
 pub use cost_multiplier::CostMultiplier;
 pub use kind::{EnchantmentKind, EnchantmentKindId};
 pub use kinds::{EnchantmentKinds, OwnedEnchantmentKinds};
 
-use crate::enchantment::level::EnchantmentLevel;
 use std::fmt::Debug;
 use std::hash::Hash;
 

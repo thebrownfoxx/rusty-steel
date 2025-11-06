@@ -18,18 +18,3 @@ pub trait Enchant {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> EnchantResult;
 }
 
-pub type EnchantResult<T = ()> = Result<T, EnchantError>;
-
-#[derive(Eq, PartialEq, Clone, Hash, Debug)]
-pub enum EnchantError {
-    IncompatibleItemKind,
-    IncompatibleEnchantments { conflict: EnchantmentKindId },
-}
-
-impl Display for EnchantError {
-    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
-        write!(f, "{self:?}")
-    }
-}
-
-impl std::error::Error for EnchantError {}

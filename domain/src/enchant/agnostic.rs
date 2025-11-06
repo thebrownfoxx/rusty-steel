@@ -7,7 +7,7 @@ pub struct AgnosticEnchanter;
 
 impl Enchant for AgnosticEnchanter {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> EnchantResult {
-        item.enchantments.push(enchantment);
+        item.enchantment_levels.push(enchantment);
         Ok(())
     }
 }

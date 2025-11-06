@@ -16,15 +16,6 @@ impl EnchantmentLevel {
 
         max(self, other)
     }
-
-    pub fn combine_mut(&mut self, other: EnchantmentLevel) {
-        if *self == other {
-            self.0 += other.0;
-            return;
-        };
-
-        self.0 = max(self.0, other.0)
-    }
 }
 
 impl From<u8> for EnchantmentLevel {

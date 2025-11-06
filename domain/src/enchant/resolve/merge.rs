@@ -1,12 +1,14 @@
 use crate::builder::Builder;
 use crate::enchant::resolve::{EnchantmentsResolution as Resolution, ResolveEnchantments};
-use crate::enchantment::combine::{CombineEnchantments, CombineEnchantmentsError as CombineError};
+use crate::enchantment::combine::{
+    CombineEnchantmentLevels, CombineEnchantmentsError as CombineError,
+};
 use crate::enchantment::Enchantment;
 
 #[derive(Debug)]
 pub struct Merge<Combine, Fallback>
 where
-    Combine: CombineEnchantments,
+    Combine: CombineEnchantmentLevels,
     Fallback: ResolveEnchantments,
 {
     combiner: Combine,
@@ -15,7 +17,7 @@ where
 
 impl<Combine, Fallback> ResolveEnchantments for Merge<Combine, Fallback>
 where
-    Combine: CombineEnchantments,
+    Combine: CombineEnchantmentLevels,
     Fallback: ResolveEnchantments,
 {
     fn resolve(&self, target: &mut Enchantment, sacrifice: &Enchantment) -> Resolution {
@@ -32,7 +34,7 @@ where
 
 pub trait MergeBuilder<Combine, Fallback>
 where
-    Combine: CombineEnchantments,
+    Combine: CombineEnchantmentLevels,
     Fallback: ResolveEnchantments,
 {
     fn merge(self, combiner: Combine) -> Builder<Merge<Combine, Fallback>>;
@@ -40,7 +42,7 @@ where
 
 impl<Combine, Fallback> MergeBuilder<Combine, Fallback> for Builder<Fallback>
 where
-    Combine: CombineEnchantments,
+    Combine: CombineEnchantmentLevels,
     Fallback: ResolveEnchantments,
 {
     fn merge(self, combiner: Combine) -> Builder<Merge<Combine, Fallback>> {

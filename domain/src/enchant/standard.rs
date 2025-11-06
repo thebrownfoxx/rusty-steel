@@ -3,12 +3,12 @@ use crate::compatible::AreCompatible;
 use crate::enchant::agnostic::AgnosticEnchanter;
 use crate::enchant::resolve::standard_enchantment_resolver;
 use crate::enchant::{Enchant, IterateEnchantmentsBuilder, RejectIncompatibleItemBuilder};
-use crate::enchantment::combine::CombineEnchantments;
+use crate::enchantment::combine::CombineEnchantmentLevels;
 use crate::enchantment::EnchantmentKindId;
 use crate::item::ItemKindId;
 
 pub fn standard_enchanter(
-    combiner: impl CombineEnchantments,
+    combiner: impl CombineEnchantmentLevels,
     enchantment_compatibility: impl AreCompatible<EnchantmentKindId>,
     item_compatibility: impl AreCompatible<ItemKindId, EnchantmentKindId>,
 ) -> impl Enchant {

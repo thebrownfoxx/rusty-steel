@@ -14,7 +14,7 @@ impl<Resolve: ResolveEnchantments, Fallback: Enchant> Enchant
     for IterateEnchantments<Resolve, Fallback>
 {
     fn enchant(&self, item: &mut Item, enchantment: Enchantment) -> EnchantResult {
-        for target in item.enchantments.iter_mut() {
+        for target in item.enchantment_levels.iter_mut() {
             let resolution = self.resolver.resolve(target, &enchantment);
 
             match resolution {
