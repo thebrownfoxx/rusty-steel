@@ -1,4 +1,4 @@
-use super::{CombineEnchantments, CombineEnchantmentsResult};
+use super::{CombineEnchantmentLevels, CombineEnchantmentsResult};
 use crate::builder::Builder;
 use crate::enchantment::level::EnchantmentLevel;
 use crate::enchantment::{Enchantment, EnchantmentKindId};
@@ -7,16 +7,16 @@ use std::cmp::min;
 #[derive(Debug)]
 pub struct MaxLevelCapped<Impl, Max>
 where
-    Impl: CombineEnchantments,
+    Impl: CombineEnchantmentLevels,
     Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     implementation: Impl,
     max_level: Max,
 }
 
-impl<Impl, Max> CombineEnchantments for MaxLevelCapped<Impl, Max>
+impl<Impl, Max> CombineEnchantmentLevels for MaxLevelCapped<Impl, Max>
 where
-    Impl: CombineEnchantments,
+    Impl: CombineEnchantmentLevels,
     Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     fn combine(
@@ -37,7 +37,7 @@ where
 
 pub trait MaxLevelCappedBuilder<Impl, Max>
 where
-    Impl: CombineEnchantments,
+    Impl: CombineEnchantmentLevels,
     Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     fn max_level_capped(self, max_level: Max) -> Builder<MaxLevelCapped<Impl, Max>>;
@@ -45,7 +45,7 @@ where
 
 impl<Impl, Max> MaxLevelCappedBuilder<Impl, Max> for Builder<Impl>
 where
-    Impl: CombineEnchantments,
+    Impl: CombineEnchantmentLevels,
     Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     fn max_level_capped(self, max_level: Max) -> Builder<MaxLevelCapped<Impl, Max>> {

@@ -1,4 +1,4 @@
-use super::{CombineEnchantments, CombineEnchantmentsError, CombineEnchantmentsResult};
+use super::{CombineEnchantmentLevels, CombineEnchantmentsError, CombineEnchantmentsResult};
 use crate::builder::Builder;
 use crate::enchantment::level::EnchantmentLevel;
 use crate::enchantment::{Enchantment, EnchantmentKindId};
@@ -6,16 +6,16 @@ use crate::enchantment::{Enchantment, EnchantmentKindId};
 #[derive(Debug)]
 pub struct RejectLevelOverflow<Impl, Max>
 where
-    Impl: CombineEnchantments,
+    Impl: CombineEnchantmentLevels,
     Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     implementation: Impl,
     max_level: Max,
 }
 
-impl<Impl, Max> CombineEnchantments for RejectLevelOverflow<Impl, Max>
+impl<Impl, Max> CombineEnchantmentLevels for RejectLevelOverflow<Impl, Max>
 where
-    Impl: CombineEnchantments,
+    Impl: CombineEnchantmentLevels,
     Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     fn combine(
@@ -40,7 +40,7 @@ where
 
 pub trait RejectLevelOverflowBuilder<Impl, Max>
 where
-    Impl: CombineEnchantments,
+    Impl: CombineEnchantmentLevels,
     Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     fn reject_level_overflow(self, max_level: Max) -> Builder<RejectLevelOverflow<Impl, Max>>;
@@ -48,7 +48,7 @@ where
 
 impl<Impl, Max> RejectLevelOverflowBuilder<Impl, Max> for Builder<Impl>
 where
-    Impl: CombineEnchantments,
+    Impl: CombineEnchantmentLevels,
     Max: Fn(&EnchantmentKindId) -> EnchantmentLevel,
 {
     fn reject_level_overflow(self, max_level: Max) -> Builder<RejectLevelOverflow<Impl, Max>> {

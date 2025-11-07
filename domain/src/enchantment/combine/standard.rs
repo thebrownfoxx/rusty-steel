@@ -1,5 +1,5 @@
 use super::{
-    CombineEnchantments, CombineEnchantmentsError, CombineEnchantmentsResult,
+    CombineEnchantmentLevels, CombineEnchantmentsError, CombineEnchantmentsResult,
     MaxLevelCappedBuilder, RejectLowerLevelSacrificeBuilder,
 };
 use crate::builder::Builder;
@@ -13,7 +13,7 @@ pub struct StandardEnchantmentCombiner;
 impl StandardEnchantmentCombiner {
     pub fn bedrock(
         max_level: impl Fn(&EnchantmentKindId) -> EnchantmentLevel,
-    ) -> impl CombineEnchantments {
+    ) -> impl CombineEnchantmentLevels {
         Builder::new(StandardEnchantmentCombiner)
             .reject_lower_level_sacrifice()
             .reject_level_overflow(max_level)
@@ -22,14 +22,14 @@ impl StandardEnchantmentCombiner {
 
     pub fn java(
         max_level: impl Fn(&EnchantmentKindId) -> EnchantmentLevel,
-    ) -> impl CombineEnchantments {
+    ) -> impl CombineEnchantmentLevels {
         Builder::new(StandardEnchantmentCombiner)
             .max_level_capped(max_level)
             .build()
     }
 }
 
-impl CombineEnchantments for StandardEnchantmentCombiner {
+impl CombineEnchantmentLevels for StandardEnchantmentCombiner {
     fn combine(
         &self,
         target: &mut Enchantment,

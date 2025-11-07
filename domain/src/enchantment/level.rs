@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use std::cmp::max;
+use std::ops::Add;
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug, Serialize, Deserialize)]
 pub struct EnchantmentLevel(u8);
@@ -9,21 +9,8 @@ impl EnchantmentLevel {
         Self(value.into())
     }
 
-    pub fn combine(self, other: EnchantmentLevel) -> EnchantmentLevel {
-        if self == other {
-            return Self::new(self.0 + other.0);
-        };
-
-        max(self, other)
-    }
-
-    pub fn combine_mut(&mut self, other: EnchantmentLevel) {
-        if *self == other {
-            self.0 += other.0;
-            return;
-        };
-
-        self.0 = max(self.0, other.0)
+    pub fn into_u8(self) -> u8 {
+        self.0
     }
 }
 
@@ -35,6 +22,14 @@ impl From<u8> for EnchantmentLevel {
 
 impl From<EnchantmentLevel> for u8 {
     fn from(value: EnchantmentLevel) -> Self {
-        value.0
+        value.into_u8()
+    }
+}
+
+impl<T: Into<EnchantmentLevel>> Add<T> for EnchantmentLevel {
+    type Output = EnchantmentLevel;
+
+    fn add(self, rhs: T) -> Self::Output {
+        Self(self.into_u8() + rhs.into().into_u8())
     }
 }
